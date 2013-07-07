@@ -68,7 +68,9 @@ namespace Zoekjaar.Web
 				"~/Content/unify/plugins/parallax-slider/js/modernizr.js",
 				"~/Content/unify/plugins/parallax-slider/js/jquery.cslider.js",
 				"~/Content/unify/plugins/back-to-top.js",
-				"~/Content/unify/js/app.js"));
+				"~/Content/unify/js/app.js",
+				"~/Content/unify/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js",
+				"~/Content/unify/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"));
 
 			BundleTable.EnableOptimizations = true;
 		}

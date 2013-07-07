@@ -4,128 +4,72 @@
 
 @model CompanyModel
 
-@using (Html.BeginForm("CreateEmployerProfile", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
-{
-	@Html.AntiForgeryToken()
-	@Html.HiddenFor(_ => _.Company.Id)
-	@Html.HiddenFor(_ => _.Company.UserId)
-	@Html.HiddenFor(_ => _.Company.IsActive)
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Email)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Email)
-						@Html.ControlValidationMessageFor(_ => _.Email)
+<div class="body">
+	<div class="container">
+		<div class="row-fluid margin-bottom-10">
+			@using (Html.BeginForm("CreateEmployerProfile", "Account", FormMethod.Post, new { @class = "reg-page" }))
+   {
+				@Html.AntiForgeryToken()
+				@Html.HiddenFor(_ => _.Company.Id)
+				@Html.HiddenFor(_ => _.Company.UserId)
+				@Html.HiddenFor(_ => _.Company.IsActive)
+				<h3>Register a new account</h3>
+				<div class="controls">
+					<div class="span6">
+						@Html.LabelFor(_ => _.Email)
+						@Html.TextBoxFor(_ => _.Email, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Email)
+					</div>
+					<div class="span6">
+						@Html.Label("confirm-email", "Confirm Email", new { @class = "control-label" })
+						@Html.TextBox("confirm-email", "", new { @class = "span12" })
 					</div>
 				</div>
-			</div>
-			<div class="span3">
-				<div class="control-group">
-					@Html.Label("confirm-email", "Confirm Email", new { @class = "control-label" })
-					<div class="controls">
-						@Html.TextBox("confirm-email")
+				<div class="controls">
+					<div class="span6">
+						@Html.LabelFor(_ => _.Password)
+						@Html.PasswordFor(_ => _.Password, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Password)
+					</div>
+					<div class="span6">
+						@Html.Label("confirm-password", "Confirm Password", new { @class = "control-label" })
+						@Html.Password("confirm-password", "", new { @class = "span12" })
 					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Password)
-					<div class="controls">
-						@Html.PasswordFor(_ => _.Password)
-						@Html.ControlValidationMessageFor(_ => _.Password)
-					</div>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="control-group">
-					@Html.Label("confirm-password", "Confirm Password", new { @class = "control-label" })
-					<div class="controls">
-						@Html.Password("confirm-password")
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Company.Name)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.Name)
-						@Html.ControlValidationMessageFor(_ => _.Company.Name)
-					</div>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Company.Website)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.Website)
-						@Html.ControlValidationMessageFor(_ => _.Company.Website)
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Company.Sector)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.Sector)
-						@Html.ControlValidationMessageFor(_ => _.Company.Sector)
-					</div>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Company.LinkedIn)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.LinkedIn)
-						@Html.ValidationMessageFor(_ => _.Company.LinkedIn)
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
-					@Html.ControlLabelFor(_ => _.Company.City)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.City)
-						@Html.ControlValidationMessageFor(_ => _.Company.City)
-					</div>
-				</div>
-			</div>
-			<div class="span3">
-				<div class="control-group">
+				<div class="controls">
+					@Html.LabelFor(_ => _.Company.Name)
+					@Html.TextBoxFor(_ => _.Company.Name, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.Name)
+					@Html.LabelFor(_ => _.Company.Website)
+					@Html.TextBoxFor(_ => _.Company.Website, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.Website)
+					@Html.LabelFor(_ => _.Company.Sector)
+					@Html.TextBoxFor(_ => _.Company.Sector, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.Sector)
+					@Html.LabelFor(_ => _.Company.LinkedIn)
+					@Html.TextBoxFor(_ => _.Company.LinkedIn, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.LinkedIn)
+					@Html.LabelFor(_ => _.Company.City)
+					@Html.TextBoxFor(_ => _.Company.City, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.City)
 					@Html.LabelFor(_ => _.Company.GooglePlus)
-					<div class="controls">
-						@Html.TextBoxFor(_ => _.Company.GooglePlus)
-						@Html.ControlValidationMessageFor(_ => _.Company.GooglePlus)
-					</div>
+					@Html.TextBoxFor(_ => _.Company.GooglePlus, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.GooglePlus)
 				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span3">
-				<div class="control-group">
+				<div class="controls">
 					@Html.LabelFor(_ => _.Company.Profile)
-					<div class="controls">
-						@Html.TextAreaFor(_ => _.Company.Profile)
-						@Html.ValidationMessageFor(_ => _.Company.Profile)
-					</div>
+					@Html.TextAreaFor(_ => _.Company.Profile, new { @class = "span12" })
+					@Html.ValidationMessageFor(_ => _.Company.Profile)
 				</div>
-			</div>
+				<div class="controls form-inline">
+					<label class="checkbox">
+						<input type="checkbox">&nbsp; I read <a href="">Terms and Conditions</a></label>
+					<input type="submit" value="@ApplicationStrings.Register" class="btn-u pull-right" />
+				</div>
+				<hr>
+				<p>Already Signed Up? Click <a href="page_login.html" class="color-green">Sign In</a> to login your account.</p>
+	
+   }
 		</div>
 	</div>
-	<div class="row-fluid">
-		<input type="submit" value="@ApplicationStrings.LoginCreateProfile" class="btn btn-primary" />
-	</div>
-	
-}
+</div>
