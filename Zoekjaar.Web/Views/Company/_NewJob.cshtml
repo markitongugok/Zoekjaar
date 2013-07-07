@@ -1,0 +1,95 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+
+@model JobModel
+
+<fieldset>
+	<legend>Job</legend>
+	<div class="container-fluid new-job">
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.JobNumber)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.JobNumber)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.JobNumber)
+			</div>
+			@Html.ControlLabelFor(_ => _.NewJob.JobType)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.JobType)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.JobType)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.HiringManager)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.HiringManager)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.HiringManager)
+			</div>
+			@Html.ControlLabelFor(_ => _.NewJob.JobFunction)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.JobFunction)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.JobFunction)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.HrManager)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.HrManager)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.HrManager)
+			</div>
+			@Html.ControlLabelFor(_ => _.NewJob.OrgLevel)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.OrgLevel)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.OrgLevel)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.JobDescription)
+			<div class="controls">
+				@Html.TextAreaFor(_ => _.NewJob.JobDescription, new { @class = "span12", rows = "3" })
+				@Html.ControlValidationMessageFor(_ => _.NewJob.JobDescription)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.Criteria)
+			<div class="controls">
+				@Html.TextAreaFor(_ => _.NewJob.Criteria, new { @class = "span12", rows = "3" })
+				@Html.ControlValidationMessageFor(_ => _.NewJob.Criteria)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.Degree)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.Degree)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.Degree)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.Specialisation)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.Specialisation)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.Specialisation)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.OtherCriteria)
+			<div class="controls">
+				@Html.TextAreaFor(_ => _.NewJob.OtherCriteria, new { @class = "span12", rows = "3" })
+				@Html.ControlValidationMessageFor(_ => _.NewJob.OtherCriteria)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.VisaStatusId)
+			<div class="controls">
+				@Html.DropDownListFor(_ => _.NewJob.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+				@Html.ControlValidationMessageFor(_ => _.NewJob.VisaStatusId)
+			</div>
+		</div>
+		<div class="row-fluid">
+			@Html.ControlLabelFor(_ => _.NewJob.StartDate)
+			<div class="controls">
+				@Html.TextBoxFor(_ => _.NewJob.StartDate)
+				@Html.ControlValidationMessageFor(_ => _.NewJob.StartDate)
+			</div>
+		</div>
+	</div>
+</fieldset>

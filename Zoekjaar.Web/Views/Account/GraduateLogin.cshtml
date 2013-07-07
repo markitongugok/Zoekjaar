@@ -1,0 +1,23 @@
+﻿@model Zoekjaar.Web.Models.UserAccountModel
+
+<div class="breadcrumbs margin-bottom-40">
+	<div class="container">
+		<h1 class="color-green pull-left">Login</h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+			<li><a href="">Pages</a> <span class="divider">/</span></li>
+			<li class="active">Login</li>
+		</ul>
+	</div>
+	<!--/container-->
+</div>
+
+<div class="container">
+	<div class="row-fluid">
+		@using (Html.BeginForm("GraduateLogin", "Account", FormMethod.Post, new { @class = "log-page" }))
+  {
+			@Html.AntiForgeryToken()
+			@Html.Partial("_Login", Model)
+  }
+	</div>
+</div>

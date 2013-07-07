@@ -1,0 +1,64 @@
+﻿@using Zoekjaar.Web.Models
+@model GraduateModel
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<fieldset>
+		<legend>Profile</legend>
+
+		@Html.HiddenFor(_ => _.Graduate.Id)
+		<div class="container">
+			<div class="row">
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.FirstName)
+				</div>
+				<div class="span3">
+					@Html.DisplayFor(_ => _.Graduate.FirstName)
+				</div>
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.LastName)
+				</div>
+				<div class="span3">
+					@Html.DisplayFor(_ => _.Graduate.LastName)
+				</div>
+			</div>
+			<div class="row">
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.Email)
+				</div>
+				<div class="span3">
+					@Html.DisplayFor(_ => _.Graduate.Email)
+				</div>
+			</div>
+			<div class="row">
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.Profile)
+				</div>
+				<div class="span3">
+					@Html.DisplayFor(_ => _.Graduate.Profile)
+				</div>
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
+				</div>
+				<div class="span3">
+					@Html.DisplayFor(_ => _.Graduate.AvailableFromDate)
+				</div>
+			</div>
+			<div class="row">
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
+				</div>
+				<div class="span3">
+					@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
+				</div>
+				<div class="span2">
+					@Html.LabelFor(_ => _.Graduate.VisaStatusId)
+				</div>
+				<div class="span3">
+					@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+				</div>
+			</div>
+		</div>
+	</fieldset>
+}

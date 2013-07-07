@@ -1,0 +1,7 @@
+﻿@model Zoekjaar.Web.Models.UserAccountModel
+
+
+@using (Html.BeginForm("EmployerLogin", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+	@Html.Partial("_Login", Model)
+}

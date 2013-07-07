@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="eb326bda-8c3d-49f8-a59a-1086cb168dac" ChangeDateTime="06/20/2013 07:36:30">
+    <Property Name="ElementName" Value="[dbo].[Graduate].[UserName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Graduate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Email" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b8e4f769-858f-4314-bdf8-30ee67849093" ChangeDateTime="06/22/2013 14:10:56">
+    <Property Name="ElementName" Value="[dbo].[GraduateDegree].[DegreeObtained]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GraduateDegree]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Degree" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2c2ca6a1-b860-4990-8b1c-843a7d38fdb2" ChangeDateTime="06/22/2013 14:11:58">
+    <Property Name="ElementName" Value="[dbo].[CompanyJob].[VisaStatusIdd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CompanyJob]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VisaStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ee698db-9ea3-4a8b-8f73-70d8125f0207" ChangeDateTime="06/26/2013 05:05:27">
+    <Property Name="ElementName" Value="[dbo].[GraduateLanguage].[LanguageId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GraduateLanguage]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Language" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="acc2d1c2-975c-4c3c-bbd3-8b4947cb65cf" ChangeDateTime="06/30/2013 14:35:40">
+    <Property Name="ElementName" Value="[dbo].[Graduate].[Other Skills]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Graduate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OtherSkills" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c6eaa6bf-5794-4d6a-b043-b256e43aec5f" ChangeDateTime="07/02/2013 04:00:30">
+    <Property Name="ElementName" Value="[dbo].[User].[Password]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Salt" />
+  </Operation>
+</Operations>

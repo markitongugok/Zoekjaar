@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="30769dc4f7e04d36ac2c4ccefc6ab3e9" Name="Diagram1" ZoomLevel="108" >
+        <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="10.117027680444078" PointY="13.860147274034166" />
+        <EntityTypeShape EntityType="Model.CompanyJob" Width="1.5" PointX="9.4968238982822868" PointY="22.3721320435275" />
+        <EntityTypeShape EntityType="Model.Graduate" Width="1.5" PointX="3.4148103368537548" PointY="18.32682486731877" />
+        <EntityTypeShape EntityType="Model.GraduateDegree" Width="1.5" PointX="5.875" PointY="30.75" />
+        <EntityTypeShape EntityType="Model.GraduateExperience" Width="1.5" PointX="2.375" PointY="24.5" />
+        <EntityTypeShape EntityType="Model.GraduateLanguage" Width="1.5" PointX="5.75" PointY="24.5" />
+        <EntityTypeShape EntityType="Model.JobApplication" Width="1.5" PointX="0.875" PointY="26.625" />
+        <EntityTypeShape EntityType="Model.Lookup" Width="1.5" PointX="8.2234940343645828" PointY="0.24598264705668327" />
+        <EntityTypeShape EntityType="Model.LookupType" Width="1.5" PointX="7.2041810374726456" PointY="19.621086353259667" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8.9376170583710159" PointY="27.493297619509185" />
+        <AssociationConnector Association="Model.FK_Company_UserId_User" />
+        <AssociationConnector Association="Model.FK_CompanyJob_Company" />
+        <AssociationConnector Association="Model.FK_JobApplication_CompanyJob" />
+        <AssociationConnector Association="Model.FK_Graduate_CurrentStatusId_Lookup" />
+        <AssociationConnector Association="Model.FK_Graduate_UserId_User" />
+        <AssociationConnector Association="Model.FK_Graduate_VisaStatusId_Lookup" />
+        <AssociationConnector Association="Model.FK_GraduateDegree_Graduate" />
+        <AssociationConnector Association="Model.FK_GraduateExperience_Graduate" />
+        <AssociationConnector Association="Model.FK_GraduateLanguage_Graduate" />
+        <AssociationConnector Association="Model.FK_JobApplication_Graduate" />
+        <AssociationConnector Association="Model.FK_GraduateLanguage_Lookup" />
+        <AssociationConnector Association="Model.FK_JobApplication_Lookup" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

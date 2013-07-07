@@ -1,0 +1,25 @@
+﻿; SET IDENTITY_INSERT dbo.[User] ON
+; WITH User_CTE (Id, Username, Salt, [Hash], UserType, IsActive) AS (
+		  SELECT 1, 'admin.graduate@zoekjaar.com', CONVERT(VARBINARY(8), '8B9EE2BAFB0C93F3', 2), CONVERT(VARBINARY(64), '253626BAE19B7DDE00C5A538AC8A9B07A48E59DE3A1D0CD7FC0D1F03EF0E980D7C7F11D2319C7301C16CB2C3365DCDF0F0051F0A443696975767CD977B5CD187', 2), 1, 1
+	UNION SELECT 2, 'admin.employer@zoekjaar.com', CONVERT(VARBINARY(8), '8B9EE2BAFB0C93F3', 2), CONVERT(VARBINARY(64), '253626BAE19B7DDE00C5A538AC8A9B07A48E59DE3A1D0CD7FC0D1F03EF0E980D7C7F11D2319C7301C16CB2C3365DCDF0F0051F0A443696975767CD977B5CD187', 2), 2, 1
+) 
+MERGE INTO dbo.[User]
+	USING User_CTE as cte
+	ON dbo.[User].Id = cte.Id
+	WHEN MATCHED THEN 
+		UPDATE SET  Username = cte.Username,
+					[Salt] = cte.[Salt],
+					[Hash] = cte.[Hash],
+					UserType = cte.UserType,
+					IsActive = cte.IsActive
+	WHEN NOT MATCHED BY TARGET THEN
+		INSERT (Id, Username, Salt, [Hash], UserType, IsActive) 
+		VALUES (cte.Id, cte.Username, cte.Salt, cte.[Hash], cte.UserType, cte.IsActive)
+	WHEN NOT MATCHED BY SOURCE THEN
+		DELETE;
+
+	DECLARE @userSeed INT
+		SELECT @userSeed = MAX(Id) FROM dbo.[User]
+		DBCC CHECKIDENT ("dbo.[User]", reseed, @userSeed)
+
+; SET IDENTITY_INSERT dbo.[User] OFF

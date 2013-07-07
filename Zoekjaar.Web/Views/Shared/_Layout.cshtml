@@ -1,0 +1,215 @@
+﻿@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title - Zoekjaar</title>
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width" />
+	@Styles.Render("~/Content/bootstrap")
+	@Html.ViewStyle()
+	@Scripts.Render("~/Content/modernizr")
+	@Styles.Render("~/Content/unifycss")
+</head>
+<body>
+	<div class="top">
+		<div class="container">
+			<ul class="loginbar pull-right">
+				<li><a href="page_faq.html" class="login-btn">Help</a></li>
+				<li class="devider">&nbsp;</li>
+				@if (Request.IsAuthenticated)
+	{ 
+					<li>@Html.ActionLink(@ApplicationStrings.Logout, "Logout", "Account")</li>}
+	else
+	{ 
+					<li><a href="@Url.Action("GraduateLogin", "Account")" class="login-btn">@ApplicationStrings.Login</a></li>
+	}
+			</ul>
+		</div>
+	</div>
+	<div class="header">
+		<div class="container">
+			<!-- Logo -->
+			<div class="logo">
+				<a href="index.html">
+					<img id="logo-header" src="assets/img/logo1-default.png" alt="Logo"></a>
+			</div>
+			<!-- /logo -->
+
+			<!-- Menu -->
+			<div class="navbar">
+				<div class="navbar-inner">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<!-- /nav-collapse -->
+					<div class="nav-collapse collapse">
+						<ul class="nav top-2">
+							<li class="active">
+								<a href="@Url.Action("Index", "Home")">@ApplicationStrings.Home</a>
+							</li>
+							@if (Request.IsAuthenticated)
+	   { 
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Graduate</a>
+									<ul class="dropdown-menu">
+										<li>@Html.ActionLink("Search Graduates", "SearchGraduate", "Graduate")</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Company</a>
+									<ul class="dropdown-menu">
+										<li>@Html.ActionLink("Post Job", "Job", "Company")</li>
+										<li>@Html.ActionLink("Search Jobs", "SearchJob", "Company")</li>
+									</ul>
+								</li>
+	   }
+	   else
+	   { 
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">@ApplicationStrings.Graduates <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>@Html.ActionLink(ApplicationStrings.Login, "GraduateLogin", "Account")</li>
+										<li>@Html.ActionLink(ApplicationStrings.CreateProfile, "CreateGraduateProfile", "Account")</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">@ApplicationStrings.Companies <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>@Html.ActionLink(ApplicationStrings.Login, "EmployerLogin", "Account")</li>
+										<li>@Html.ActionLink(ApplicationStrings.CreateProfile, "CreateEmployerProfile", "Account")</li>
+									</ul>
+								</li>
+	   }
+							<li>@Html.ActionLink("About", "About", "Home")</li>
+							<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+							<li><a class="search"><i class="icon-search search-btn"></i></a></li>
+						</ul>
+						<div class="search-open">
+							<div class="input-append">
+								<form>
+									<input type="text" class="span3" placeholder="Search">
+									<button type="submit" class="btn-u">Go</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /nav-collapse -->
+				</div>
+				<!-- /navbar-inner -->
+			</div>
+			<!-- /navbar -->
+		</div>
+		<!-- /container -->
+	</div>
+
+	@RenderSection("featured", required: false)
+	@RenderBody()
+
+	<div class="footer">
+		<div class="container">
+			<div class="row-fluid">
+				<div class="span4">
+					<!-- About -->
+					<div class="headline">
+						<h3>About</h3>
+					</div>
+					<p class="margin-bottom-25">Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals.</p>
+
+					<!-- Monthly Newsletter -->
+					<div class="headline">
+						<h3>Monthly Newsletter</h3>
+					</div>
+					<p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+					<form class="form-inline">
+						<div class="input-append">
+							<input type="text" placeholder="Email Address" class="input-medium">
+							<button class="btn-u">Subscribe</button>
+						</div>
+					</form>
+				</div>
+				<!--/span4-->
+
+				<div class="span4">
+					<div class="posts">
+						<div class="headline">
+							<h3>Recent Blog Entries</h3>
+						</div>
+						<dl class="dl-horizontal">
+							<dt><a href="#">
+								<img src="assets/img/sliders/elastislide/6.jpg" alt=""></a></dt>
+							<dd>
+								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+							</dd>
+						</dl>
+						<dl class="dl-horizontal">
+							<dt><a href="#">
+								<img src="assets/img/sliders/elastislide/10.jpg" alt=""></a></dt>
+							<dd>
+								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+							</dd>
+						</dl>
+						<dl class="dl-horizontal">
+							<dt><a href="#">
+								<img src="assets/img/sliders/elastislide/11.jpg" alt=""></a></dt>
+							<dd>
+								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
+							</dd>
+						</dl>
+					</div>
+				</div>
+				<!--/span4-->
+
+				<div class="span4">
+					<!-- Monthly Newsletter -->
+					<div class="headline">
+						<h3>Contact Us</h3>
+					</div>
+					<address>
+						25, Lorem Lis Street, Orange
+						<br>
+						California, US
+						<br>
+						Phone: 800 123 3456
+						<br>
+						Fax: 800 123 3456
+						<br>
+						Email: <a href="mailto:info@anybiz.com" class="">info@anybiz.com</a>
+					</address>
+
+					<!-- Stay Connected -->
+					<div class="headline">
+						<h3>Stay Connected</h3>
+					</div>
+					<ul class="social-icons">
+						<li><a href="#" data-original-title="Feed" class="social_rss"></a></li>
+						<li><a href="#" data-original-title="Facebook" class="social_facebook"></a></li>
+						<li><a href="#" data-original-title="Twitter" class="social_twitter"></a></li>
+						<li><a href="#" data-original-title="Goole Plus" class="social_googleplus"></a></li>
+						<li><a href="#" data-original-title="Pinterest" class="social_pintrest"></a></li>
+						<li><a href="#" data-original-title="Linkedin" class="social_linkedin"></a></li>
+						<li><a href="#" data-original-title="Vimeo" class="social_vimeo"></a></li>
+					</ul>
+				</div>
+				<!--/span4-->
+			</div>
+			<!--/row-fluid-->
+		</div>
+		<!--/container-->
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryui")
+	@Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/unifyjs")
+	@Scripts.Render("~/bundles/ts")
+
+	@RenderSection("scripts", required: false)
+	@Html.ViewScript()
+</body>
+</html>

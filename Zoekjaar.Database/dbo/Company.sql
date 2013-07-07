@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[Company]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[UserId] INT NOT NULL,
+	[Name] VARCHAR(100) NOT NULL, 
+	[Sector] VARCHAR(20) NOT NULL, 
+	[City] VARCHAR(20) NOT NULL, 
+	[Profile] VARCHAR(MAX) NOT NULL, 
+	[Website] VARCHAR(400) NULL, 
+	[LinkedIn] VARCHAR(400) NULL, 
+	[GooglePlus] VARCHAR(400) NULL, 
+	[IsFeatured] BIT NOT NULL DEFAULT 0, 
+	[IsActive] BIT NOT NULL DEFAULT 1
+	CONSTRAINT [FK_Company_UserId_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]), 
+)
