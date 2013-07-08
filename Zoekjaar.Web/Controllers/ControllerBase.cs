@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Business;
 using Business.Core;
 using Entities;
 using Zoekjaar.Web.Contracts;
@@ -20,5 +21,13 @@ namespace Zoekjaar.Web.Controllers
 		}
 
 		public ISearchRepository<Lookup, string> LookupRepository { get; set; }
+
+		public UserIdentity UserIdentity
+		{
+			get
+			{
+				return this.User.Identity as UserIdentity;
+			}
+		}
 	}
 }

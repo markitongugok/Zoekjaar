@@ -46,7 +46,13 @@ namespace Business
 		}
 
 
-		public TEntity Attach(TEntity entity)
+		public virtual TEntity Attach(TEntity entity)
+		{
+			throw new NotImplementedException();
+		}
+
+
+		public virtual TEntity Get(int id)
 		{
 			throw new NotImplementedException();
 		}

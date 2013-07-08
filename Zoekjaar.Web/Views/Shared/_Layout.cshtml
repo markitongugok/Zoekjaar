@@ -53,20 +53,28 @@
 								<a href="@Url.Action("Index", "Home")">@ApplicationStrings.Home</a>
 							</li>
 							@if (Request.IsAuthenticated)
-	   { 
+	   {
+		   if (this.User.IsInRole("Graduate"))
+		   { 
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Graduate</a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Graduate <b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li>@Html.ActionLink("Search Graduates", "SearchGraduate", "Graduate")</li>
+										<li>@Html.ActionLink("Search Jobs", "SearchJob", "Graduate")</li>
+										<li>@Html.ActionLink("Edit Profile", "EditProfile", "Graduate")</li>
 									</ul>
 								</li>
+		   }
+		   if (this.User.IsInRole("Company"))
+		   { 
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Company</a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Company <b class="caret"></b></a>
 									<ul class="dropdown-menu">
+										<li>@Html.ActionLink("Search Graduates", "SearchGraduate", "Company")</li>
+										<li>@Html.ActionLink("Edit Profile", "EditProfile", "Company")</li>
 										<li>@Html.ActionLink("Post Job", "Job", "Company")</li>
-										<li>@Html.ActionLink("Search Jobs", "SearchJob", "Company")</li>
 									</ul>
 								</li>
+		   }
 	   }
 	   else
 	   { 

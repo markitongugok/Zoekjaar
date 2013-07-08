@@ -8,12 +8,12 @@
 
 @model JobSearchModel
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
+<div class="container">
+	@using (Html.BeginForm())
+ {
+		@Html.AntiForgeryToken()
 
-	<div class="container">
-		<div class="row">
+		<div class="row-fluid">
 			<div class="span2">
 				@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
 			</div>
@@ -57,99 +57,79 @@
 				@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
 			</div>
 		</div>
-	</div>
 
-	<div class="container">
-		<div class="row">
+		<div class="row-fluid search-page">
 
 			@{
-	if (Model.Criteria.TotalRecords.HasValue)
-	{
-		if (Model.Jobs.Any())
-		{ 
-
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th><small><strong>Job</strong></small></th>
-							<th>Hiring/HR</th>
-							<th>Start Date</th>
-							<th>Candidates</th>
-							<th></th>
-						</tr>
-					</thead>
-					@foreach (var job in Model.Jobs)
+	 if (Model.Criteria.TotalRecords.HasValue)
 	 {
-
-						<tr>
-							<td>
-								<div>
-									<h3>@Html.ActionLink(string.Format("{0}-{1}", job.JobType, job.Function), "JobDetail", "Company")</h3>
-								</div>
-								<div>
-									<small>@Html.DisplayFor(_ => job.JobNumber)</small>
-								</div>
-								<div>
-									<small>@Html.DisplayFor(_ => job.Sector)<i class="icon-asterisk"></i>@Html.DisplayFor(_ => job.City)</small>
-								</div>
-							</td>
-							<td>
-								<div>
-									<small><strong>HM:</strong>@Html.DisplayFor(_ => job.HiringManager)</small>
-								</div>
-								<div>
-									<small><strong>HR:</strong>@Html.DisplayFor(_ => job.HrManager)</small>
-								</div>
-							</td>
-							<td><small>@Html.DisplayFor(_ => job.StartDate)</small></td>
-							<td><small><span class="label label-inverse">@Html.DisplayFor(_ => job.CandidateCount)</span></small></td>
-							<td>
-								@if (job.CanApply)
+		 if (Model.Jobs.Any())
+		 {
+				<div class="alert alert-success">
+					We found
+					
+						<strong>@Model.Criteria.TotalRecords</strong>
+					matches.
+				
+				</div>
+	   
+			 foreach (var job in Model.Jobs)
+			 {
+				 currentRoute["id"] = job.JobId;
+				<div class="row-fluid">
+					<div class="span12 booking-blocks">
+						<div class="pull-left booking-img">
+							<img src="assets/img/new/img1.jpg" alt="">
+							<ul class="unstyled">
+								<li><i class="icon-user"></i>Hiring: @Html.DisplayFor(_ => job.HiringManager)</li>
+								<li><i class="icon-user"></i>HR: @Html.DisplayFor(_ => job.HrManager)</li>
+								<li><i class="icon-briefcase"></i>@Html.DisplayFor(_ => job.CompanyName)</li>
+								@if (!string.IsNullOrEmpty(job.City))
 		{ 
-
-									<button id="apply-button" class="btn btn-mini btn-success">@Html.LabelFor(_ => job.CanApply)</button>
+									<li><i class="icon-map-marker"></i>@Html.DisplayFor(_ => job.City)</li>
 		}
-		else
-		{
+							</ul>
+						</div>
+						<div style="overflow: hidden;">
+							
+							<h2>@Html.ActionLink(string.Format("{0}-{1}", job.JobType, job.Function), "JobDetail", "Company")</h2>
+							<p>@Html.DisplayFor(_ => job.Description) <a href="@Url.Action("ViewJob", "Company", currentRoute)">read more</a></p>
+							@if (job.CanApply)
+	   { 
 
-									<span class="label label-info">Applied</span>	
-		}
-							</td>
-						</tr>
-	 }
-				</table>
+								<button id="apply-button" class="btn-u btn-mini apply" data-target-url="@Url.Action("Apply", currentRoute)">@Html.LabelFor(_ => job.CanApply)</button>
+	   }
+	   else
+	   {
 
-
-
+								<span class="label label-info">Applied</span>
+	   }
+						</div>
+					</div>
+				</div>
+			 }
 				<div class="pagination">
 					<ul>
 						@for (var i = 0; i < (Model.Criteria.TotalRecords / CompanyController.PageSize) + (Model.Criteria.TotalRecords % CompanyController.PageSize > 0 ? 1 : 0); i++)
 	  {
 		  currentRoute["pageNumber"] = i;
 
-							<li><a href="@Url.Action("Search", currentRoute)">@(i + 1)</a></li>
+							<li><a href="@Url.Action("SearchJob", currentRoute)">@(i + 1)</a></li>
 	  }
 					</ul>
-					<div class="alert alert-success">
-						We found
-					
-						<strong>@Model.Criteria.TotalRecords</strong>
-						matches.
-				
-					</div>
 				</div>
-		}
-		else
-		{
+		 }
+		 else
+		 {
 
 				<div class="alert alert-info">
 					<strong>Ooops!</strong>
 					We found <strong>0</strong> matches.
 			
 				</div>
-		}
-	}
-	}
+		 }
+	 }
+			}
 		</div>
-	</div>
-}
+ }
+</div>

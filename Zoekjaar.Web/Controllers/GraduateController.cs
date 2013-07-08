@@ -15,42 +15,19 @@ namespace Zoekjaar.Web.Controllers
 	{
 		private ModelContainer context = new ModelContainer();
 
-		[Authorize(Roles = "Company")]
-		public ActionResult SearchGraduate(int? pageNumber = null)
-		{
-			var model = this.CreateSearchModel();
-
-			if (pageNumber.HasValue)
-			{
-				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
-			}
-			model.Graduates = pageNumber.HasValue
-				? this.GraduateViewRepository.Fetch(model.Criteria)
-				: new List<GraduateView>();
-
-			return this.View(model);
-		}
-
-		[Authorize(Roles = "Company")]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult SearchGraduate(GraduateSearchModel model)
-		{
-			if (model == null)
-			{
-				throw new ArgumentNullException("model");
-			}
-
-			model.Graduates = this.GraduateViewRepository.Fetch(model.Criteria);
-
-			return this.View(model);
-		}
-
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
-		public ActionResult Apply(int jobId)
+		public ActionResult Apply(int id)
 		{
-			return this.View();
+			var jobApplication = this.JobApplicationRepository.Create();
+			jobApplication.JobId = id;
+			jobApplication.GraduateId = this.UserIdentity.EntityId;
+			jobApplication.StatusId = null;
+
+			this.JobApplicationRepository.Add(jobApplication);
+			this.JobApplicationRepository.SaveChanges();
+
+			return this.Json(true);
 		}
 
 		[Authorize(Roles = "Graduate")]
@@ -59,7 +36,7 @@ namespace Zoekjaar.Web.Controllers
 			var name = this.User.Identity.Name;
 
 			var model = this.CreateProfileModel();
-			model.Graduate = this.GraduateRepository.Get(_ => _.User.Username == name);
+			model.Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId);
 
 			return this.View(model);
 		}
@@ -78,15 +55,47 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
-		private GraduateSearchModel CreateSearchModel()
+		[Authorize(Roles = "Graduate")]
+		public ActionResult SearchJob(int? pageNumber = null)
 		{
-			return new GraduateSearchModel
+			var model = this.CreateSearchModel();
+
+			if (pageNumber.HasValue)
+			{
+				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
+			}
+			model.Jobs = pageNumber.HasValue
+				? this.JobRepository.Fetch(model.Criteria)
+				: new List<JobView>();
+
+			return this.View(model);
+		}
+
+		[HttpPost]
+		[Authorize(Roles = "Graduate")]
+		[ValidateAntiForgeryToken]
+		public ActionResult SearchJob(JobSearchModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			model.Jobs = this.JobRepository.Fetch(model.Criteria);
+
+			return this.View(model);
+		}
+
+		private JobSearchModel CreateSearchModel()
+		{
+			return new JobSearchModel
 			{
 				CurrentStatus = this.GetLookups("Current Status"),
 				VisaStatus = this.GetLookups("Visa Status"),
 				Criteria = new SearchCriteria
 				{
-					PageSize = CompanyController.PageSize
+					PageSize = CompanyController.PageSize,
+					EntityId = this.UserIdentity.EntityId
 				}
 			};
 		}
@@ -100,19 +109,23 @@ namespace Zoekjaar.Web.Controllers
 				VisaStatus = this.GetLookups("Visa Status"),
 			};
 		}
-			
+
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
-			return modelType == typeof(GraduateSearchModel)
+			return modelType == typeof(JobSearchModel)
 				? this.CreateSearchModel()
 				: modelType == typeof(GraduateProfileModel)
 					? this.CreateProfileModel()
 					: Activator.CreateInstance(modelType);
 		}
 
-	
+
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
-		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }
+		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
+
+		public IRepository<JobApplication> JobApplicationRepository { get; set; }
+
+
 	}
 }

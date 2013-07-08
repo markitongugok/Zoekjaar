@@ -224,7 +224,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\CompanyProfileModel.cs" />
     <Compile Include="Models\GraduateProfileModel.cs" />
+    <Compile Include="Models\ViewJobModel.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\JobSearchModel.cs" />
     <Compile Include="Models\GraduateModel.cs" />
@@ -867,7 +869,10 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <Content Include="Views\Shared\_CompanyProfile.cshtml" />
+    <Content Include="Views\Company\ViewJob.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Home.Index.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Graduate.SearchJob.ts" />
     <Content Include="Views\Company\EditProfile.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\ViewBase.ts" />
     <TypeScriptCompile Include="Scripts\Views\Graduate.EditProfile.ts" />
@@ -914,8 +919,8 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Views\Account\CreateEmployerProfile.cshtml" />
-    <Content Include="Views\Company\SearchJob.cshtml" />
-    <Content Include="Views\Graduate\SearchGraduate.cshtml" />
+    <Content Include="Views\Graduate\SearchJob.cshtml" />
+    <Content Include="Views\Company\SearchGraduate.cshtml" />
     <Content Include="Views\Graduate\ViewProfile.cshtml" />
     <Content Include="Views\Company\Job.cshtml" />
     <Content Include="Views\Company\_NewJob.cshtml" />

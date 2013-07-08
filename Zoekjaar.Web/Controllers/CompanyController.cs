@@ -13,38 +13,7 @@ namespace Zoekjaar.Web.Controllers
 {
 	public sealed class CompanyController : ControllerBase
 	{
-		public const int PageSize = 2;
-
-		[Authorize(Roles = "Graduate")]
-		public ActionResult SearchJob(int? pageNumber = null)
-		{
-			var model = this.CreateSearchModel();
-
-			if (pageNumber.HasValue)
-			{
-				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
-			}
-			model.Jobs = pageNumber.HasValue
-				? this.JobRepository.Fetch(model.Criteria)
-				: new List<JobView>();
-
-			return this.View(model);
-		}
-
-		[HttpPost]
-		[Authorize(Roles = "Graduate")]
-		[ValidateAntiForgeryToken]
-		public ActionResult SearchJob(JobSearchModel model)
-		{
-			if (model == null)
-			{
-				throw new ArgumentNullException("model");
-			}
-
-			model.Jobs = this.JobRepository.Fetch(model.Criteria);
-
-			return this.View(model);
-		}
+		public const int PageSize = 5;
 
 		[Authorize(Roles = "Company")]
 		public ActionResult Job()
@@ -65,13 +34,12 @@ namespace Zoekjaar.Web.Controllers
 
 			if (this.ModelState.IsValid)
 			{
-				var companyId = ((UserIdentity)this.User.Identity).EntityId;
-				model.NewJob.CompanyId = companyId;
+				model.NewJob.CompanyId = this.UserIdentity.EntityId;
 
 				this.CompanyJobRepository.Add(model.NewJob);
 				this.CompanyJobRepository.SaveChanges();
 
-				model.PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == companyId);
+				model.PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == this.UserIdentity.EntityId);
 				model.NewJob = this.CompanyJobRepository.Create();
 				model.IsSuccessful = true;
 				ModelState.Clear();
@@ -84,9 +52,54 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
-		private JobSearchModel CreateSearchModel()
+		[Authorize(Roles = "Company")]
+		public ActionResult SearchGraduate(int? pageNumber = null)
 		{
-			return new JobSearchModel
+			var model = this.CreateSearchModel();
+
+			if (pageNumber.HasValue)
+			{
+				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
+			}
+			model.Graduates = pageNumber.HasValue
+				? this.GraduateViewRepository.Fetch(model.Criteria)
+				: new List<GraduateView>();
+
+			return this.View(model);
+		}
+
+		[Authorize(Roles = "Company")]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult SearchGraduate(GraduateSearchModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			model.Graduates = this.GraduateViewRepository.Fetch(model.Criteria);
+
+			return this.View(model);
+		}
+
+		public ActionResult ViewJob()
+		{
+			var jobId = int.Parse(this.ValueProvider.GetValue("id").AttemptedValue);
+			var model = this.CreateViewJobModel();
+			model.Job = this.JobViewRepository.Get(jobId);
+			model.Company = this.CompanyRepository.Get(c => c.Id == model.Job.CompanyId);
+			return this.View(model);
+		}
+
+		private ViewJobModel CreateViewJobModel()
+		{
+			return new ViewJobModel();
+		}
+
+		private GraduateSearchModel CreateSearchModel()
+		{
+			return new GraduateSearchModel
 			{
 				CurrentStatus = this.GetLookups("Current Status"),
 				VisaStatus = this.GetLookups("Visa Status"),
@@ -99,18 +112,17 @@ namespace Zoekjaar.Web.Controllers
 
 		private JobModel CreateJobModel()
 		{
-			var companyId = ((UserIdentity)this.User.Identity).EntityId;
 			return new JobModel
 			{
 				NewJob = this.CompanyJobRepository.Create(),
 				VisaStatus = this.GetLookups("Visa Status"),
-				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == companyId)
+				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == this.UserIdentity.EntityId)
 			};
 		}
 
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
-			return modelType == typeof(JobSearchModel)
+			return modelType == typeof(GraduateSearchModel)
 				? this.CreateSearchModel()
 				: modelType == typeof(JobModel)
 					? this.CreateJobModel()
@@ -119,8 +131,12 @@ namespace Zoekjaar.Web.Controllers
 
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
-		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
+		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }
 
 		public IRepository<CompanyJob> CompanyJobRepository { get; set; }
+
+		public ISearchRepository<JobView, SearchCriteria> JobViewRepository { get; set; }
+
+		public IRepository<Company> CompanyRepository { get; set; }
 	}
 }

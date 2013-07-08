@@ -17,10 +17,10 @@ namespace Entities
         public int Id { get; set; }
         public int JobId { get; set; }
         public int GraduateId { get; set; }
-        public int StatusId { get; set; }
+        public Nullable<int> StatusId { get; set; }
     
         public virtual CompanyJob CompanyJob { get; set; }
         public virtual Graduate Graduate { get; set; }
-        public virtual Lookup Lookup { get; set; }
+        public virtual Lookup Status { get; set; }
     }
 }

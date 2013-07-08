@@ -55,26 +55,28 @@ namespace Business
 					City = _.Job.Company.City,
 					StartDate = _.Job.StartDate,
 					CandidateCount = _.Applicants.Count(),
-					CanApply = !_.Applicants.Any(__ => __.GraduateId == 2)
+					CanApply = !_.Applicants.Any(__ => __.GraduateId == criteria.EntityId)
 				});
-			//return query.OrderBy(_ => _.JobNumber)
-			//	.Skip(criteria.PageNumber * criteria.PageSize)
-			//	.Take(criteria.PageSize).Select(_ => new JobView
-			//	{
-			//		JobId = _.Id,
-			//		CompanyId = _.CompanyId,
-			//		CompanyName = _.Company.Name,
-			//		Description = _.JobDescription,
-			//		JobNumber = _.JobNumber,
-			//		JobType = _.JobType,
-			//		Function = _.JobFunction,
-			//		HiringManager = _.HiringManager,
-			//		HrManager = _.HrManager,
-			//		Sector = _.Company.Sector,
-			//		City = _.Company.City,
-			//		StartDate = _.StartDate,
-			//		CandidateCount = _.JobApplications.Count()
-			//	});
+		}
+
+		public override JobView Get(int id)
+		{
+			return this.Context.CompanyJobs.Where(_ => _.Id == id)
+				.Select(_ => new JobView
+				{
+					JobId = _.Id,
+					CompanyId = _.CompanyId,
+					CompanyName = _.Company.Name,
+					Description = _.JobDescription,
+					JobNumber = _.JobNumber,
+					JobType = _.JobType,
+					Function = _.JobFunction,
+					HiringManager = _.HiringManager,
+					HrManager = _.HrManager,
+					Sector = _.Company.Sector,
+					City = _.Company.City,
+					StartDate = _.StartDate,
+				}).Single();
 		}
 	}
 }

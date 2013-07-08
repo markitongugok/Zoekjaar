@@ -14,6 +14,7 @@ namespace Business
 			component.RegisterType(typeof(LookupRepository)).As<ISearchRepository<Lookup, string>>();
 			component.RegisterType(typeof(CompanyRepository)).As<IRepository<Company>>();
 			component.RegisterType(typeof(CompanyJobRepository)).As<IRepository<CompanyJob>>();
+			component.RegisterType(typeof(JobApplicationRepository)).As<IRepository<JobApplication>>();
 			component.RegisterType(typeof(GraduateViewRepository)).As<ISearchRepository<GraduateView, SearchCriteria>>();
 			component.RegisterType(typeof(JobViewRepository)).As<ISearchRepository<JobView, SearchCriteria>>();
 			component.RegisterType(typeof(UserIdentityRepository)).As<ISearchRepository<UserIdentity, UserIdentityCriteria>>();

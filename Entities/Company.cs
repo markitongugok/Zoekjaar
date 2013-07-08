@@ -29,6 +29,7 @@ namespace Entities
         public string LinkedIn { get; set; }
         public string GooglePlus { get; set; }
         public bool IsActive { get; set; }
+        public bool IsFeatured { get; set; }
     
         public virtual User User { get; set; }
         public virtual ICollection<CompanyJob> CompanyJobs { get; set; }

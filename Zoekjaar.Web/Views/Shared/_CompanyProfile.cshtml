@@ -1,0 +1,15 @@
+﻿@using Zoekjaar.Web.Models
+@using Entities
+
+@model Company
+
+<!-- Contacts -->
+<div class="headline">
+	<h3>@Html.DisplayFor(_ => _.Name)</h3>
+</div>
+<ul class="unstyled who margin-bottom-20">
+	<li><a href="#"><i class="icon-home"></i>@Html.DisplayFor(_ => _.City) @Html.DisplayFor(_ => _.Sector)</a></li>
+	<li><a href="#"><i class="icon-envelope-alt"></i>@Html.DisplayFor(_ => _.User.Username)</a></li>
+	<li><a href="#"><i class="icon-globe"></i>@Html.DisplayFor(_ => _.Website)</a></li>
+</ul>
+

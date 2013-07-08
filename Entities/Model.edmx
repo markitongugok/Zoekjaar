@@ -78,6 +78,7 @@
           <Property Name="Website" Type="varchar" MaxLength="400" />
           <Property Name="LinkedIn" Type="varchar" MaxLength="400" />
           <Property Name="GooglePlus" Type="varchar" MaxLength="400" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CompanyJob">
@@ -154,7 +155,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="JobId" Type="int" Nullable="false" />
           <Property Name="GraduateId" Type="int" Nullable="false" />
-          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" />
         </EntityType>
         <EntityType Name="Lookup">
           <Key>
@@ -317,7 +318,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
+          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="0..1" />
           <End Role="JobApplication" Type="Model.Store.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lookup">
@@ -408,6 +409,7 @@
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model.FK_Company_UserId_User" FromRole="Company" ToRole="User" />
           <NavigationProperty Name="CompanyJobs" Relationship="Model.FK_CompanyJob_Company" FromRole="Company" ToRole="CompanyJob" />
+          <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
         </EntityType>
         <EntityType Name="CompanyJob">
           <Key>
@@ -496,10 +498,10 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="JobId" Nullable="false" />
           <Property Type="Int32" Name="GraduateId" Nullable="false" />
-          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <Property Type="Int32" Name="StatusId" Nullable="true" />
           <NavigationProperty Name="CompanyJob" Relationship="Model.FK_JobApplication_CompanyJob" FromRole="JobApplication" ToRole="CompanyJob" />
           <NavigationProperty Name="Graduate" Relationship="Model.FK_JobApplication_Graduate" FromRole="JobApplication" ToRole="Graduate" />
-          <NavigationProperty Name="Lookup" Relationship="Model.FK_JobApplication_Lookup" FromRole="JobApplication" ToRole="Lookup" />
+          <NavigationProperty Name="Status" Relationship="Model.FK_JobApplication_Lookup" FromRole="JobApplication" ToRole="Lookup" />
         </EntityType>
         <EntityType Name="Lookup">
           <Key>
@@ -668,7 +670,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
+          <End Type="Model.Lookup" Role="Lookup" Multiplicity="0..1" />
           <End Type="Model.JobApplication" Role="JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lookup">
@@ -690,6 +692,7 @@
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="Model.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
                 <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />

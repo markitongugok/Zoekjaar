@@ -56,6 +56,7 @@
     <Compile Include="CompanyJobRepository.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="Criteria\UserIdentityCriteria.cs" />
+    <Compile Include="JobApplicationRepository.cs" />
     <Compile Include="JobView.cs" />
     <Compile Include="JobViewRepository.cs" />
     <Compile Include="Criteria\SearchCriteria.cs" />

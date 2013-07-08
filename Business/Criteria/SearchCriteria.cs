@@ -24,6 +24,8 @@ namespace Business.Criteria
 		[Display(Name = "DatePosted", ResourceType = typeof(ApplicationStrings))]
 		public DateTime? DatePosted { get; set; }
 
+		public int EntityId { get; set; }
+
 		public int PageNumber { get; set; }
 		public int PageSize { get; set; }
 		public int? TotalRecords { get; set; }
