@@ -8,5 +8,7 @@ namespace Zoekjaar.Web.Models
 		public IEnumerable<CompanyJob> PostedJobs { get; set; }
 		public CompanyJob NewJob { get; set; }
 		public IEnumerable<Lookup> VisaStatus { get; set; }
+
+		public bool? IsSuccessful { get; set; }
 	}
 }

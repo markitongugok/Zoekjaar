@@ -11,11 +11,10 @@ using Zoekjaar.Web.Models;
 
 namespace Zoekjaar.Web.Controllers
 {
-	public sealed class CompanyController : Controller, IModelFactory
+	public sealed class CompanyController : ControllerBase
 	{
 		public const int PageSize = 2;
-		private ModelContainer context = new ModelContainer();
-				
+
 		[Authorize(Roles = "Graduate")]
 		public ActionResult SearchJob(int? pageNumber = null)
 		{
@@ -64,15 +63,27 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			int companyId = ((UserIdentity)this.User.Identity).EntityId;
-			model.NewJob.CompanyId = companyId;
+			if (this.ModelState.IsValid)
+			{
+				var companyId = ((UserIdentity)this.User.Identity).EntityId;
+				model.NewJob.CompanyId = companyId;
 
-			this.CompanyJobRepository.Add(model.NewJob);
-			this.CompanyJobRepository.SaveChanges();
+				this.CompanyJobRepository.Add(model.NewJob);
+				this.CompanyJobRepository.SaveChanges();
 
-			return this.PartialView("_NewJobRow", model.NewJob);
+				model.PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == companyId);
+				model.NewJob = this.CompanyJobRepository.Create();
+				model.IsSuccessful = true;
+				ModelState.Clear();
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
+
+			return this.View(model);
 		}
-				
+
 		private JobSearchModel CreateSearchModel()
 		{
 			return new JobSearchModel
@@ -88,28 +99,24 @@ namespace Zoekjaar.Web.Controllers
 
 		private JobModel CreateJobModel()
 		{
+			var companyId = ((UserIdentity)this.User.Identity).EntityId;
 			return new JobModel
 			{
 				NewJob = this.CompanyJobRepository.Create(),
 				VisaStatus = this.GetLookups("Visa Status"),
-				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == 1)
+				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == companyId)
 			};
 		}
 
-		private IEnumerable<Lookup> GetLookups(string lookupTypeName)
-		{
-			var lookupType = this.context.LookupTypes.Single(_ => _.Name == lookupTypeName);
-			return this.context.Lookups.Where(_ => _.LookupTypeId == lookupType.Id).AsEnumerable();
-		}
-
-		public object CreateModel(Type modelType, IValueProvider valueProvider)
+		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
 			return modelType == typeof(JobSearchModel)
 				? this.CreateSearchModel()
-				: Activator.CreateInstance(modelType);
+				: modelType == typeof(JobModel)
+					? this.CreateJobModel()
+					: Activator.CreateInstance(modelType);
 		}
 
-		
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
 		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }

@@ -13,8 +13,6 @@ namespace Zoekjaar.Web.Controllers
 {
 	public class AccountController : ControllerBase
 	{
-		private ModelContainer context = new ModelContainer();
-
 		public ActionResult GraduateLogin()
 		{
 			var model = new UserAccountModel
@@ -173,13 +171,7 @@ namespace Zoekjaar.Web.Controllers
 					? this.CreateCompanyModel()
 					: base.CreateModel(modelType, valueProvider);
 		}
-
-		private IEnumerable<Lookup> GetLookups(string lookupTypeName)
-		{
-			var lookupType = this.context.LookupTypes.Single(_ => _.Name == lookupTypeName);
-			return this.context.Lookups.Where(_ => _.LookupTypeId == lookupType.Id).AsEnumerable();
-		}
-
+				
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
 		public IApplicationAuthentication Authentication { get; set; }

@@ -19,12 +19,20 @@
 	UNION SELECT 201, 3, 'Conversational', 1, 0
 	UNION SELECT 202, 3, 'Fluent', 1, 0
 
+	/* Recruitment Stage */
 	UNION SELECT 300, 4, 'Shortlisted', 1, 1
 	UNION SELECT 301, 4, 'Invited for Interview', 1, 0
 	UNION SELECT 302, 4, 'Conducted Interview', 1, 0
 	UNION SELECT 303, 4, 'Offer Sent', 1, 0
 	UNION SELECT 304, 4, 'Rejected', 1, 0
 	UNION SELECT 305, 4, 'Recruited', 1, 0
+
+	/* Date Posted */
+	UNION SELECT 500, 6, 'Any Date', 1, 1
+	UNION SELECT 501, 6, 'Last 30 Days', 1, 0
+	UNION SELECT 502, 6, 'Last 7 Days', 1, 0
+	UNION SELECT 503, 6, 'Last 3 Days', 1, 0
+	UNION SELECT 504, 6, 'Since Yesterday', 1, 0
 ) 
 MERGE INTO dbo.Lookup
 	USING Lookup_CTE as cte

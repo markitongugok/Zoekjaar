@@ -8,7 +8,7 @@ module Zoekjaar.Company {
 
 		}
 		init() {
-			$("input.post-job").on("click", $.proxy(this.onPostJob, this));
+			//$("input.post-job").on("click", $.proxy(this.onPostJob, this));
 		}
 		destroy() {
 		}

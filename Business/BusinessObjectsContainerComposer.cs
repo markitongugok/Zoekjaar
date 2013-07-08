@@ -11,7 +11,7 @@ namespace Business
 		{
 			component.RegisterGeneric(typeof(ObjectFactory<>)).As(typeof(IObjectFactory<>));
 			component.RegisterType(typeof(GraduateRepository)).As<IRepository<Graduate>>();
-			component.RegisterType(typeof(LookupRepository)).As<IRepository<Lookup>>();
+			component.RegisterType(typeof(LookupRepository)).As<ISearchRepository<Lookup, string>>();
 			component.RegisterType(typeof(CompanyRepository)).As<IRepository<Company>>();
 			component.RegisterType(typeof(CompanyJobRepository)).As<IRepository<CompanyJob>>();
 			component.RegisterType(typeof(GraduateViewRepository)).As<ISearchRepository<GraduateView, SearchCriteria>>();

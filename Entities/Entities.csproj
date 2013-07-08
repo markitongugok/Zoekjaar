@@ -74,6 +74,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Metadata\Company.cs" />
+    <Compile Include="Metadata\CompanyJob.cs" />
     <Compile Include="Metadata\Graduate.cs" />
     <Compile Include="Metadata\GraduateDegree.cs" />
     <Compile Include="Model.Context.cs">

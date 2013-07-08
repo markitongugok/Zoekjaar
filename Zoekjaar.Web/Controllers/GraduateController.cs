@@ -11,7 +11,7 @@ using Zoekjaar.Web.Models;
 
 namespace Zoekjaar.Web.Controllers
 {
-	public sealed class GraduateController : Controller, IModelFactory
+	public sealed class GraduateController : ControllerBase
 	{
 		private ModelContainer context = new ModelContainer();
 
@@ -100,14 +100,8 @@ namespace Zoekjaar.Web.Controllers
 				VisaStatus = this.GetLookups("Visa Status"),
 			};
 		}
-
-		private IEnumerable<Lookup> GetLookups(string lookupTypeName)
-		{
-			var lookupType = this.context.LookupTypes.Single(_ => _.Name == lookupTypeName);
-			return this.context.Lookups.Where(_ => _.LookupTypeId == lookupType.Id).AsEnumerable();
-		}
-
-		public object CreateModel(Type modelType, IValueProvider valueProvider)
+			
+		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
 			return modelType == typeof(GraduateSearchModel)
 				? this.CreateSearchModel()
@@ -116,6 +110,7 @@ namespace Zoekjaar.Web.Controllers
 					: Activator.CreateInstance(modelType);
 		}
 
+	
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
 		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }

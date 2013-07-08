@@ -83,6 +83,10 @@
       <Project>{6a883714-29a3-4213-84ac-ebcf95e16f5c}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{1f6c4ec0-efe3-4469-a500-6b10884d35b6}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

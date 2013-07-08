@@ -2,40 +2,38 @@
 
 @model JobModel
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
-		
-	<fieldset>
-		<legend>Posted Jobs</legend>
-		<div class="container">
-			<div class="row">
-				<table class="table table-bordered posted-jobs">
-					<tr>
-						<th>Job Number
-						</th>
-						<th>Description
-						</th>
-						<th>Function
-						</th>
-						<th>Date Posted
-						</th>
-					</tr>
-					@foreach (var job in Model.PostedJobs)
-	 {
-						@Html.Partial("_NewJobRow", job)
-	 }
-				</table>
-			</div>
-		</div>
-	</fieldset>
-
-	@Html.Partial("_NewJob", Model)
-
-	<div class="container">
-		<div class="row">
-			<input class="btn btn-primary post-job" type="submit" value="Post now" />
-		</div>
-	</div>
-	
+@{
+	ViewBag.Title = "Post Job";
 }
+<div class="container">
+	@using (Html.BeginForm())
+ {
+		@Html.AntiForgeryToken()
+		
+		<div class="row-fluid">
+			<table class="table table-bordered posted-jobs">
+				<tr>
+					<th>Job Number
+					</th>
+					<th>Description
+					</th>
+					<th>Function
+					</th>
+					<th>Date Posted
+					</th>
+				</tr>
+				@foreach (var job in Model.PostedJobs)
+	{
+					@Html.Partial("_NewJobRow", job)
+	}
+			</table>
+		</div>
+
+		@Html.Partial("_NewJob", Model)
+
+		<div class="row-fluid">
+			<input class="btn-u" type="submit" value="Post now" />
+		</div>
+	
+ }
+</div>

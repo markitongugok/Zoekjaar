@@ -8,55 +8,52 @@
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
-	<fieldset>
-		<legend>Search</legend>
-		<div class="container">
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
-				</div>
-				<div class="span3">
-					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
-					@Html.ValidationMessageFor(_ => _.Criteria.CurrentStatusId)
-				</div>
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.Function)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.Function)
-					@Html.ValidationMessageFor(_ => _.Criteria.Function)
-				</div>
-				<div class="span1">
-					<input class="btn btn-primary" type="submit" value="Search" />
-				</div>
+	<div class="container">
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
 			</div>
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.JobType)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.JobType)
-					@Html.ValidationMessageFor(_ => _.Criteria.JobType)
-				</div>
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.Sector)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.Sector)
-					@Html.ValidationMessageFor(_ => _.Criteria.Sector)
-				</div>
+			<div class="span3">
+				@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
+				@Html.ValidationMessageFor(_ => _.Criteria.CurrentStatusId)
 			</div>
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-				</div>
-				<div class="span3">
-					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
-					@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
-				</div>
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.Function)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.Function)
+				@Html.ValidationMessageFor(_ => _.Criteria.Function)
+			</div>
+			<div class="span1">
+				<input class="btn btn-primary" type="submit" value="Search" />
 			</div>
 		</div>
-	</fieldset>
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.JobType)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.JobType)
+				@Html.ValidationMessageFor(_ => _.Criteria.JobType)
+			</div>
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.Sector)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.Sector)
+				@Html.ValidationMessageFor(_ => _.Criteria.Sector)
+			</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.VisaStatusId)
+			</div>
+			<div class="span3">
+				@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+				@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
+			</div>
+		</div>
+	</div>
 	
 	<div class="container">
 		<div class="row">

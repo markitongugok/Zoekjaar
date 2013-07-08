@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using Business.Core;
+using Entities;
 using Zoekjaar.Web.Contracts;
 
 namespace Zoekjaar.Web.Controllers
@@ -10,5 +13,12 @@ namespace Zoekjaar.Web.Controllers
 		{
 			return Activator.CreateInstance(modelType);
 		}
+
+		protected virtual IEnumerable<Lookup> GetLookups(string lookupTypeName)
+		{
+			return this.LookupRepository.Fetch(lookupTypeName);
+		}
+
+		public ISearchRepository<Lookup, string> LookupRepository { get; set; }
 	}
 }

@@ -1,7 +1,14 @@
 ﻿@model Zoekjaar.Web.Models.UserAccountModel
 
-
-@using (Html.BeginForm("EmployerLogin", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
-{
-	@Html.Partial("_Login", Model)
+@{
+	ViewBag.Title = "Login as Employer";
 }
+<div class="container">
+	<div class="row-fluid">
+		@using (Html.BeginForm("EmployerLogin", "Account", FormMethod.Post, new { @class = "log-page" }))
+  {
+			@Html.AntiForgeryToken()
+			@Html.Partial("_Login", Model)
+  }
+	</div>
+</div>

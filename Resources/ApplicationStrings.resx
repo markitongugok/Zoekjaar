@@ -135,8 +135,17 @@
   <data name="CreateProfile" xml:space="preserve">
     <value>Create Profile</value>
   </data>
+  <data name="Criteria" xml:space="preserve">
+    <value>Criteria</value>
+  </data>
   <data name="CurrentStatus" xml:space="preserve">
     <value>Current Status</value>
+  </data>
+  <data name="DatePosted" xml:space="preserve">
+    <value>Date Posted</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>Degree</value>
   </data>
   <data name="DegreeObtained" xml:space="preserve">
     <value>Degree Obtained</value>
@@ -150,14 +159,35 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot Your Password?</value>
   </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
   <data name="GooglePlus" xml:space="preserve">
     <value>Google+</value>
   </data>
   <data name="Graduates" xml:space="preserve">
     <value>Graduates</value>
   </data>
+  <data name="HiringManager" xml:space="preserve">
+    <value>Hiring Manager</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="HrManager" xml:space="preserve">
+    <value>HR Manager</value>
+  </data>
+  <data name="JobDescription" xml:space="preserve">
+    <value>Job Description</value>
+  </data>
+  <data name="JobFunction" xml:space="preserve">
+    <value>Job Function</value>
+  </data>
+  <data name="JobNumber" xml:space="preserve">
+    <value>Job #</value>
+  </data>
+  <data name="JobType" xml:space="preserve">
+    <value>Job Type</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -179,6 +209,12 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="OrgLevel" xml:space="preserve">
+    <value>Org Level</value>
+  </data>
+  <data name="OtherCriteria" xml:space="preserve">
+    <value>Other Criteria</value>
   </data>
   <data name="OtherSkills" xml:space="preserve">
     <value>Other Skills</value>
@@ -206,6 +242,9 @@
   </data>
   <data name="Specialisation" xml:space="preserve">
     <value>Specialisation</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
   </data>
   <data name="University" xml:space="preserve">
     <value>University/College</value>

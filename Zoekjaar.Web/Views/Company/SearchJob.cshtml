@@ -1,64 +1,64 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Controllers
 
-@model JobSearchModel
-
 @{
+	ViewBag.Title = "Search Job";
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 }
+
+@model JobSearchModel
+
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
-	<fieldset>
-		<legend>Search</legend>
-		<div class="container">
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
-				</div>
-				<div class="span3">
-					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
-					@Html.ValidationMessageFor(_ => _.Criteria.CurrentStatusId)
-				</div>
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.Function)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.Function)
-					@Html.ValidationMessageFor(_ => _.Criteria.Function)
-				</div>
-				<div class="span1">
-					<button class="btn btn-primary" type="submit"><i class="icon-search"></i>Search</button>
-				</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
 			</div>
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.JobType)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.JobType)
-					@Html.ValidationMessageFor(_ => _.Criteria.JobType)
-				</div>
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.Sector)
-				</div>
-				<div class="span3">
-					@Html.TextBoxFor(_ => _.Criteria.Sector)
-					@Html.ValidationMessageFor(_ => _.Criteria.Sector)
-				</div>
+			<div class="span3">
+				@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
+				@Html.ValidationMessageFor(_ => _.Criteria.CurrentStatusId)
 			</div>
-			<div class="row">
-				<div class="span2">
-					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-				</div>
-				<div class="span3">
-					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
-					@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
-				</div>
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.Function)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.Function)
+				@Html.ValidationMessageFor(_ => _.Criteria.Function)
+			</div>
+			<div class="span1">
+				<input class="btn-u" type="submit" value="Search" />
 			</div>
 		</div>
-	</fieldset>
-	
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.JobType)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.JobType)
+				@Html.ValidationMessageFor(_ => _.Criteria.JobType)
+			</div>
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.Sector)
+			</div>
+			<div class="span3">
+				@Html.TextBoxFor(_ => _.Criteria.Sector)
+				@Html.ValidationMessageFor(_ => _.Criteria.Sector)
+			</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				@Html.LabelFor(_ => _.Criteria.VisaStatusId)
+			</div>
+			<div class="span3">
+				@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+				@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
+			</div>
+		</div>
+	</div>
+
 	<div class="container">
 		<div class="row">
 
@@ -67,6 +67,7 @@
 	{
 		if (Model.Jobs.Any())
 		{ 
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -79,6 +80,7 @@
 					</thead>
 					@foreach (var job in Model.Jobs)
 	 {
+
 						<tr>
 							<td>
 								<div>
@@ -104,10 +106,12 @@
 							<td>
 								@if (job.CanApply)
 		{ 
+
 									<button id="apply-button" class="btn btn-mini btn-success">@Html.LabelFor(_ => job.CanApply)</button>
 		}
 		else
 		{
+
 									<span class="label label-info">Applied</span>	
 		}
 							</td>
@@ -115,30 +119,37 @@
 	 }
 				</table>
 
+
+
 				<div class="pagination">
 					<ul>
 						@for (var i = 0; i < (Model.Criteria.TotalRecords / CompanyController.PageSize) + (Model.Criteria.TotalRecords % CompanyController.PageSize > 0 ? 1 : 0); i++)
 	  {
 		  currentRoute["pageNumber"] = i;
+
 							<li><a href="@Url.Action("Search", currentRoute)">@(i + 1)</a></li>
 	  }
 					</ul>
 					<div class="alert alert-success">
 						We found
+					
 						<strong>@Model.Criteria.TotalRecords</strong>
 						matches.
+				
 					</div>
 				</div>
 		}
 		else
 		{
+
 				<div class="alert alert-info">
 					<strong>Ooops!</strong>
 					We found <strong>0</strong> matches.
+			
 				</div>
 		}
 	}
-			}
+	}
 		</div>
 	</div>
 }
