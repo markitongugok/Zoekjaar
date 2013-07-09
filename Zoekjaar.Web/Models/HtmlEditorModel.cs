@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Zoekjaar.Web.Models
 {
-	public class JobModel
+	public class HtmlEditorModel
 	{
 	}
 }

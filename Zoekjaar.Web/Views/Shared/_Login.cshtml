@@ -4,13 +4,19 @@
 @model Zoekjaar.Web.Models.UserAccountModel
 
 <h3>Login to your account</h3>
-<div class="input-prepend">
-	<span class="add-on"><i class="icon-user"></i></span>
-	@Html.TextBoxFor(m => m.UserName, new { placeholder = ApplicationStrings.Email }) @Html.ControlValidationMessageFor(m => m.UserName)
+<div class="controls">
+	<div class="input-prepend">
+		<span class="add-on"><i class="icon-user"></i></span>
+		@Html.TextBoxFor(m => m.UserName, new { placeholder = ApplicationStrings.Email, @class = "span12" })
+	</div>
+	@Html.ControlValidationMessageFor(m => m.UserName)
 </div>
-<div class="input-prepend">
-	<span class="add-on"><i class="icon-lock"></i></span>
-	@Html.PasswordFor(m => m.Password, new { placeholder = ApplicationStrings.Password }) @Html.ControlValidationMessageFor(m => m.Password)
+<div class="controls">
+	<div class="input-prepend">
+		<span class="add-on"><i class="icon-lock"></i></span>
+		@Html.PasswordFor(m => m.Password, new { placeholder = ApplicationStrings.Password, @class = "span12" })
+	</div>
+	@Html.ControlValidationMessageFor(m => m.Password)
 </div>
 <div class="controls form-inline">
 	<label class="checkbox">
@@ -21,11 +27,3 @@
 <hr>
 <h4>Forget your Password ?</h4>
 <p><a class="color-green" href="#">@Zoekjaar.Resources.ApplicationStrings.ForgotPassword</a></p>
-
-@section Scripts{
-	<script type="text/javascript">
-		$(document(function () {
-			App.init();
-		}));
-	</script>
-}

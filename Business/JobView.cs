@@ -7,7 +7,7 @@ namespace Business
 		public int CompanyId { get; set; }
 
 		public string Title { get; set; }
-		
+
 		[Display(Name = "Company")]
 		public string CompanyName { get; set; }
 
@@ -32,5 +32,7 @@ namespace Business
 
 		[Display(Name = "Apply")]
 		public bool CanApply { get; set; }
+
+		public bool IsFeatured { get; set; }
 	}
 }

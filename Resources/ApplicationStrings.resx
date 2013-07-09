@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
   <data name="AvailableFromDate" xml:space="preserve">
     <value>Available From Date</value>
   </data>
@@ -150,8 +153,14 @@
   <data name="DegreeObtained" xml:space="preserve">
     <value>Degree Obtained</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="Featured" xml:space="preserve">
+    <value>Featured</value>
   </data>
   <data name="FeaturedCompanies" xml:space="preserve">
     <value>Featured Companies</value>
@@ -237,6 +246,9 @@
   <data name="PcSkills" xml:space="preserve">
     <value>PC Skills</value>
   </data>
+  <data name="PostJob" xml:space="preserve">
+    <value>Post Job</value>
+  </data>
   <data name="Proficiency" xml:space="preserve">
     <value>Proficiency</value>
   </data>
@@ -248,6 +260,9 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember Me</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
   </data>
   <data name="Sector" xml:space="preserve">
     <value>Sector</value>

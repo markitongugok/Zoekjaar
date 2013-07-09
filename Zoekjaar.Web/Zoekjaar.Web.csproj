@@ -218,6 +218,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\GraduateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,12 +228,14 @@
     <Compile Include="Models\CompanyProfileModel.cs" />
     <Compile Include="Models\GraduateProfileModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\HtmlEditorModel.cs" />
+    <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\ViewJobModel.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\JobSearchModel.cs" />
     <Compile Include="Models\GraduateModel.cs" />
     <Compile Include="Models\GraduateSearchModel.cs" />
-    <Compile Include="Models\JobModel.cs" />
+    <Compile Include="Models\JobsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebContainerComposer.cs" />
   </ItemGroup>
@@ -731,6 +734,12 @@
     <Content Include="Content\unify\plugins\revolution_slider\rs-plugin\js\jquery.themepunch.plugins.min.js" />
     <Content Include="Content\unify\plugins\revolution_slider\rs-plugin\js\jquery.themepunch.revolution.js" />
     <Content Include="Content\unify\plugins\revolution_slider\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\Views\Account.CreateGraduateProfile.css">
+      <DependentUpon>Account.CreateGraduateProfile.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Views\Account.CreateGraduateProfile.min.css">
+      <DependentUpon>Account.CreateGraduateProfile.less</DependentUpon>
+    </Content>
     <Content Include="Content\Views\Graduate.CreateProfile.css">
       <DependentUpon>Account.CreateGraduateProfile.less</DependentUpon>
     </Content>
@@ -813,10 +822,13 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Job.AddOrEdit.ts" />
     <Content Include="Views\Shared\_CompanyProfile.cshtml" />
-    <Content Include="Views\Company\ViewJob.cshtml" />
+    <Content Include="Views\Job\ViewJob.cshtml" />
     <Content Include="Views\Shared\_FeaturedJob.cshtml" />
     <Content Include="Views\Shared\_FeaturedCompany.cshtml" />
+    <Content Include="Views\Job\AddOrEdit.cshtml" />
+    <Content Include="Views\Shared\_HtmlEditor.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Home.Index.ts" />
     <TypeScriptCompile Include="Scripts\Views\Graduate.SearchJob.ts" />
     <Content Include="Views\Company\EditProfile.cshtml" />
@@ -867,8 +879,8 @@
     <Content Include="Views\Graduate\SearchJob.cshtml" />
     <Content Include="Views\Company\SearchGraduate.cshtml" />
     <Content Include="Views\Graduate\ViewProfile.cshtml" />
-    <Content Include="Views\Company\Job.cshtml" />
-    <Content Include="Views\Company\_NewJob.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\_NewJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

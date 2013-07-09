@@ -10,7 +10,7 @@
 <div class="body">
 	<div class="container">
 		<div class="row-fluid margin-bottom-10">
-			@using (Html.BeginForm("CreateEmployerProfile", "Account", FormMethod.Post, new { @class = "reg-page" }))
+			@using (Html.BeginForm("CreateEmployerProfile", "Account", FormMethod.Post, new { @class = "reg-page-large" }))
    {
 				@Html.AntiForgeryToken()
 				@Html.HiddenFor(_ => _.Company.Id)

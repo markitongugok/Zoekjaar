@@ -8,14 +8,23 @@ module Zoekjaar.Graduate {
 
 		}
 		init() {
-			var editor: any = $('#editor');
+			var editor: any = $('.wysiwyg-editor');
 			editor.wysiwyg();
+
+			$('#save').on('click', $.proxy(this.onSubmit, this));
 			$(".add").toggle(false);
 			$(".add").on("click", $.proxy(this.onAddClicked, this));
 			$(".save").on("click", $.proxy(this.onSaveClicked, this));
 			$(".save-and-add").on("click", $.proxy(this.onSaveAndAddClicked, this));
 		}
 		destroy() {
+			$('#save').off('click');
+		}
+		onSubmit(e: JQueryEventObject) {
+			var source = $('.wysiwyg-editor');
+			$(source.data('wysiwyg-editor-target')).val(source.html());
+			source.closest('form').submit();
+			e.preventDefault();
 		}
 		addItem(target: JQuery, container: JQuery) {
 			var count = target.find('.container-fluid').length;

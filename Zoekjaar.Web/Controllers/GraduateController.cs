@@ -36,7 +36,6 @@ namespace Zoekjaar.Web.Controllers
 			var name = this.User.Identity.Name;
 
 			var model = this.CreateProfileModel();
-			model.Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId);
 
 			return this.View(model);
 		}
@@ -108,6 +107,7 @@ namespace Zoekjaar.Web.Controllers
 				CurrentStatus = this.GetLookups("Current Status"),
 				Proficiencies = this.GetLookups("Proficiency"),
 				VisaStatus = this.GetLookups("Visa Status"),
+				Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId)
 			};
 		}
 

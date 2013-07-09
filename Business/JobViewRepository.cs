@@ -63,7 +63,8 @@ namespace Business
 					City = _.Job.Company.City,
 					StartDate = _.Job.StartDate,
 					CandidateCount = _.Applicants.Count(),
-					CanApply = !_.Applicants.Any(__ => __.GraduateId == criteria.EntityId)
+					CanApply = !_.Applicants.Any(__ => __.GraduateId == criteria.EntityId),
+					IsFeatured = _.Job.IsFeatured
 				});
 		}
 
@@ -85,6 +86,7 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
+					IsFeatured = _.IsFeatured
 				}).Single();
 		}
 
@@ -107,6 +109,7 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
+					IsFeatured = _.IsFeatured
 				});
 		}
 
@@ -130,6 +133,7 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
+					IsFeatured = _.IsFeatured
 				});
 		}
 	}

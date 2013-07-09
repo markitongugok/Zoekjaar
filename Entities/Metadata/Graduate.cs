@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using Zoekjaar.Resources;
 
 namespace Entities
@@ -24,6 +25,7 @@ namespace Entities
 		[Required]
 		public string LastName { get; set; }
 
+		[AllowHtml]
 		[Display(Name = "Profile", ResourceType = typeof(ApplicationStrings))]
 		public string Profile { get; set; }
 
@@ -38,7 +40,6 @@ namespace Entities
 		[Display(Name = "AvailableFromDate", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-		//[DataType(DataType.Date)]
 		public DateTime? AvailableFromDate { get; set; }
 
 		[Display(Name = "PcSkills", ResourceType = typeof(ApplicationStrings))]
