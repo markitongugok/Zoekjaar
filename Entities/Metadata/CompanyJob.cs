@@ -65,6 +65,12 @@ namespace Entities
 		[Required]
 		public Nullable<System.DateTime> StartDate { get; set; }
 
+		[Display(Name = "Title", ResourceType = typeof(ApplicationStrings))]
+		[Required]
+		public string Title { get; set; }
+
+		public bool IsFeatured { get; set; }
+
 		public virtual Company Company { get; set; }
 		public virtual ICollection<JobApplication> JobApplications { get; set; }
 	}

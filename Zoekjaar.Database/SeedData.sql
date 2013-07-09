@@ -15,5 +15,6 @@ Post-Deployment Script Template
 :r .\InsertUser.sql
 :r .\InsertGraduate.sql
 :r .\InsertCompany.sql
+:r .\InsertCompanyJob.sql
 
 exec sp_addrolemember @rolename='db_owner', @membername='NT AUTHORITY\NETWORK SERVICE';

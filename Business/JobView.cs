@@ -5,6 +5,9 @@ namespace Business
 	{
 		public int JobId { get; set; }
 		public int CompanyId { get; set; }
+
+		public string Title { get; set; }
+		
 		[Display(Name = "Company")]
 		public string CompanyName { get; set; }
 

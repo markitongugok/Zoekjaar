@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Business.Criteria;
 
 namespace Business
@@ -45,6 +46,7 @@ namespace Business
 					JobId = _.Job.Id,
 					CompanyId = _.Job.CompanyId,
 					CompanyName = _.Job.Company.Name,
+					Title = _.Job.Title,
 					Description = _.Job.JobDescription,
 					JobNumber = _.Job.JobNumber,
 					JobType = _.Job.JobType,
@@ -67,6 +69,7 @@ namespace Business
 					JobId = _.Id,
 					CompanyId = _.CompanyId,
 					CompanyName = _.Company.Name,
+					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
 					JobType = _.JobType,
@@ -77,6 +80,51 @@ namespace Business
 					City = _.Company.City,
 					StartDate = _.StartDate,
 				}).Single();
+		}
+
+		public IEnumerable<JobView> FetchFeaturedJobs()
+		{
+			return this.Context.CompanyJobs
+				.Where(_ => _.IsFeatured)
+				.Select(_ => new JobView
+				{
+					JobId = _.Id,
+					CompanyId = _.CompanyId,
+					CompanyName = _.Company.Name,
+					Title = _.Title,
+					Description = _.JobDescription,
+					JobNumber = _.JobNumber,
+					JobType = _.JobType,
+					Function = _.JobFunction,
+					HiringManager = _.HiringManager,
+					HrManager = _.HrManager,
+					Sector = _.Company.Sector,
+					City = _.Company.City,
+					StartDate = _.StartDate,
+				});
+		}
+
+		public IEnumerable<JobView> FetchLatestJobs()
+		{
+			return this.Context.CompanyJobs
+				.OrderByDescending(_ => _.StartDate)
+				.Take(10)
+				.Select(_ => new JobView
+				{
+					JobId = _.Id,
+					CompanyId = _.CompanyId,
+					CompanyName = _.Company.Name,
+					Title = _.Title,
+					Description = _.JobDescription,
+					JobNumber = _.JobNumber,
+					JobType = _.JobType,
+					Function = _.JobFunction,
+					HiringManager = _.HiringManager,
+					HrManager = _.HrManager,
+					Sector = _.Company.Sector,
+					City = _.Company.City,
+					StartDate = _.StartDate,
+				});
 		}
 	}
 }

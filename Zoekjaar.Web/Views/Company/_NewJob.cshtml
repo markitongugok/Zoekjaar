@@ -21,16 +21,16 @@
 		@Html.ControlValidationMessageFor(_ => _.NewJob.JobNumber)
 	</div>
 	<div class="control-group span4">
-		@Html.ControlLabelFor(_ => _.NewJob.JobType)
-		@Html.TextBoxFor(_ => _.NewJob.JobType, new { @class = "span12" })
-		@Html.ControlValidationMessageFor(_ => _.NewJob.JobType)
+		@Html.ControlLabelFor(_ => _.NewJob.Title)
+		@Html.TextBoxFor(_ => _.NewJob.Title, new { @class = "span12" })
+		@Html.ControlValidationMessageFor(_ => _.NewJob.Title)
 	</div>
 </div>
 <div class="row-fluid">
 	<div class="control-group span4">
-		@Html.ControlLabelFor(_ => _.NewJob.HiringManager)
-		@Html.TextBoxFor(_ => _.NewJob.HiringManager, new { @class = "span12" })
-		@Html.ControlValidationMessageFor(_ => _.NewJob.HiringManager)
+		@Html.ControlLabelFor(_ => _.NewJob.JobType)
+		@Html.TextBoxFor(_ => _.NewJob.JobType, new { @class = "span12" })
+		@Html.ControlValidationMessageFor(_ => _.NewJob.JobType)
 	</div>
 	<div class="control-group span4">
 		@Html.ControlLabelFor(_ => _.NewJob.JobFunction)
@@ -40,10 +40,17 @@
 </div>
 <div class="row-fluid">
 	<div class="control-group span4">
+		@Html.ControlLabelFor(_ => _.NewJob.HiringManager)
+		@Html.TextBoxFor(_ => _.NewJob.HiringManager, new { @class = "span12" })
+		@Html.ControlValidationMessageFor(_ => _.NewJob.HiringManager)
+	</div>
+	<div class="control-group span4">
 		@Html.ControlLabelFor(_ => _.NewJob.HrManager)
 		@Html.TextBoxFor(_ => _.NewJob.HrManager, new { @class = "span12" })
 		@Html.ControlValidationMessageFor(_ => _.NewJob.HrManager)
 	</div>
+</div>
+<div class="row-fluid">
 	<div class="control-group span4">
 		@Html.ControlLabelFor(_ => _.NewJob.OrgLevel)
 		@Html.TextBoxFor(_ => _.NewJob.OrgLevel, new { @class = "span12" })
@@ -99,3 +106,4 @@
 		@Html.ControlValidationMessageFor(_ => _.NewJob.StartDate)
 	</div>
 </div>
+

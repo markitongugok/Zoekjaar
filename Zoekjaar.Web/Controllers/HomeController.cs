@@ -1,28 +1,48 @@
 ﻿using System.Web.Mvc;
+using Business;
+using Business.Core;
+using Business.Criteria;
+using Zoekjaar.Web.Models;
 
 namespace Zoekjaar.Web.Controllers
 {
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+	public class HomeController : ControllerBase
+	{
+		public ActionResult Index()
+		{
+			var model = this.CreateHomeModel();
 
-            return View();
-        }
+			return View(model);
+		}
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
+		public ActionResult About()
+		{
+			ViewBag.Message = "Your app description page.";
 
-            return View();
-        }
+			return View();
+		}
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+		public ActionResult Contact()
+		{
+			ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-    }
+			return View();
+		}
+
+		private HomeModel CreateHomeModel()
+		{
+			var repository = (JobViewRepository)this.JobRepository;
+			var companyRepository = (CompanyViewRepository)this.CompanyRepository;
+			return new HomeModel
+			{
+				FeaturedJobs = repository.FetchFeaturedJobs(),
+				LatestJobs = repository.FetchLatestJobs(),
+				FeaturedCompanies = companyRepository.FetchFeaturedCompanies()
+			};
+		}
+
+		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
+
+		public ISearchRepository<CompanyView, string> CompanyRepository { get; set; }
+	}
 }

@@ -1,5 +1,5 @@
+/// <reference path="typings/bootstrap.datepicker/bootstrap.datepicker.d.ts" />
 /// <reference path="typings/jquery.validation/jquery.validation.d.ts" />
-/// <reference path="typings/jqueryui/jqueryui.d.ts" />
 /// <reference path="typings/jquery/jquery.d.ts" />
 /// <reference path="Views/IView.ts" />
 
@@ -31,7 +31,9 @@ module Zoekjaar {
 			validator.settings.unhighlight = function (element, errorClass, validClass) {
 				$(element).closest('.control-group').removeClass('error');
 			}
-			$(".date-picker").datepicker();
+			$(".date-picker").datepicker({
+				format: 'mm/dd/yyyy'
+			});
 			App.init();
 			App.initSliders();
 		}

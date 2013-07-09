@@ -1,0 +1,15 @@
+﻿@using Business
+
+@model CompanyView
+@{
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
+	currentRoute["id"] = Model.Id;
+}
+<div class="who margin-bottom-30">
+	<blockquote>
+		<h4>@Html.ActionLink(Model.Name, "ViewProfile", "Company", currentRoute, new Dictionary<string, object>())</h4>
+		<ul class="unstyled">
+			<li><a href="@Model.Website"><i class="icon-globe"></i>@Html.DisplayFor(_ => _.Website)</a></li>
+		</ul>
+	</blockquote>
+</div>

@@ -39,7 +39,7 @@
 			<div class="span6">
 				<div class="controls">
 					@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
-					@Html.EditorFor(_ => _.Graduate.AvailableFromDate, new { @class = "span12 date-picker" })
+					@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, new { @class = "date-picker" })
 					@Html.ValidationMessageFor(_ => _.Graduate.AvailableFromDate)
 				</div>
 			</div>

@@ -34,6 +34,8 @@ namespace Entities
         public string OtherCriteria { get; set; }
         public int VisaStatusId { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
+        public string Title { get; set; }
+        public bool IsFeatured { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual ICollection<JobApplication> JobApplications { get; set; }

@@ -1,6 +1,7 @@
 ﻿; SET IDENTITY_INSERT dbo.[Company] ON
 ; WITH Company_CTE (Id, UserId, Name, Sector, City, [Profile], Website, LinkedIn, GooglePlus, IsFeatured, IsActive) AS (
-	SELECT 1, 2, 'Admin Company', '', '', '', '', '', '', 0, 1
+		  SELECT 1, 2, 'Admin Company', 'Sector 1', 'MN', '', 'http://www.admin.com', 'http://linkedin.com/admin', 'http://google.plus.com/admin', 1, 1
+	UNION SELECT 2, 3, 'Test Company', 'Sectory 2', 'MN', '', 'http://www.test.company.com', 'http://linkedin.com/test', 'http://google.plus.com/test', 1, 1
 ) 
 MERGE INTO dbo.[Company]
 	USING Company_CTE as cte

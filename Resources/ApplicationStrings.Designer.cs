@@ -169,6 +169,24 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Featured Companies.
+        /// </summary>
+        public static string FeaturedCompanies {
+            get {
+                return ResourceManager.GetString("FeaturedCompanies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Featured Jobs.
+        /// </summary>
+        public static string FeaturedJobs {
+            get {
+                return ResourceManager.GetString("FeaturedJobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name.
         /// </summary>
         public static string FirstName {
@@ -291,6 +309,15 @@ namespace Zoekjaar.Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latest Jobs.
+        /// </summary>
+        public static string LatestJobs {
+            get {
+                return ResourceManager.GetString("LatestJobs", resourceCulture);
             }
         }
         
@@ -444,6 +471,15 @@ namespace Zoekjaar.Resources {
         public static string StartDate {
             get {
                 return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

@@ -4,27 +4,64 @@
 
 @{
 	ViewBag.Title = "Post Job";
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 }
 <div class="container">
 	@using (Html.BeginForm())
  {
 		@Html.AntiForgeryToken()
 		
+		<div class="headline">
+			<h3>Posted Jobs</h3>
+		</div>
 		<div class="row-fluid">
 			<table class="table table-bordered posted-jobs">
 				<tr>
-					<th>Job Number
+					<th>Job Info
 					</th>
 					<th>Description
 					</th>
 					<th>Function
 					</th>
-					<th>Date Posted
+					<th>Start Date
 					</th>
+					<th>Candidates</th>
 				</tr>
 				@foreach (var job in Model.PostedJobs)
 	{
-					@Html.Partial("_NewJobRow", job)
+		currentRoute["id"] = job.Id;
+					<tr>
+						<td>
+							<h3>@Html.ActionLink(job.Title, "ViewJob", "Company", currentRoute, new Dictionary<string, object>()) <small>(@Html.DisplayFor(_ => job.JobNumber))</small></h3>
+							<span>@Html.DisplayFor(_ => job.Company.City)</span>
+
+						</td>
+						<td>
+							<div><small><span class="label label-success">Hiring Mgr:</span> @Html.DisplayFor(_ => job.HiringManager)</small></div>
+							<div><small><span class="label label-success">HR Mgr:</span> @Html.DisplayFor(_ => job.HrManager)</small></div>
+						</td>
+						<td>
+							@Html.DisplayFor(_ => job.JobFunction)
+						</td>
+						<td>
+							@Html.DisplayFor(_ => job.StartDate)
+						</td>
+						<td>
+							@{
+		var count = job.JobApplications.Select(__ => __.GraduateId).Distinct().Count();
+		var active = string.Format("{0} active", count);
+		if (count > 0)
+		{
+								@Html.ActionLink(active, "ViewCandidates", "Company", currentRoute, null)
+		}
+		else
+		{
+								<span>@active</span>
+		}
+							}
+						</td>
+					</tr>
+
 	}
 			</table>
 		</div>

@@ -57,7 +57,8 @@ namespace Zoekjaar.Web
 				"~/Content/unify/css/themes/headers/default.css"
 				));
 
-			bundles.Add(new Bundle("~/bundles/bootstrap", jsTransformer).Include("~/Scripts/bootstrap*"));
+			bundles.Add(new Bundle("~/bundles/bootstrap", jsTransformer).Include("~/Scripts/bootstrap*",
+				"~/Scripts/bootstrap-datepicker.js"));
 			bundles.Add(new Bundle("~/bundles/ts", jsTransformer).Include("~/Scripts/Utility.ts"));
 			bundles.Add(new Bundle("~/bundles/wysiwyg", jsTransformer).Include(
 				"~/Scripts/jquery.hotkeys.js",

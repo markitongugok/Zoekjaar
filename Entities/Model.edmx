@@ -88,6 +88,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="JobNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="HiringManager" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="HrManager" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="JobType" Type="varchar" Nullable="false" MaxLength="100" />
@@ -100,6 +101,7 @@
           <Property Name="OtherCriteria" Type="varchar(max)" />
           <Property Name="VisaStatusId" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Graduate">
           <Key>
@@ -432,6 +434,8 @@
           <Property Type="DateTime" Name="StartDate" Precision="0" />
           <NavigationProperty Name="Company" Relationship="Model.FK_CompanyJob_Company" FromRole="CompanyJob" ToRole="Company" />
           <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_CompanyJob" FromRole="CompanyJob" ToRole="JobApplication" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
         </EntityType>
         <EntityType Name="Graduate">
           <Key>
@@ -709,6 +713,8 @@
           <EntitySetMapping Name="CompanyJobs">
             <EntityTypeMapping TypeName="Model.CompanyJob">
               <MappingFragment StoreEntitySet="CompanyJob">
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="VisaStatusId" ColumnName="VisaStatusId" />
                 <ScalarProperty Name="OtherCriteria" ColumnName="OtherCriteria" />

@@ -226,6 +226,7 @@
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CompanyProfileModel.cs" />
     <Compile Include="Models\GraduateProfileModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\ViewJobModel.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\JobSearchModel.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="WebContainerComposer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -837,6 +840,8 @@
     <Content Include="Content\unify\plugins\revolution_slider\rs-plugin\assets\bullets.psd" />
     <Content Include="Content\unify\plugins\revolution_slider\rs-plugin\assets\small_arrows.psd" />
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -854,6 +859,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\typings\bootstrap.datepicker\bootstrap.datepicker.d.ts" />
     <Content Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
     <Content Include="Scripts\typings\fancybox\fancybox.d.ts" />
     <Content Include="Scripts\typings\flexslider\flexSlider.d.ts" />
@@ -871,6 +877,8 @@
     <Content Include="Scripts\Utility.ts" />
     <Content Include="Views\Shared\_CompanyProfile.cshtml" />
     <Content Include="Views\Company\ViewJob.cshtml" />
+    <Content Include="Views\Shared\_FeaturedJob.cshtml" />
+    <Content Include="Views\Shared\_FeaturedCompany.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Home.Index.ts" />
     <TypeScriptCompile Include="Scripts\Views\Graduate.SearchJob.ts" />
     <Content Include="Views\Company\EditProfile.cshtml" />

@@ -1,0 +1,13 @@
+﻿@using Business
+
+@model JobView
+@{
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
+	currentRoute["id"] = Model.JobId;
+}
+<div class="who margin-bottom-30">
+	<blockquote>
+		<h4>@Html.ActionLink(Model.Title, "ViewJob", "Company", currentRoute, new Dictionary<string, object>())</h4>
+		<p>@Html.Raw(Model.Description)</p>
+	</blockquote>
+</div>

@@ -38,7 +38,7 @@ namespace Entities
 		[Display(Name = "AvailableFromDate", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		[DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-		[DataType(DataType.Date)]
+		//[DataType(DataType.Date)]
 		public DateTime? AvailableFromDate { get; set; }
 
 		[Display(Name = "PcSkills", ResourceType = typeof(ApplicationStrings))]

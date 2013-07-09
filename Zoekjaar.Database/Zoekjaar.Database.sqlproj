@@ -67,6 +67,7 @@
     <Build Include="dbo\CompanyJob.sql" />
     <Build Include="dbo\JobApplication.sql" />
     <Build Include="dbo\User.sql" />
+    <None Include="InsertCompanyJob.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertLookupType.sql" />
