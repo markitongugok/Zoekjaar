@@ -8,15 +8,21 @@ namespace Business
 	{
 		public override System.Collections.Generic.IEnumerable<JobView> Fetch(SearchCriteria criteria)
 		{
-			var query = this.Context.CompanyJobs.Where(_ => true);
+			var query = this.Context.Jobs.AsQueryable();
+
+			if (!string.IsNullOrEmpty(criteria.Keyword))
+			{
+				query = query.Where(_ => _.Title.Contains(criteria.Keyword));
+			}
+
 			if (criteria.VisaStatusId.HasValue)
 			{
 				query = query.Where(_ => _.VisaStatusId == criteria.VisaStatusId);
 			}
 
-			if (!string.IsNullOrEmpty(criteria.JobType))
+			if (criteria.JobTypeId.HasValue)
 			{
-				query = query.Where(_ => _.JobType == criteria.JobType);
+				query = query.Where(_ => _.JobTypeId == criteria.JobTypeId);
 			}
 
 			if (!string.IsNullOrEmpty(criteria.Function))
@@ -49,7 +55,7 @@ namespace Business
 					Title = _.Job.Title,
 					Description = _.Job.JobDescription,
 					JobNumber = _.Job.JobNumber,
-					JobType = _.Job.JobType,
+					JobType = _.Job.JobType.Name,
 					Function = _.Job.JobFunction,
 					HiringManager = _.Job.HiringManager,
 					HrManager = _.Job.HrManager,
@@ -63,7 +69,7 @@ namespace Business
 
 		public override JobView Get(int id)
 		{
-			return this.Context.CompanyJobs.Where(_ => _.Id == id)
+			return this.Context.Jobs.Where(_ => _.Id == id)
 				.Select(_ => new JobView
 				{
 					JobId = _.Id,
@@ -72,7 +78,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType,
+					JobType = _.JobType.Name,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,
@@ -84,7 +90,7 @@ namespace Business
 
 		public IEnumerable<JobView> FetchFeaturedJobs()
 		{
-			return this.Context.CompanyJobs
+			return this.Context.Jobs
 				.Where(_ => _.IsFeatured)
 				.Select(_ => new JobView
 				{
@@ -94,7 +100,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType,
+					JobType = _.JobType.Name,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,
@@ -106,7 +112,7 @@ namespace Business
 
 		public IEnumerable<JobView> FetchLatestJobs()
 		{
-			return this.Context.CompanyJobs
+			return this.Context.Jobs
 				.OrderByDescending(_ => _.StartDate)
 				.Take(10)
 				.Select(_ => new JobView
@@ -117,7 +123,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType,
+					JobType = _.JobType.Name,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,

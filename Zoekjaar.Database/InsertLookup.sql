@@ -33,6 +33,13 @@
 	UNION SELECT 502, 6, 'Last 7 Days', 1, 0
 	UNION SELECT 503, 6, 'Last 3 Days', 1, 0
 	UNION SELECT 504, 6, 'Since Yesterday', 1, 0
+
+	/* Job Type */
+	UNION SELECT 600, 7, 'Free Lance', 1, 1
+	UNION SELECT 601, 7, 'Full-Time', 1, 0
+	UNION SELECT 602, 7, 'Internship', 1, 0
+	UNION SELECT 603, 7, 'Part-Time', 1, 0
+	UNION SELECT 604, 7, 'Temporary', 1, 0
 ) 
 MERGE INTO dbo.Lookup
 	USING Lookup_CTE as cte

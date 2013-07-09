@@ -7,11 +7,11 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Company" EntityType="Model.Store.Company" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CompanyJob" EntityType="Model.Store.CompanyJob" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Graduate" EntityType="Model.Store.Graduate" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GraduateDegree" EntityType="Model.Store.GraduateDegree" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GraduateExperience" EntityType="Model.Store.GraduateExperience" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="GraduateLanguage" EntityType="Model.Store.GraduateLanguage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Job" EntityType="Model.Store.Job" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobApplication" EntityType="Model.Store.JobApplication" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Lookup" EntityType="Model.Store.Lookup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LookupType" EntityType="Model.Store.LookupType" store:Type="Tables" Schema="dbo" />
@@ -19,10 +19,6 @@
           <AssociationSet Name="FK_Company_UserId_User" Association="Model.Store.FK_Company_UserId_User">
             <End Role="User" EntitySet="User" />
             <End Role="Company" EntitySet="Company" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompanyJob_Company" Association="Model.Store.FK_CompanyJob_Company">
-            <End Role="Company" EntitySet="Company" />
-            <End Role="CompanyJob" EntitySet="CompanyJob" />
           </AssociationSet>
           <AssociationSet Name="FK_Graduate_CurrentStatusId_Lookup" Association="Model.Store.FK_Graduate_CurrentStatusId_Lookup">
             <End Role="Lookup" EntitySet="Lookup" />
@@ -52,8 +48,16 @@
             <End Role="Lookup" EntitySet="Lookup" />
             <End Role="GraduateLanguage" EntitySet="GraduateLanguage" />
           </AssociationSet>
+          <AssociationSet Name="FK_Job_Company" Association="Model.Store.FK_Job_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Lookup" Association="Model.Store.FK_Job_Lookup">
+            <End Role="Lookup" EntitySet="Lookup" />
+            <End Role="Job" EntitySet="Job" />
+          </AssociationSet>
           <AssociationSet Name="FK_JobApplication_CompanyJob" Association="Model.Store.FK_JobApplication_CompanyJob">
-            <End Role="CompanyJob" EntitySet="CompanyJob" />
+            <End Role="Job" EntitySet="Job" />
             <End Role="JobApplication" EntitySet="JobApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_Graduate" Association="Model.Store.FK_JobApplication_Graduate">
@@ -80,28 +84,6 @@
           <Property Name="GooglePlus" Type="varchar" MaxLength="400" />
           <Property Name="IsFeatured" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CompanyJob">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyId" Type="int" Nullable="false" />
-          <Property Name="JobNumber" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="HiringManager" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="HrManager" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="JobType" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="JobFunction" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="OrgLevel" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="JobDescription" Type="varchar(max)" Nullable="false" />
-          <Property Name="Criteria" Type="varchar(max)" Nullable="false" />
-          <Property Name="Degree" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Specialisation" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="OtherCriteria" Type="varchar(max)" />
-          <Property Name="VisaStatusId" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="date" />
-          <Property Name="IsFeatured" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Graduate">
           <Key>
@@ -150,6 +132,29 @@
           <Property Name="Language" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="ProficiencyId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="JobNumber" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="HiringManager" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="HrManager" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="JobTypeId" Type="int" Nullable="false" />
+          <Property Name="JobFunction" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="OrgLevel" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="JobDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="Criteria" Type="varchar(max)" Nullable="false" />
+          <Property Name="Degree" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Specialisation" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="OtherCriteria" Type="varchar(max)" />
+          <Property Name="VisaStatusId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="IsFeatured" Type="bit" Nullable="false" />
+          <Property Name="DatePosted" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="JobApplication">
           <Key>
             <PropertyRef Name="Id" />
@@ -196,18 +201,6 @@
             </Principal>
             <Dependent Role="Company">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompanyJob_Company">
-          <End Role="Company" Type="Model.Store.Company" Multiplicity="1" />
-          <End Role="CompanyJob" Type="Model.Store.CompanyJob" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CompanyJob">
-              <PropertyRef Name="CompanyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -295,11 +288,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Job_Company">
+          <End Role="Company" Type="Model.Store.Company" Multiplicity="1" />
+          <End Role="Job" Type="Model.Store.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Lookup">
+          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
+          <End Role="Job" Type="Model.Store.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_JobApplication_CompanyJob">
-          <End Role="CompanyJob" Type="Model.Store.CompanyJob" Multiplicity="1" />
+          <End Role="Job" Type="Model.Store.Job" Multiplicity="1" />
           <End Role="JobApplication" Type="Model.Store.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CompanyJob">
+            <Principal Role="Job">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="JobApplication">
@@ -337,7 +354,6 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Companies" EntityType="Model.Company" />
-          <EntitySet Name="CompanyJobs" EntityType="Model.CompanyJob" />
           <EntitySet Name="Graduates" EntityType="Model.Graduate" />
           <EntitySet Name="GraduateDegrees" EntityType="Model.GraduateDegree" />
           <EntitySet Name="GraduateExperiences" EntityType="Model.GraduateExperience" />
@@ -349,14 +365,6 @@
           <AssociationSet Name="FK_Company_UserId_User" Association="Model.FK_Company_UserId_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Company" EntitySet="Companies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompanyJob_Company" Association="Model.FK_CompanyJob_Company">
-            <End Role="Company" EntitySet="Companies" />
-            <End Role="CompanyJob" EntitySet="CompanyJobs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobApplication_CompanyJob" Association="Model.FK_JobApplication_CompanyJob">
-            <End Role="CompanyJob" EntitySet="CompanyJobs" />
-            <End Role="JobApplication" EntitySet="JobApplications" />
           </AssociationSet>
           <AssociationSet Name="FK_Graduate_CurrentStatusId_Lookup" Association="Model.FK_Graduate_CurrentStatusId_Lookup">
             <End Role="Lookup" EntitySet="Lookups" />
@@ -394,6 +402,19 @@
             <End Role="Lookup" EntitySet="Lookups" />
             <End Role="JobApplication" EntitySet="JobApplications" />
           </AssociationSet>
+          <EntitySet Name="Jobs" EntityType="Model.Job" />
+          <AssociationSet Name="FK_CompanyJob_Company1" Association="Model.FK_CompanyJob_Company1">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobApplication_CompanyJob1" Association="Model.FK_JobApplication_CompanyJob1">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="JobApplication" EntitySet="JobApplications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Job_Lookup" Association="Model.FK_Job_Lookup">
+            <End Role="Lookup" EntitySet="Lookups" />
+            <End Role="Job" EntitySet="Jobs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -410,32 +431,8 @@
           <Property Type="String" Name="GooglePlus" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model.FK_Company_UserId_User" FromRole="Company" ToRole="User" />
-          <NavigationProperty Name="CompanyJobs" Relationship="Model.FK_CompanyJob_Company" FromRole="Company" ToRole="CompanyJob" />
           <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CompanyJob">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="CompanyId" Nullable="false" />
-          <Property Type="String" Name="JobNumber" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="HiringManager" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="HrManager" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="JobType" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="JobFunction" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OrgLevel" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="JobDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Criteria" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Degree" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Specialisation" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OtherCriteria" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="VisaStatusId" Nullable="false" />
-          <Property Type="DateTime" Name="StartDate" Precision="0" />
-          <NavigationProperty Name="Company" Relationship="Model.FK_CompanyJob_Company" FromRole="CompanyJob" ToRole="Company" />
-          <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_CompanyJob" FromRole="CompanyJob" ToRole="JobApplication" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
+          <NavigationProperty Name="Jobs" Relationship="Model.FK_CompanyJob_Company1" FromRole="Company" ToRole="Job" />
         </EntityType>
         <EntityType Name="Graduate">
           <Key>
@@ -503,9 +500,9 @@
           <Property Type="Int32" Name="JobId" Nullable="false" />
           <Property Type="Int32" Name="GraduateId" Nullable="false" />
           <Property Type="Int32" Name="StatusId" Nullable="true" />
-          <NavigationProperty Name="CompanyJob" Relationship="Model.FK_JobApplication_CompanyJob" FromRole="JobApplication" ToRole="CompanyJob" />
           <NavigationProperty Name="Graduate" Relationship="Model.FK_JobApplication_Graduate" FromRole="JobApplication" ToRole="Graduate" />
           <NavigationProperty Name="Status" Relationship="Model.FK_JobApplication_Lookup" FromRole="JobApplication" ToRole="Lookup" />
+          <NavigationProperty Name="Job" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="JobApplication" ToRole="Job" />
         </EntityType>
         <EntityType Name="Lookup">
           <Key>
@@ -520,6 +517,7 @@
           <NavigationProperty Name="Graduates1" Relationship="Model.FK_Graduate_VisaStatusId_Lookup" FromRole="Lookup" ToRole="Graduate" />
           <NavigationProperty Name="GraduateLanguages" Relationship="Model.FK_GraduateLanguage_Lookup" FromRole="Lookup" ToRole="GraduateLanguage" />
           <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_Lookup" FromRole="Lookup" ToRole="JobApplication" />
+          <NavigationProperty Name="Jobs" Relationship="Model.FK_Job_Lookup" FromRole="Lookup" ToRole="Job" />
         </EntityType>
         <EntityType Name="LookupType">
           <Key>
@@ -550,30 +548,6 @@
             </Principal>
             <Dependent Role="Company">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompanyJob_Company">
-          <End Type="Model.Company" Role="Company" Multiplicity="1" />
-          <End Type="Model.CompanyJob" Role="CompanyJob" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Company">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CompanyJob">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobApplication_CompanyJob">
-          <End Type="Model.CompanyJob" Role="CompanyJob" Multiplicity="1" />
-          <End Type="Model.JobApplication" Role="JobApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompanyJob">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobApplication">
-              <PropertyRef Name="JobId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -685,6 +659,68 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="JobNumber" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HiringManager" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HrManager" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="JobTypeId" Nullable="false" />
+          <Property Type="String" Name="JobFunction" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OrgLevel" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="JobDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Criteria" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Degree" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Specialisation" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OtherCriteria" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="VisaStatusId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Precision="0" />
+          <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_CompanyJob_Company1" FromRole="Job" ToRole="Company" />
+          <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="Job" ToRole="JobApplication" />
+          <NavigationProperty Name="JobType" Relationship="Model.FK_Job_Lookup" FromRole="Job" ToRole="Lookup" />
+        </EntityType>
+        <Association Name="FK_CompanyJob_Company1">
+          <End Type="Model.Company" Role="Company" Multiplicity="1" />
+          <End Type="Model.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobApplication_CompanyJob1">
+          <End Type="Model.Job" Role="Job" Multiplicity="1" />
+          <End Type="Model.JobApplication" Role="JobApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobApplication">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Job_Lookup">
+          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
+          <End Type="Model.Job" Role="Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lookup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="JobTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -706,29 +742,6 @@
                 <ScalarProperty Name="Sector" ColumnName="Sector" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompanyJobs">
-            <EntityTypeMapping TypeName="Model.CompanyJob">
-              <MappingFragment StoreEntitySet="CompanyJob">
-                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="VisaStatusId" ColumnName="VisaStatusId" />
-                <ScalarProperty Name="OtherCriteria" ColumnName="OtherCriteria" />
-                <ScalarProperty Name="Specialisation" ColumnName="Specialisation" />
-                <ScalarProperty Name="Degree" ColumnName="Degree" />
-                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
-                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
-                <ScalarProperty Name="OrgLevel" ColumnName="OrgLevel" />
-                <ScalarProperty Name="JobFunction" ColumnName="JobFunction" />
-                <ScalarProperty Name="JobType" ColumnName="JobType" />
-                <ScalarProperty Name="HrManager" ColumnName="HrManager" />
-                <ScalarProperty Name="HiringManager" ColumnName="HiringManager" />
-                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -821,6 +834,30 @@
                 <ScalarProperty Name="Hash" ColumnName="Hash" />
                 <ScalarProperty Name="Salt" ColumnName="Salt" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="Model.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="VisaStatusId" ColumnName="VisaStatusId" />
+                <ScalarProperty Name="OtherCriteria" ColumnName="OtherCriteria" />
+                <ScalarProperty Name="Specialisation" ColumnName="Specialisation" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="OrgLevel" ColumnName="OrgLevel" />
+                <ScalarProperty Name="JobFunction" ColumnName="JobFunction" />
+                <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+                <ScalarProperty Name="HrManager" ColumnName="HrManager" />
+                <ScalarProperty Name="HiringManager" ColumnName="HiringManager" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

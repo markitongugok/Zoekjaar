@@ -16,7 +16,7 @@ namespace Entities
     {
         public Company()
         {
-            this.CompanyJobs = new HashSet<CompanyJob>();
+            this.Jobs = new HashSet<Job>();
         }
     
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace Entities
         public bool IsFeatured { get; set; }
     
         public virtual User User { get; set; }
-        public virtual ICollection<CompanyJob> CompanyJobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

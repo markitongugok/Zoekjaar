@@ -5,6 +5,7 @@
 	UNION SELECT 4, 'Recruitment Stage'
 	UNION SELECT 5, 'State'
 	UNION SELECT 6, 'Date Posted'
+	UNION SELECT 7, 'Job Type'
 ) 
 MERGE INTO dbo.LookupType
 	USING LookupType_CTE as cte

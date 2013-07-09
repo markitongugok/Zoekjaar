@@ -8,7 +8,7 @@ namespace Zoekjaar.Web.Models
 	{
 		public Company Company { get; set; }
 
-		public CompanyJob Job { get; set; }
+		public Job Job { get; set; }
 
 		[DataType(DataType.EmailAddress)]
 		[Required]

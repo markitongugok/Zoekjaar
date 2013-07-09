@@ -116,7 +116,8 @@ namespace Zoekjaar.Web.Controllers
 			{
 				NewJob = this.CompanyJobRepository.Create(),
 				VisaStatus = this.GetLookups("Visa Status"),
-				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == this.UserIdentity.EntityId)
+				PostedJobs = this.CompanyJobRepository.Fetch(_ => _.CompanyId == this.UserIdentity.EntityId),
+				JobTypes = this.GetLookups("Job Type")
 			};
 		}
 
@@ -133,7 +134,7 @@ namespace Zoekjaar.Web.Controllers
 
 		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }
 
-		public IRepository<CompanyJob> CompanyJobRepository { get; set; }
+		public IRepository<Job> CompanyJobRepository { get; set; }
 
 		public ISearchRepository<JobView, SearchCriteria> JobViewRepository { get; set; }
 

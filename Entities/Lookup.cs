@@ -20,6 +20,7 @@ namespace Entities
             this.Graduates1 = new HashSet<Graduate>();
             this.GraduateLanguages = new HashSet<GraduateLanguage>();
             this.JobApplications = new HashSet<JobApplication>();
+            this.Jobs = new HashSet<Job>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,6 @@ namespace Entities
         public virtual ICollection<Graduate> Graduates1 { get; set; }
         public virtual ICollection<GraduateLanguage> GraduateLanguages { get; set; }
         public virtual ICollection<JobApplication> JobApplications { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

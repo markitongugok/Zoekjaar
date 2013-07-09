@@ -1,5 +1,6 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Controllers
+@using Zoekjaar.Web.Extensions
 
 @{
 	ViewBag.Title = "Search Job";
@@ -14,50 +15,14 @@
 		@Html.AntiForgeryToken()
 
 		<div class="row-fluid">
-			<div class="span2">
-				@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
-			</div>
-			<div class="span3">
-				@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
-				@Html.ValidationMessageFor(_ => _.Criteria.CurrentStatusId)
-			</div>
-			<div class="span2">
-				@Html.LabelFor(_ => _.Criteria.Function)
-			</div>
-			<div class="span3">
-				@Html.TextBoxFor(_ => _.Criteria.Function)
-				@Html.ValidationMessageFor(_ => _.Criteria.Function)
-			</div>
-			<div class="span1">
-				<input class="btn-u" type="submit" value="Search" />
+			<div class="search-query">
+				<div class="input-append">
+					@Html.TextBoxFor(_ => _.Criteria.Keyword, new { placeholder = "What kind of job are you looking for?", @class = "span12" })
+					<input class="btn-u" type="submit" value="Search" />
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="span2">
-				@Html.LabelFor(_ => _.Criteria.JobType)
-			</div>
-			<div class="span3">
-				@Html.TextBoxFor(_ => _.Criteria.JobType)
-				@Html.ValidationMessageFor(_ => _.Criteria.JobType)
-			</div>
-			<div class="span2">
-				@Html.LabelFor(_ => _.Criteria.Sector)
-			</div>
-			<div class="span3">
-				@Html.TextBoxFor(_ => _.Criteria.Sector)
-				@Html.ValidationMessageFor(_ => _.Criteria.Sector)
-			</div>
-		</div>
-		<div class="row">
-			<div class="span2">
-				@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-			</div>
-			<div class="span3">
-				@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
-				@Html.ValidationMessageFor(_ => _.Criteria.VisaStatusId)
-			</div>
-		</div>
-
+		
 		<div class="row-fluid search-page">
 
 			@{
@@ -91,8 +56,8 @@
 							</ul>
 						</div>
 						<div style="overflow: hidden;">
-							
-							<h2>@Html.ActionLink(string.Format("{0}-{1}", job.JobType, job.Function), "JobDetail", "Company")</h2>
+							<h2>@Html.ActionLink(job.Title, "ViewJob", "Company", currentRoute, null)</h2>
+							<p>@Html.Display(string.Format("{0}-{1}", job.JobType, job.Function))</p>
 							<p>@Html.DisplayFor(_ => job.Description) <a href="@Url.Action("ViewJob", "Company", currentRoute)">read more</a></p>
 							@if (job.CanApply)
 	   { 

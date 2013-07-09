@@ -6,14 +6,17 @@ namespace Business.Criteria
 {
 	public sealed class SearchCriteria
 	{
+		[Display(Name = "Keyword", ResourceType = typeof(ApplicationStrings))]
+		public string Keyword { get; set; }
+
 		[Display(Name = "CurrentStatus", ResourceType = typeof(ApplicationStrings))]
 		public int? CurrentStatusId { get; set; }
-		
+
 		[Display(Name = "Function", ResourceType = typeof(ApplicationStrings))]
 		public string Function { get; set; }
-		
+
 		[Display(Name = "JobType", ResourceType = typeof(ApplicationStrings))]
-		public string JobType { get; set; }
+		public int? JobTypeId { get; set; }
 
 		[Display(Name = "Sector", ResourceType = typeof(ApplicationStrings))]
 		public string Sector { get; set; }

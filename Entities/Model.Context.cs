@@ -26,7 +26,6 @@ namespace Entities
         }
     
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyJob> CompanyJobs { get; set; }
         public DbSet<Graduate> Graduates { get; set; }
         public DbSet<GraduateDegree> GraduateDegrees { get; set; }
         public DbSet<GraduateExperience> GraduateExperiences { get; set; }
@@ -35,5 +34,6 @@ namespace Entities
         public DbSet<Lookup> Lookups { get; set; }
         public DbSet<LookupType> LookupTypes { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Job> Jobs { get; set; }
     }
 }

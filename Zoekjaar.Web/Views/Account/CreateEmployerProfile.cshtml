@@ -3,6 +3,9 @@
 @using Zoekjaar.Resources
 
 @model CompanyModel
+@{
+	ViewBag.Title = "Register as Employer";
+}
 
 <div class="body">
 	<div class="container">
@@ -67,7 +70,7 @@
 					<input type="submit" value="@ApplicationStrings.Register" class="btn-u pull-right" />
 				</div>
 				<hr>
-				<p>Already Signed Up? Click <a href="page_login.html" class="color-green">Sign In</a> to login your account.</p>
+				<p>Already Signed Up? Click <a href="@Url.Action("EmployerLogin", "Account")" class="color-green">Sign In</a> to login your account.</p>
 	
    }
 		</div>

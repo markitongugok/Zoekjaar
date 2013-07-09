@@ -11,5 +11,6 @@ namespace Zoekjaar.Web.Models
 		public SearchCriteria Criteria { get; set; }
 		public IEnumerable<Lookup> VisaStatus { get; set; }
 		public IEnumerable<Lookup> CurrentStatus { get; set; }
+		public IEnumerable<Lookup> JobTypes { get; set; }
 	}
 }

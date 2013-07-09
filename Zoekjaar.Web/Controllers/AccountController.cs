@@ -26,7 +26,7 @@ namespace Zoekjaar.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult GraduateLogin(UserAccountModel model)
 		{
-			return this.Login(model, "SearchJob", "Company", 1);
+			return this.Login(model, "SearchJob", "Graduate", 1);
 		}
 
 		public ActionResult EmployerLogin()

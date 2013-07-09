@@ -64,10 +64,10 @@
     <Build Include="dbo\GraduateExperience.sql" />
     <Build Include="dbo\GraduateLanguage.sql" />
     <Build Include="dbo\Company.sql" />
-    <Build Include="dbo\CompanyJob.sql" />
+    <Build Include="dbo\Job.sql" />
     <Build Include="dbo\JobApplication.sql" />
     <Build Include="dbo\User.sql" />
-    <None Include="InsertCompanyJob.sql" />
+    <None Include="InsertJob.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertLookupType.sql" />

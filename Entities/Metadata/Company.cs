@@ -39,6 +39,6 @@ namespace Entities
 		public bool IsFeatured { get; set; }
 
 		public virtual User User { get; set; }
-		public virtual ICollection<CompanyJob> CompanyJobs { get; set; }
+		public virtual ICollection<Job> Jobs { get; set; }
 	}
 }

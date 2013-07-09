@@ -18,11 +18,6 @@ namespace Business
 				query = query.Where(_ => _.VisaStatusId == criteria.VisaStatusId);
 			}
 
-			if (!string.IsNullOrEmpty(criteria.JobType))
-			{
-
-			}
-
 			criteria.TotalRecords = query.Count();
 			return query.OrderBy(_ => _.LastName)
 				.ThenBy(_ => _.FirstName)

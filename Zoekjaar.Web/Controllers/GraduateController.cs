@@ -96,7 +96,8 @@ namespace Zoekjaar.Web.Controllers
 				{
 					PageSize = CompanyController.PageSize,
 					EntityId = this.UserIdentity.EntityId
-				}
+				},
+				JobTypes = this.GetLookups("Job Type")
 			};
 		}
 

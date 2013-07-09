@@ -33,19 +33,6 @@ namespace Zoekjaar.Web
 					"~/Content/unify/plugins/bootstrap/css/bootstrap-responsive.css",
 					"~/Content/unify/plugins/bootstrap/css/font-awesome.css"
 				));
-			bundles.Add(new Bundle("~/Content/themes/base/css", cssTransformer).Include(
-						"~/Content/themes/base/jquery.ui.core.css",
-						"~/Content/themes/base/jquery.ui.resizable.css",
-						"~/Content/themes/base/jquery.ui.selectable.css",
-						"~/Content/themes/base/jquery.ui.accordion.css",
-						"~/Content/themes/base/jquery.ui.autocomplete.css",
-						"~/Content/themes/base/jquery.ui.button.css",
-						"~/Content/themes/base/jquery.ui.dialog.css",
-						"~/Content/themes/base/jquery.ui.slider.css",
-						"~/Content/themes/base/jquery.ui.tabs.css",
-						"~/Content/themes/base/jquery.ui.datepicker.css",
-						"~/Content/themes/base/jquery.ui.progressbar.css",
-						"~/Content/themes/base/jquery.ui.theme.css"));
 
 			bundles.Add(new Bundle("~/Content/unifycss", cssTransformer).Include(
 				"~/Content/unify/css/style.css",
@@ -56,6 +43,8 @@ namespace Zoekjaar.Web
 				"~/Content/unify/css/themes/default.css",
 				"~/Content/unify/css/themes/headers/default.css"
 				));
+
+			bundles.Add(new Bundle("~/Content/style", cssTransformer).Include("~/Content/style.css"));
 
 			bundles.Add(new Bundle("~/bundles/bootstrap", jsTransformer).Include("~/Scripts/bootstrap*",
 				"~/Scripts/bootstrap-datepicker.js"));

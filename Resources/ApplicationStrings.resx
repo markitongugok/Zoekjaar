@@ -195,6 +195,9 @@
   <data name="JobType" xml:space="preserve">
     <value>Job Type</value>
   </data>
+  <data name="Keyword" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
