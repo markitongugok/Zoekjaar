@@ -1,5 +1,149 @@
-﻿@{
-    ViewBag.Title = "AddOrEdit";
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Resources
+
+@model JobModel
+
+@{
+	ViewBag.Title = Model.Job.Id == 0 ? ApplicationStrings.Add : ApplicationStrings.Edit;
 }
 
-<h2>AddOrEdit</h2>
+@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+
+<div class="container">
+	<div class="row-fluid">
+		<div class="span8">
+			@using (Html.BeginForm())
+   {
+	   if (Model.IsSuccessful.HasValue)
+	   {
+		   if (Model.IsSuccessful.Value)
+		   {
+				<div class="alert alert-success">Job Posted.</div>
+		   }
+		   else
+		   { 
+				<div class="alert alert-error">There was an error in saving the Job.</div>
+		   }
+	   }
+				@Html.AntiForgeryToken()
+				@Html.HiddenFor(_ => _.Job.Id)
+				@Html.HiddenFor(_ => _.Job.CompanyId)
+				<div class="controls">
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.JobNumber)
+						@if (Model.Job.Id == 0)
+	  { 
+							@Html.TextBoxFor(_ => _.Job.JobNumber, new { @class = "span12" })
+	  }
+	  else
+	  { 
+							@Html.TextBoxFor(_ => _.Job.JobNumber, new { @class = "span12", @readonly = "readonly" })
+	  }
+						@Html.ControlValidationMessageFor(_ => _.Job.JobNumber)
+					</div>
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.Title)
+						@Html.TextBoxFor(_ => _.Job.Title, new { @class = "span12" })
+						@Html.ControlValidationMessageFor(_ => _.Job.Title)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.JobTypeId)
+						@Html.DropDownListFor(_ => _.Job.JobTypeId, new SelectList(Model.JobTypes, "Id", "Name"), new { @class = "span12" })
+						@Html.ControlValidationMessageFor(_ => _.Job.JobTypeId)
+					</div>
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.JobFunction)
+						@Html.TextBoxFor(_ => _.Job.JobFunction, new { @class = "span12" })
+						@Html.ControlValidationMessageFor(_ => _.Job.JobFunction)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.HiringManager)
+						@Html.TextBoxFor(_ => _.Job.HiringManager, new { @class = "span12" })
+						@Html.ControlValidationMessageFor(_ => _.Job.HiringManager)
+					</div>
+					<div class="span6">
+						@Html.ControlLabelFor(_ => _.Job.HrManager)
+						@Html.TextBoxFor(_ => _.Job.HrManager, new { @class = "span12" })
+						@Html.ControlValidationMessageFor(_ => _.Job.HrManager)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.OrgLevel)
+						@Html.TextBoxFor(_ => _.Job.OrgLevel, new { @class = "span6" })
+						@Html.ControlValidationMessageFor(_ => _.Job.OrgLevel)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.JobDescription)
+						@Html.Partial("_HtmlEditor", new HtmlEditorModel
+ {
+	 Id = "editor",
+	 ModelId = "Job_JobDescription",
+	 Content = Model.Job.JobDescription
+ })
+						@Html.HiddenFor(_ => _.Job.JobDescription)
+						@Html.ControlValidationMessageFor(_ => _.Job.JobDescription)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.Criteria)
+						@Html.TextAreaFor(_ => _.Job.Criteria, new { @class = "span6", rows = "3" })
+						@Html.ControlValidationMessageFor(_ => _.Job.Criteria)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.Degree)
+						@Html.TextBoxFor(_ => _.Job.Degree, new { @class = "span6" })
+						@Html.ControlValidationMessageFor(_ => _.Job.Degree)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.Specialisation)
+						@Html.TextBoxFor(_ => _.Job.Specialisation, new { @class = "span6" })
+						@Html.ControlValidationMessageFor(_ => _.Job.Specialisation)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.OtherCriteria)
+						@Html.TextAreaFor(_ => _.Job.OtherCriteria, new { @class = "span6", rows = "3" })
+						@Html.ControlValidationMessageFor(_ => _.Job.OtherCriteria)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.VisaStatusId)
+						@Html.DropDownListFor(_ => _.Job.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"), new { @class = "span6" })
+						@Html.ControlValidationMessageFor(_ => _.Job.VisaStatusId)
+					</div>
+				</div>
+				<div class="controls">
+					<div class="span12">
+						@Html.ControlLabelFor(_ => _.Job.StartDate)
+						@Html.TextBoxFor(_ => _.Job.StartDate, new { @class = "span6 date-picker" })
+						@Html.ControlValidationMessageFor(_ => _.Job.StartDate)
+					</div>
+				</div>
+				<div class="controls">
+					@{
+	  var submitText = Model.Job.Id == 0 ? ApplicationStrings.PostJob : ApplicationStrings.SaveChanges;
+					}
+					<input id="save" type="submit" class="btn-u" value="@submitText" />
+				</div>
+   }
+		</div>
+	</div>
+</div>
+@section scripts{
+	@Scripts.Render("~/bundles/wysiwyg")
+}

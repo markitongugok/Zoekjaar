@@ -126,5 +126,12 @@ namespace Zoekjaar.Web.Extensions
 		{
 			return @this.ValidationMessageFor(expression, null, new { @class = "help-inline" });
 		}
+
+		public static MvcHtmlString DisplayFor<TModel, TValue>(this HtmlHelper<TModel> @this, Expression<Func<TModel, TValue>> expression, int maxLength)
+		{
+			var value = expression.Compile().Invoke((TModel)@this.ViewContext.ViewData.Model) as string;
+
+			return @this.Display(value.Length > maxLength ? value.Substring(0, maxLength) : string.Format("{0}...", value));
+		}
 	}
 }

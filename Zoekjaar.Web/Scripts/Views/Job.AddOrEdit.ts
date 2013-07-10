@@ -1,25 +1,31 @@
-// Interface
-interface IPoint {
-    getDist(): number;
+/// <reference path="../typings/jquery.validation/jquery.validation.d.ts" />
+/// <reference path="../Utility.ts" />
+/// <reference path="IView.ts" />
+
+module Zoekjaar.Job {
+	export class AddOrEdit implements IView {
+		constructor() {
+
+		}
+		init() {
+			var editor: any = $('.wysiwyg-editor');
+			editor.wysiwyg();
+
+			$('#save').on('click', $.proxy(this.onChange, this));
+		}
+		destroy() {
+			$('#save').off('click');
+		}
+		onChange(e: JQueryEventObject) {
+			var source = $('.wysiwyg-editor');
+			$(source.data('wysiwyg-editor-target')).val(source.html());
+			source.closest('form').submit();
+			e.preventDefault();
+		}
+	}
 }
 
-// Module
-module Shapes {
-
-    // Class
-    export class Point implements IPoint {
-        // Constructor
-        constructor (public x: number, public y: number) { }
-
-        // Instance member
-        getDist() { return Math.sqrt(this.x * this.x + this.y * this.y); }
-
-        // Static member
-        static origin = new Point(0, 0);
-    }
-
-}
-
-// Local variables
-var p: IPoint = new Shapes.Point(3, 4);
-var dist = p.getDist();
+(function () {
+	var view = new Zoekjaar.Job.AddOrEdit();
+	Zoekjaar.Utility.addToQueue(view);
+})();

@@ -21,6 +21,7 @@ module Zoekjaar {
 		}
 		static load(): void {
 			Zoekjaar.Utility.executeInitQueue();
+			
 			var validator: any = $('form').data('validator');
 			validator.settings.errorClass = 'error';
 			validator.settings.validClass = '';

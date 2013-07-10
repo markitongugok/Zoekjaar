@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using Zoekjaar.Resources;
 
 namespace Entities
@@ -22,6 +23,7 @@ namespace Entities
 		[Display(Name = "City", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		public string City { get; set; }
+		[AllowHtml]
 		[Display(Name = "Profile", ResourceType = typeof(ApplicationStrings))]
 		public string Profile { get; set; }
 		[Display(Name = "Website", ResourceType = typeof(ApplicationStrings))]

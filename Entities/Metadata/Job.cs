@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using Zoekjaar.Resources;
 
 namespace Entities
@@ -42,6 +43,7 @@ namespace Entities
 		[Display(Name = "OrgLevel", ResourceType = typeof(ApplicationStrings))]
 		public string OrgLevel { get; set; }
 
+		[AllowHtml]
 		[Display(Name = "JobDescription", ResourceType = typeof(ApplicationStrings))]
 		public string JobDescription { get; set; }
 
