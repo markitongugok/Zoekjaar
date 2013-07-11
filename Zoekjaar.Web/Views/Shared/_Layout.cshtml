@@ -12,10 +12,24 @@
 	@Scripts.Render("~/Content/modernizr")
 	@Styles.Render("~/Content/unifycss")
 	@Styles.Render("~/Content/style")
+	<link rel="stylesheet" href="~/Content/unify/css/themes/default.css" id="style_color">
+	<link rel="stylesheet" href="~/Content/unify/css/themes/headers/default.css" id="style_color-header-1">
 	@Html.ViewStyle()
 </head>
 <body>
+	<i class="style-switcher-btn icon-cogs"></i>
 	<div class="top">
+		<div class="style-switcher">
+			<div class="theme-close"><i class="icon-remove"></i></div>
+			<div class="theme-heading">Theme Colors</div>
+			<ul class="unstyled">
+				<li class="theme-default theme-active" data-style="default" data-header="light"></li>
+				<li class="theme-blue" data-style="blue" data-header="light"></li>
+				<li class="theme-orange" data-style="orange" data-header="light"></li>
+				<li class="theme-red" data-style="red" data-header="light"></li>
+				<li class="theme-light" data-style="light" data-header="light"></li>
+			</ul>
+		</div>
 		<div class="container">
 			<ul class="loginbar pull-right">
 				<li><a href="page_faq.html" class="login-btn">Help</a></li>
@@ -35,7 +49,7 @@
 			<!-- Logo -->
 			<div class="logo">
 				<a href="index.html">
-					<img id="logo-header" src="assets/img/logo1-default.png" alt="Logo"></a>
+					<img id="logo-header" src="@Url.Content("~/Content/unify/img/logo1-default.png")" alt="Logo"></a>
 			</div>
 			<!-- /logo -->
 
@@ -60,7 +74,7 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Graduate <b class="caret"></b></a>
 									<ul class="dropdown-menu">
-										<li>@Html.ActionLink("Search Jobs", "SearchJob", "Graduate")</li>
+										<li>@Html.ActionLink("Search Jobs", "SearchJob", "Job")</li>
 										<li>@Html.ActionLink("Edit Profile", "EditProfile", "Graduate")</li>
 									</ul>
 								</li>
@@ -83,14 +97,14 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">@ApplicationStrings.Graduates <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li>@Html.ActionLink(ApplicationStrings.Login, "GraduateLogin", "Account")</li>
-										<li>@Html.ActionLink(ApplicationStrings.CreateProfile, "CreateGraduateProfile", "Account")</li>
+										<li>@Html.ActionLink(ApplicationStrings.Register, "CreateGraduateProfile", "Account")</li>
 									</ul>
 								</li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">@ApplicationStrings.Companies <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<li>@Html.ActionLink(ApplicationStrings.Login, "EmployerLogin", "Account")</li>
-										<li>@Html.ActionLink(ApplicationStrings.CreateProfile, "CreateEmployerProfile", "Account")</li>
+										<li>@Html.ActionLink(ApplicationStrings.Register, "CreateEmployerProfile", "Account")</li>
 									</ul>
 								</li>
 	   }
@@ -115,7 +129,7 @@
 		</div>
 		<!-- /container -->
 	</div>
-	<div class="breadcrumbs margin-bottom-40">
+	<div class="breadcrumbs margin-bottom-20">
 		<div class="container">
 			<h1 class="color-green pull-left">@ViewBag.Title</h1>
 			<ul class="pull-right breadcrumb">
@@ -230,7 +244,7 @@
 				</div>
 				<div class="span4">
 					<a href="index.html">
-						<img id="logo-footer" src="assets/img/logo2-default.png" class="pull-right" alt=""></a>
+						<img id="logo-footer" src="~/Content/unify/img/logo2-default.png" class="pull-right" alt=""></a>
 				</div>
 			</div>
 			<!--/row-fluid-->

@@ -7,8 +7,8 @@
 	UNION	SELECT 5, 2, '1', 'Sr. C# Developer', 'John Doe', 'Jane Doe', 604, 'Technical', 'Supervisory', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
 	UNION	SELECT 6, 2, '1', 'ASP.Net Developer', 'John Doe', 'Jane Doe', 600, 'Technical', 'Mid Level', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
 	UNION	SELECT 7, 2, '1', 'Development Manager', 'John Doe', 'Jane Doe', 601, 'Technical', 'Managerial', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
-	UNION	SELECT 8, 2, '1', 'Sr. C# Developer', 'John Doe', 'Jane Doe', 602, 'Technical', 'Supervisory', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
-	UNION	SELECT 9, 2, '1', 'ASP.Net Developer', 'John Doe', 'Jane Doe', 603, 'Technical', 'Mid Level', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
+	UNION	SELECT 8, 2, '1', 'Sr. C# Developer', 'John Doe', 'Jane Doe', 602, 'Technical', 'Supervisory', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 1, getdate()
+	UNION	SELECT 9, 2, '1', 'ASP.Net Developer', 'John Doe', 'Jane Doe', 603, 'Technical', 'Mid Level', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 1, getdate()
 	UNION	SELECT 10, 2, '1', 'Development Manager', 'John Doe', 'Jane Doe', 604, 'Technical', 'Managerial', 'This job is not a featured job', 'Graduate', 'College', 'Software', 'Good english communication skills.', 100, getdate(), 0, getdate()
 ) 
 MERGE INTO dbo.[Job]

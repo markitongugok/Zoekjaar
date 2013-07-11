@@ -29,19 +29,19 @@ namespace Zoekjaar.Web
 						"~/Content/unify/modernizr-*"));
 
 			bundles.Add(new Bundle("~/Content/bootstrap", cssTransformer).Include(
-					"~/Content/unify/plugins/bootstrap/css/bootstrap.css",
-					"~/Content/unify/plugins/bootstrap/css/bootstrap-responsive.css",
-					"~/Content/unify/plugins/bootstrap/css/font-awesome.css"
+					"~/Content/bootstrap.css",
+					"~/Content/bootstrap-responsive.css"
 				));
 
 			bundles.Add(new Bundle("~/Content/unifycss", cssTransformer).Include(
+				"~/Content/font-awesome*",
 				"~/Content/unify/css/style.css",
 				"~/Content/unify/css/headers/header1.css",
 				"~/Content/unify/css/style_responsive.css",
 				"~/Content/unify/plugins/flexslider.css",
-				"~/Content/unify/plugins/parallax-slider/css/parallax-slider.css",
-				"~/Content/unify/css/themes/default.css",
-				"~/Content/unify/css/themes/headers/default.css"
+				"~/Content/unify/plugins/parallax-slider/css/parallax-slider.css"//,
+				//"~/Content/unify/css/themes/default.css",
+				//"~/Content/unify/css/themes/headers/default.css"
 				));
 
 			bundles.Add(new Bundle("~/Content/style", cssTransformer).Include("~/Content/style.css"));

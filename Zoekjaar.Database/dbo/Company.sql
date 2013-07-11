@@ -9,6 +9,7 @@
 	[Website] VARCHAR(400) NULL, 
 	[LinkedIn] VARCHAR(400) NULL, 
 	[GooglePlus] VARCHAR(400) NULL, 
+	[LogoUrl] VARCHAR(200) NULL,
 	[IsFeatured] BIT NOT NULL DEFAULT 0, 
 	[IsActive] BIT NOT NULL DEFAULT 1
 	CONSTRAINT [FK_Company_UserId_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]), 

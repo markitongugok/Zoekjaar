@@ -6,8 +6,25 @@
 }
 
 @model HomeModel
-
 <div class="container">
+	<div class="jumbotron">
+		@using (Html.BeginForm("Search", "Job", FormMethod.Post, new { @class = "form-search" }))
+  {
+			@Html.AntiForgeryToken()
+			<div class="input-append pagination-centered span12">
+				<input type="text" class="border-radius-none input-xxlarge search-query" placeholder="What kind of job are you looking for?" name="Criteria.Keyword" id="Criteria_Keyword">
+				<button type="submit" class="btn-u"><i class="icon-search"></i></button>
+			</div>
+  }
+	</div>
+	<div class="pagination-centered">
+		<h3>Hire Skilled International Graduates.</h3>
+		<h4>A complete ecosystem for Zoekjaar students.</h4>
+	</div>
+	<div class="row-fluid">
+		<div class="span6"><a href="@Url.Action("CreateEmployerProfile", "Account")" class="btn btn-primary btn-large btn-block">Post a Job.  It's free</a></div>
+		<div class="span6"><a href="@Url.Action("CreateGraduateProfile", "Account")" class="btn btn-success btn-large btn-block">Want a Job?  Sign up now</a></div>
+	</div>
 	<div class="row-fluid">
 		<div class="span12">
 			<div id="clients-flexslider" class="flexslider home clients">
@@ -20,8 +37,11 @@
 	  {
 		  var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 		  currentRoute["id"] = company.Id;
+		  var imageUrl = !string.IsNullOrEmpty(company.LogoUrl) ? company.LogoUrl : Url.Content("~/Content/images/logo.png");
 							<li style="width: 129px; float: left; display: block;">
-								@Html.ActionLink(company.Name, "ViewProfile", "Company", currentRoute, new Dictionary<string, object>())
+								<a href="@Url.Action("Company", "Profile", currentRoute)">
+									<img src="@imageUrl" alt="@company.Name" />
+								</a>
 							</li>
 	  }
 					</ul>
@@ -30,7 +50,17 @@
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="span6">
+		<div class="span4">
+			<div class="headline">
+				<h3>@ApplicationStrings.FeaturedInternships</h3>
+			</div>
+			@foreach (var job in Model.FeaturedInternships)
+   {
+				@Html.Partial("_FeaturedJob", job)
+   }
+		</div>
+
+		<div class="span4">
 			<div class="headline">
 				<h3>@ApplicationStrings.FeaturedJobs</h3>
 			</div>
@@ -40,7 +70,7 @@
    }
 		</div>
 
-		<div class="span6">
+		<div class="span4">
 			<div class="headline">
 				<h3>@ApplicationStrings.LatestJobs</h3>
 			</div>

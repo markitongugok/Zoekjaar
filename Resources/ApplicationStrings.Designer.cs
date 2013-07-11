@@ -79,6 +79,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Candidates.
+        /// </summary>
+        public static string Candidates {
+            get {
+                return ResourceManager.GetString("Candidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
@@ -169,6 +178,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
@@ -205,6 +223,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Featured Internships.
+        /// </summary>
+        public static string FeaturedInternships {
+            get {
+                return ResourceManager.GetString("FeaturedInternships", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Featured Jobs.
         /// </summary>
         public static string FeaturedJobs {
@@ -228,15 +255,6 @@ namespace Zoekjaar.Resources {
         public static string ForgotPassword {
             get {
                 return ResourceManager.GetString("ForgotPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Function.
-        /// </summary>
-        public static string Function {
-            get {
-                return ResourceManager.GetString("Function", resourceCulture);
             }
         }
         
@@ -403,6 +421,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string Options {
+            get {
+                return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Org Level.
         /// </summary>
         public static string OrgLevel {
@@ -448,6 +475,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Posted Jobs.
+        /// </summary>
+        public static string PostedJobs {
+            get {
+                return ResourceManager.GetString("PostedJobs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post Job.
         /// </summary>
         public static string PostJob {
@@ -471,6 +507,15 @@ namespace Zoekjaar.Resources {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recruitment Status.
+        /// </summary>
+        public static string RecruitmentStatus {
+            get {
+                return ResourceManager.GetString("RecruitmentStatus", resourceCulture);
             }
         }
         

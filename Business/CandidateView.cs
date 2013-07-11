@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-	public sealed class CompanyView
+	public sealed class CandidateView
 	{
-		public int Id { get; set; }
+		public int GraduateId { get; set; }
 		public string Name { get; set; }
-		public string Website { get; set; }
-		public string LogoUrl { get; set; }
+		public int? RecruitmentStatusId { get; set; }
+		public string RecruitmentStatus { get; set; }
 	}
 }

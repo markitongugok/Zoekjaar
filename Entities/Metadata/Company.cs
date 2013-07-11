@@ -30,6 +30,7 @@ namespace Entities
 		[Required]
 		[DataType(DataType.Url)]
 		public string Website { get; set; }
+		public string LogoUrl { get; set; }
 		[Display(Name = "LinkedIn", ResourceType = typeof(ApplicationStrings))]
 		[DataType(DataType.Url)]
 		public string LinkedIn { get; set; }

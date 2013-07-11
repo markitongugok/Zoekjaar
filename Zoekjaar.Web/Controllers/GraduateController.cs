@@ -53,53 +53,7 @@ namespace Zoekjaar.Web.Controllers
 			this.GraduateRepository.SaveChanges();
 			return this.View(model);
 		}
-
-		[Authorize(Roles = "Graduate")]
-		public ActionResult SearchJob(int? pageNumber = null)
-		{
-			var model = this.CreateSearchModel();
-
-			if (pageNumber.HasValue)
-			{
-				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
-			}
-			model.Jobs = pageNumber.HasValue
-				? this.JobRepository.Fetch(model.Criteria)
-				: new List<JobView>();
-
-			return this.View(model);
-		}
-
-		[HttpPost]
-		[Authorize(Roles = "Graduate")]
-		[ValidateAntiForgeryToken]
-		public ActionResult SearchJob(JobSearchModel model)
-		{
-			if (model == null)
-			{
-				throw new ArgumentNullException("model");
-			}
-
-			model.Jobs = this.JobRepository.Fetch(model.Criteria);
-
-			return this.View(model);
-		}
-
-		private JobSearchModel CreateSearchModel()
-		{
-			return new JobSearchModel
-			{
-				CurrentStatus = this.GetLookups("Current Status"),
-				VisaStatus = this.GetLookups("Visa Status"),
-				Criteria = new SearchCriteria
-				{
-					PageSize = CompanyController.PageSize,
-					EntityId = this.UserIdentity.EntityId
-				},
-				JobTypes = this.GetLookups("Job Type")
-			};
-		}
-
+				
 		public GraduateProfileModel CreateProfileModel()
 		{
 			return new GraduateProfileModel
@@ -113,17 +67,13 @@ namespace Zoekjaar.Web.Controllers
 
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
-			return modelType == typeof(JobSearchModel)
-				? this.CreateSearchModel()
-				: modelType == typeof(GraduateProfileModel)
+			return modelType == typeof(GraduateProfileModel)
 					? this.CreateProfileModel()
 					: Activator.CreateInstance(modelType);
 		}
 
 
 		public IRepository<Graduate> GraduateRepository { get; set; }
-
-		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
 
 		public IRepository<JobApplication> JobApplicationRepository { get; set; }
 

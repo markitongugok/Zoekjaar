@@ -82,6 +82,7 @@
           <Property Name="Website" Type="varchar" MaxLength="400" />
           <Property Name="LinkedIn" Type="varchar" MaxLength="400" />
           <Property Name="GooglePlus" Type="varchar" MaxLength="400" />
+          <Property Name="LogoUrl" Type="varchar" MaxLength="200" />
           <Property Name="IsFeatured" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
@@ -433,6 +434,7 @@
           <NavigationProperty Name="User" Relationship="Model.FK_Company_UserId_User" FromRole="Company" ToRole="User" />
           <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
           <NavigationProperty Name="Jobs" Relationship="Model.FK_CompanyJob_Company1" FromRole="Company" ToRole="Job" />
+          <Property Type="String" Name="LogoUrl" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Graduate">
           <Key>
@@ -732,6 +734,7 @@
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="Model.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
                 <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />

@@ -57,14 +57,14 @@
 							</ul>
 						</div>
 						<div style="overflow: hidden;">
-							<h2>@Html.ActionLink(job.Title, "ViewJob", "Company", currentRoute, null)
+							<h2>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, null)
 								@if (job.IsFeatured)
 		{ 
 									<span class="label label-inverse">@ApplicationStrings.Featured</span>
 		}
 							</h2>
 							<p>@Html.Display(string.Format("{0}-{1}", job.JobType, job.Function))</p>
-							<p>@Html.DisplayFor(_ => job.Description) <a href="@Url.Action("ViewJob", "Company", currentRoute)">read more</a></p>
+							<p>@Html.Raw(job.Description) <a href="@Url.Action("Details", "Job", currentRoute)">read more</a></p>
 							@if (job.CanApply)
 	   { 
 
@@ -85,7 +85,7 @@
 	  {
 		  currentRoute["pageNumber"] = i;
 
-							<li><a href="@Url.Action("SearchJob", currentRoute)">@(i + 1)</a></li>
+							<li><a href="@Url.Action("Search", currentRoute)">@(i + 1)</a></li>
 	  }
 					</ul>
 				</div>

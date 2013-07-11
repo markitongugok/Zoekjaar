@@ -1,0 +1,46 @@
+﻿@using Zoekjaar.Web.Models
+@model GraduateProfileModel
+
+<div class="container">
+	<div class="row-fluid">
+		@using (Html.BeginForm())
+  {
+			@Html.AntiForgeryToken()
+			@Html.HiddenFor(_ => _.Graduate.Id)
+			<div class="headline">
+				<h3>@Model.Graduate.LastName, @Model.Graduate.FirstName</h3>
+				<ul class="unstyled inline pull-right">
+					@if (!string.IsNullOrEmpty(Model.Graduate.LinkedIn))
+	 { 
+						<li><a href="#"><i class="icon-linkedin"></i>@Model.Graduate.LinkedIn</a></li>
+	 }
+					@if (!string.IsNullOrEmpty(Model.Graduate.GooglePlus))
+	 { 
+						<li><a href="#"><i class="icon-google-plus"></i>@Model.Graduate.GooglePlus</a></li>
+	 }
+				</ul>
+			</div>
+			
+			<div class="controls">
+				<div class="span6">
+					@Html.LabelFor(_ => _.Graduate.Profile)
+					@Html.Raw(Model.Graduate.Profile)
+				</div>
+				<div class="span6">
+					@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
+					@Html.DisplayFor(_ => _.Graduate.AvailableFromDate)
+				</div>
+			</div>
+			<div class="controls">
+				<div class="span6">
+					@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
+					@Html.DisplayFor(_ => _.Graduate.CurrentStatus.Name)
+				</div>
+				<div class="span6">
+					@Html.LabelFor(_ => _.Graduate.VisaStatusId)
+					@Html.DisplayFor(_ => _.Graduate.VisaStatus.Name)
+				</div>
+			</div>
+  }
+	</div>
+</div>

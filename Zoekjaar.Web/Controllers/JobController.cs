@@ -13,6 +13,35 @@ namespace Zoekjaar.Web.Controllers
 {
 	public class JobController : ControllerBase
 	{
+		public ActionResult Search(int? pageNumber = null)
+		{
+			var model = this.CreateSearchModel();
+
+			if (pageNumber.HasValue)
+			{
+				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
+			}
+			model.Jobs = pageNumber.HasValue
+				? this.JobRepository.Fetch(model.Criteria)
+				: new List<JobView>();
+
+			return this.View(model);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Search(JobSearchModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			model.Jobs = this.JobRepository.Fetch(model.Criteria);
+
+			return this.View(model);
+		}
+
 		[Authorize(Roles = "Company")]
 		public ActionResult Index()
 		{
@@ -81,7 +110,7 @@ namespace Zoekjaar.Web.Controllers
 			};
 		}
 
-		public ActionResult ViewJob()
+		public ActionResult Details()
 		{
 			var jobId = int.Parse(this.ValueProvider.GetValue("id").AttemptedValue);
 			var model = this.CreateViewJobModel();
@@ -95,15 +124,32 @@ namespace Zoekjaar.Web.Controllers
 			return new ViewJobModel();
 		}
 
+		private JobSearchModel CreateSearchModel()
+		{
+			return new JobSearchModel
+			{
+				CurrentStatus = this.GetLookups("Current Status"),
+				VisaStatus = this.GetLookups("Visa Status"),
+				Criteria = new SearchCriteria
+				{
+					PageSize = CompanyController.PageSize,
+					EntityId = this.UserIdentity != null ? (int?)this.UserIdentity.EntityId : null
+				},
+				JobTypes = this.GetLookups("Job Type")
+			};
+		}
+
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
 			return modelType == typeof(JobModel)
 				? this.CreateJobModel()
 				: modelType == typeof(JobsModel)
-				? this.CreateJobsModel()
-				: modelType == typeof(ViewJobModel)
-					? this.CreateViewJobModel()
-					: base.CreateModel(modelType, valueProvider);
+					? this.CreateJobsModel()
+					: modelType == typeof(ViewJobModel)
+						? this.CreateViewJobModel()
+						: modelType == typeof(JobSearchModel)
+							? this.CreateSearchModel()
+							: base.CreateModel(modelType, valueProvider);
 		}
 
 		public IRepository<Graduate> GraduateRepository { get; set; }
@@ -113,5 +159,7 @@ namespace Zoekjaar.Web.Controllers
 		public ISearchRepository<JobView, SearchCriteria> JobViewRepository { get; set; }
 
 		public IRepository<Company> CompanyRepository { get; set; }
+
+		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
 	}
 }

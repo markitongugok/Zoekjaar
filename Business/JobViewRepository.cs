@@ -63,7 +63,7 @@ namespace Business
 					City = _.Job.Company.City,
 					StartDate = _.Job.StartDate,
 					CandidateCount = _.Applicants.Count(),
-					CanApply = !_.Applicants.Any(__ => __.GraduateId == criteria.EntityId),
+					CanApply = !_.Applicants.Any(__ => criteria.EntityId == null || __.GraduateId == criteria.EntityId),
 					IsFeatured = _.Job.IsFeatured
 				});
 		}
@@ -93,7 +93,8 @@ namespace Business
 		public IEnumerable<JobView> FetchFeaturedJobs()
 		{
 			return this.Context.Jobs
-				.Where(_ => _.IsFeatured)
+				.OrderByDescending(_ => _.DatePosted)
+				.Where(_ => _.JobType.Name != "Internship" && _.IsFeatured)
 				.Select(_ => new JobView
 				{
 					JobId = _.Id,
@@ -116,7 +117,33 @@ namespace Business
 		public IEnumerable<JobView> FetchLatestJobs()
 		{
 			return this.Context.Jobs
-				.OrderByDescending(_ => _.StartDate)
+				.Where(_ => !_.IsFeatured)
+				.OrderByDescending(_ => _.DatePosted)
+				.Take(10)
+				.Select(_ => new JobView
+				{
+					JobId = _.Id,
+					CompanyId = _.CompanyId,
+					CompanyName = _.Company.Name,
+					Title = _.Title,
+					Description = _.JobDescription,
+					JobNumber = _.JobNumber,
+					JobType = _.JobType.Name,
+					Function = _.JobFunction,
+					HiringManager = _.HiringManager,
+					HrManager = _.HrManager,
+					Sector = _.Company.Sector,
+					City = _.Company.City,
+					StartDate = _.StartDate,
+					IsFeatured = _.IsFeatured
+				});
+		}
+
+		public IEnumerable<JobView> FetchFeaturedInternships()
+		{
+			return this.Context.Jobs
+				.Where(_ => _.JobType.Name == "Internship" && _.IsFeatured)
+				.OrderByDescending(_ => _.DatePosted)
 				.Take(10)
 				.Select(_ => new JobView
 				{

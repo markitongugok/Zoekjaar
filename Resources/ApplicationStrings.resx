@@ -123,6 +123,9 @@
   <data name="AvailableFromDate" xml:space="preserve">
     <value>Available From Date</value>
   </data>
+  <data name="Candidates" xml:space="preserve">
+    <value>Candidates</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="DegreeObtained" xml:space="preserve">
     <value>Degree Obtained</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -165,6 +171,9 @@
   <data name="FeaturedCompanies" xml:space="preserve">
     <value>Featured Companies</value>
   </data>
+  <data name="FeaturedInternships" xml:space="preserve">
+    <value>Featured Internships</value>
+  </data>
   <data name="FeaturedJobs" xml:space="preserve">
     <value>Featured Jobs</value>
   </data>
@@ -173,9 +182,6 @@
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot Your Password?</value>
-  </data>
-  <data name="Function" xml:space="preserve">
-    <value>Function</value>
   </data>
   <data name="GooglePlus" xml:space="preserve">
     <value>Google+</value>
@@ -231,6 +237,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="OrgLevel" xml:space="preserve">
     <value>Org Level</value>
   </data>
@@ -246,6 +255,9 @@
   <data name="PcSkills" xml:space="preserve">
     <value>PC Skills</value>
   </data>
+  <data name="PostedJobs" xml:space="preserve">
+    <value>Posted Jobs</value>
+  </data>
   <data name="PostJob" xml:space="preserve">
     <value>Post Job</value>
   </data>
@@ -254,6 +266,9 @@
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="RecruitmentStatus" xml:space="preserve">
+    <value>Recruitment Status</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>

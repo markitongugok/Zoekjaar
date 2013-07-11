@@ -20,7 +20,8 @@ namespace Business
 				{
 					Id = _.Id,
 					Name = _.Name,
-					Website = _.Website
+					Website = _.Website,
+					LogoUrl = _.LogoUrl
 				});
 		}
 	}

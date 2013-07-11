@@ -214,11 +214,13 @@
     <Compile Include="Binders\ObjectBinder.cs" />
     <Compile Include="Contracts\IModelFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\GraduateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,6 +232,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\HtmlEditorModel.cs" />
     <Compile Include="Models\JobModel.cs" />
+    <Compile Include="Models\ViewCandidatesModel.cs" />
     <Compile Include="Models\ViewJobModel.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\JobSearchModel.cs" />
@@ -251,8 +254,10 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\images\banner-main.jpg" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\search-job.jpg" />
     <Content Include="Content\layout.css">
       <DependentUpon>layout.less</DependentUpon>
@@ -822,9 +827,11 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <Content Include="Views\Candidate\Index.cshtml" />
+    <Content Include="Views\Profile\Company.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Job.AddOrEdit.ts" />
     <Content Include="Views\Shared\_CompanyProfile.cshtml" />
-    <Content Include="Views\Job\ViewJob.cshtml" />
+    <Content Include="Views\Job\Details.cshtml" />
     <Content Include="Views\Shared\_FeaturedJob.cshtml" />
     <Content Include="Views\Shared\_FeaturedCompany.cshtml" />
     <Content Include="Views\Job\AddOrEdit.cshtml" />
@@ -876,11 +883,10 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Views\Account\CreateEmployerProfile.cshtml" />
-    <Content Include="Views\Graduate\SearchJob.cshtml" />
+    <Content Include="Views\Job\Search.cshtml" />
     <Content Include="Views\Company\SearchGraduate.cshtml" />
-    <Content Include="Views\Graduate\ViewProfile.cshtml" />
+    <Content Include="Views\Profile\Graduate.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
-    <Content Include="Views\Job\_NewJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

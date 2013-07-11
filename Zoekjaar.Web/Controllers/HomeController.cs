@@ -37,6 +37,7 @@ namespace Zoekjaar.Web.Controllers
 			{
 				FeaturedJobs = repository.FetchFeaturedJobs(),
 				LatestJobs = repository.FetchLatestJobs(),
+				FeaturedInternships = repository.FetchFeaturedInternships(),
 				FeaturedCompanies = companyRepository.FetchFeaturedCompanies()
 			};
 		}
