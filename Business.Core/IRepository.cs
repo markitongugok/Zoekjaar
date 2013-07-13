@@ -6,6 +6,7 @@ namespace Business.Core
 	{
 		void Add(TEntity entity);
 		void Remove(TEntity entity);
+		void Remove(Func<TEntity, bool> predicate);
 		TEntity Create();
 		TEntity Get(Func<TEntity, bool> predicate);
 		IEnumerable<TEntity> Fetch(Func<TEntity, bool> predicate);

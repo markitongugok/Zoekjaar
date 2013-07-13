@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Business;
 using Business.Core;
 using Entities;
 using Zoekjaar.Web.Models;
@@ -13,7 +14,8 @@ namespace Zoekjaar.Web.Controllers
 	{
 		public ActionResult Company()
 		{
-			return this.View();
+			var model = this.CreateCompanyProfileModel();
+			return this.View(model);
 		}
 
 		public ActionResult Graduate()
@@ -31,13 +33,28 @@ namespace Zoekjaar.Web.Controllers
 
 			};
 		}
+
+		private CompanyProfileViewModel CreateCompanyProfileModel()
+		{
+			var companyId = int.Parse(this.ValueProvider.GetValue("CompanyId").AttemptedValue);
+
+			return new CompanyProfileViewModel
+			{
+				Company = this.CompanyViewRepository.Get(companyId)
+			};
+		}
+
 		public override object CreateModel(Type modelType, System.Web.Mvc.IValueProvider valueProvider)
 		{
 			return modelType == typeof(GraduateProfileModel)
 				? this.CreateGraduateProfileModel()
-				: base.CreateModel(modelType, valueProvider);
+				: modelType == typeof(CompanyProfileModel)
+					? this.CreateCompanyProfileModel()
+					: base.CreateModel(modelType, valueProvider);
 		}
 
 		public IRepository<Graduate> GraduateRepository { get; set; }
+
+		public ISearchRepository<CompanyView, int> CompanyViewRepository { get; set; }
 	}
 }

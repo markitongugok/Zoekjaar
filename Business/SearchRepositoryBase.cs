@@ -56,5 +56,10 @@ namespace Business
 		{
 			throw new NotImplementedException();
 		}
+		
+		public void Remove(Func<TEntity, bool> predicate)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

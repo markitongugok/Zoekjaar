@@ -17,16 +17,22 @@ namespace Zoekjaar.Web.Controllers
 
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your app description page.";
-
-			return View();
+			return this.View();
 		}
 
 		public ActionResult Contact()
 		{
-			ViewBag.Message = "Your contact page.";
+			return this.View();
+		}
 
-			return View();
+		public ActionResult PrivacyPolicy()
+		{
+			return this.View();
+		}
+
+		public ActionResult TermsOfService()
+		{
+			return this.View();
 		}
 
 		private HomeModel CreateHomeModel()
@@ -44,6 +50,6 @@ namespace Zoekjaar.Web.Controllers
 
 		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
 
-		public ISearchRepository<CompanyView, string> CompanyRepository { get; set; }
+		public ISearchRepository<CompanyView, int> CompanyRepository { get; set; }
 	}
 }

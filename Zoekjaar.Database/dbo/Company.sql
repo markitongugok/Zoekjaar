@@ -5,7 +5,7 @@
 	[Name] VARCHAR(100) NOT NULL, 
 	[Sector] VARCHAR(20) NOT NULL, 
 	[City] VARCHAR(20) NOT NULL, 
-	[Profile] VARCHAR(MAX) NOT NULL, 
+	[Profile] VARCHAR(MAX) NULL, 
 	[Website] VARCHAR(400) NULL, 
 	[LinkedIn] VARCHAR(400) NULL, 
 	[GooglePlus] VARCHAR(400) NULL, 

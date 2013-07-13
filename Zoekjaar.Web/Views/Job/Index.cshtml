@@ -47,20 +47,16 @@
 							@{
 		var count = job.JobApplications.Select(__ => __.GraduateId).Distinct().Count();
 		var active = string.Format("{0} active", count);
-		if (count > 0)
-		{
-								@Html.ActionLink(active, "Index", "Candidate", currentRoute, null)
-		}
-		else
-		{
 								<span>@active</span>
-		}
 							}
 						</td>
 						<td>
 							<ul class="unstyled who inline">
 								<li><a href="@Url.Action("AddOrEdit", "Job", currentRoute)"><i class="icon-edit"></i></a></li>
-								<li><a href="@Url.Action("Index", "Candidate", currentRoute)"><i class="icon-trash"></i></a></li>
+								@if (count > 0)
+		{ 
+									<li><a href="@Url.Action("Index", "Candidate", currentRoute)"><i class="icon-group"></i></a></li>
+		}
 							</ul>
 						</td>
 					</tr>

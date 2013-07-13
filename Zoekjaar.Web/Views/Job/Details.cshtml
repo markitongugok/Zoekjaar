@@ -1,18 +1,36 @@
 ﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Resources
 
 @model ViewJobModel
 @{
-	ViewBag.Title = "Job Detail";
+	ViewBag.Title = ApplicationStrings.JobDetails;
 }
 
 <div class="container">
-	<div class="row-fluid">
+	<div class="row-fluid blog-page">
 		<div class="span9">
-			<div class="headline">
+			<div class="blog margin-bottom-30">
 				<h3>@Html.DisplayFor(_ => _.Job.Title)</h3>
+				<ul class="unstyled inline blog-info">
+					<li><i class="icon-calendar"></i>@Html.DisplayFor(_ => _.Job.DatePosted)</li>
+					<li><i class="icon-pencil"></i>@Html.DisplayFor(_ => _.Job.HiringManager)</li>
+					<li><i class="icon-group"></i><a href="#">@Html.DisplayFor(_ => _.Job.CandidateCount)</a></li>
+				</ul>
+
+				<div class="headline margin-bottom-10">
+					<h4>Job Summary</h4>
+				</div>
+
+				<ul class="unstyled">
+					<li>@Model.Job.Function</li>
+					<li>@Model.Job.Function</li>
+				</ul>
+				<div class="headline margin-bottom-10">
+					<h4>@ApplicationStrings.JobDescription</h4>
+				</div>
+				<p>@Html.Raw(Model.Job.Description)</p>
 			</div>
 			<div class="clients-page">
-				@Html.Raw(Model.Job.Description)
 			</div>
 		</div>
 		<div class="span3">

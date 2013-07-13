@@ -31,21 +31,18 @@
 	 {
 		 if (Model.Jobs.Any())
 		 {
-				<div class="alert alert-success">
-					We found
-					
-						<strong>@Model.Criteria.TotalRecords</strong>
-					matches.
-				
-				</div>
-	   
+				<div class="alert alert-success">We found <strong>@Model.Criteria.TotalRecords</strong> matches.</div>
 			 foreach (var job in Model.Jobs)
 			 {
+				 var logo = !string.IsNullOrEmpty(job.LogoUrl) ? job.LogoUrl : Url.Content("~/Content/images/logo.png");
 				 currentRoute["id"] = job.JobId;
+				 currentRoute["companyId"] = job.CompanyId;
 				<div class="row-fluid">
 					<div class="span12 booking-blocks">
 						<div class="pull-left booking-img">
-							<img src="assets/img/new/img1.jpg" alt="">
+							<a href="@Url.Action("Company", "Profile", currentRoute)">
+								<img src="@logo" alt="@job.CompanyName">
+							</a>
 							<ul class="unstyled">
 								<li><i class="icon-user"></i>Hiring: @Html.DisplayFor(_ => job.HiringManager)</li>
 								<li><i class="icon-user"></i>HR: @Html.DisplayFor(_ => job.HrManager)</li>
@@ -57,12 +54,13 @@
 							</ul>
 						</div>
 						<div style="overflow: hidden;">
-							<h2>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, null)
+							<h3>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, null)
 								@if (job.IsFeatured)
 		{ 
 									<span class="label label-inverse">@ApplicationStrings.Featured</span>
 		}
-							</h2>
+							</h3>
+							<p><small><strong>@ApplicationStrings.Posted</strong> @Html.DisplayFor(_ => job.DatePosted)</small></p>
 							<p>@Html.Display(string.Format("{0}-{1}", job.JobType, job.Function))</p>
 							<p>@Html.Raw(job.Description) <a href="@Url.Action("Details", "Job", currentRoute)">read more</a></p>
 							@if (job.CanApply)

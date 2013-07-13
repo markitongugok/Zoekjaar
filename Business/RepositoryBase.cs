@@ -81,5 +81,11 @@ namespace Business
 					}
 				});
 		}
+
+
+		public virtual void Remove(Func<TEntity, bool> predicate)
+		{
+			this.Context.Set<TEntity>().Remove(this.Context.Set<TEntity>().Single(predicate));
+		}
 	}
 }

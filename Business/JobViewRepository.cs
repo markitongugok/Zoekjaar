@@ -64,7 +64,9 @@ namespace Business
 					StartDate = _.Job.StartDate,
 					CandidateCount = _.Applicants.Count(),
 					CanApply = !_.Applicants.Any(__ => criteria.EntityId == null || __.GraduateId == criteria.EntityId),
-					IsFeatured = _.Job.IsFeatured
+					IsFeatured = _.Job.IsFeatured,
+					LogoUrl = _.Job.Company.LogoUrl,
+					DatePosted = _.Job.DatePosted
 				});
 		}
 
@@ -86,7 +88,9 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
-					IsFeatured = _.IsFeatured
+					IsFeatured = _.IsFeatured,
+					LogoUrl = _.Company.LogoUrl,
+					DatePosted = _.DatePosted
 				}).Single();
 		}
 
@@ -110,7 +114,9 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
-					IsFeatured = _.IsFeatured
+					IsFeatured = _.IsFeatured,
+					LogoUrl = _.Company.LogoUrl,
+					DatePosted = _.DatePosted
 				});
 		}
 
@@ -135,7 +141,9 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
-					IsFeatured = _.IsFeatured
+					IsFeatured = _.IsFeatured,
+					LogoUrl = _.Company.LogoUrl,
+					DatePosted = _.DatePosted
 				});
 		}
 
@@ -160,7 +168,9 @@ namespace Business
 					Sector = _.Company.Sector,
 					City = _.Company.City,
 					StartDate = _.StartDate,
-					IsFeatured = _.IsFeatured
+					IsFeatured = _.IsFeatured,
+					LogoUrl = _.Company.LogoUrl,
+					DatePosted = _.DatePosted
 				});
 		}
 	}

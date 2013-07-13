@@ -1,0 +1,38 @@
+﻿@using Zoekjaar.Resources
+@using Zoekjaar.Web.Models
+
+@{
+	ViewBag.Title = ApplicationStrings.MyJobApplications;
+}
+
+@model JobApplicationModel
+
+<div class="container">
+	<div class="row-fluid">
+		@using (Html.BeginForm())
+  {
+	  if (Model.Jobs.Count() > 0)
+	  { 
+			<table class="table table-striped">
+				<tr>
+					<th>@ApplicationStrings.DateApplied</th>
+					<th>@ApplicationStrings.Title</th>
+					<th>@ApplicationStrings.RecruitmentStatus</th>
+				</tr>
+				@foreach (var job in Model.Jobs)
+	{
+					<tr>
+						<td>@Html.DisplayFor(_ => job.DateApplied)</td>
+						<td>@Html.DisplayFor(_ => job.Title)</td>
+						<td>@Html.DisplayFor(_ => job.Status)</td>
+					</tr>
+	}
+			</table>
+	  }
+	  else
+	  {
+			<div class="alert alert-error">You do have <strong>0 active</strong> job applications!</div>
+	  }
+  }
+	</div>
+</div>

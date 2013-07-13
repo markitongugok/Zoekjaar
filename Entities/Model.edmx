@@ -78,7 +78,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Sector" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="City" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Profile" Type="varchar(max)" Nullable="false" />
+          <Property Name="Profile" Type="varchar(max)" />
           <Property Name="Website" Type="varchar" MaxLength="400" />
           <Property Name="LinkedIn" Type="varchar" MaxLength="400" />
           <Property Name="GooglePlus" Type="varchar" MaxLength="400" />
@@ -163,7 +163,8 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="JobId" Type="int" Nullable="false" />
           <Property Name="GraduateId" Type="int" Nullable="false" />
-          <Property Name="StatusId" Type="int" />
+          <Property Name="DateApplied" Type="date" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lookup">
           <Key>
@@ -338,7 +339,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="0..1" />
+          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
           <End Role="JobApplication" Type="Model.Store.JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lookup">
@@ -426,7 +427,7 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Sector" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="City" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Profile" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Profile" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Website" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LinkedIn" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="GooglePlus" MaxLength="400" FixedLength="false" Unicode="false" />
@@ -501,10 +502,11 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="JobId" Nullable="false" />
           <Property Type="Int32" Name="GraduateId" Nullable="false" />
-          <Property Type="Int32" Name="StatusId" Nullable="true" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
           <NavigationProperty Name="Graduate" Relationship="Model.FK_JobApplication_Graduate" FromRole="JobApplication" ToRole="Graduate" />
           <NavigationProperty Name="Status" Relationship="Model.FK_JobApplication_Lookup" FromRole="JobApplication" ToRole="Lookup" />
           <NavigationProperty Name="Job" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="JobApplication" ToRole="Job" />
+          <Property Type="DateTime" Name="DateApplied" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Lookup">
           <Key>
@@ -650,7 +652,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JobApplication_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="0..1" />
+          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
           <End Type="Model.JobApplication" Role="JobApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lookup">
@@ -803,6 +805,7 @@
           <EntitySetMapping Name="JobApplications">
             <EntityTypeMapping TypeName="Model.JobApplication">
               <MappingFragment StoreEntitySet="JobApplication">
+                <ScalarProperty Name="DateApplied" ColumnName="DateApplied" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="GraduateId" ColumnName="GraduateId" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />

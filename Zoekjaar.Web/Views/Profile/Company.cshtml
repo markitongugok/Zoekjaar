@@ -1,5 +1,18 @@
-﻿@{
-    ViewBag.Title = "Company";
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Resources
+
+@{
+	ViewBag.Title = "Company";
 }
 
-<h2>Company</h2>
+@model CompanyProfileViewModel
+
+<div class="container">
+	<div class="row-fluid">
+		@using (Html.BeginForm())
+  {
+	  @Model.Company.Name
+  }
+	</div>
+</div>
+

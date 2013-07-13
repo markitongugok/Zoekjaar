@@ -26,7 +26,7 @@ namespace Zoekjaar.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult GraduateLogin(UserAccountModel model)
 		{
-			return this.Login(model, "SearchJob", "Graduate", 1);
+			return this.Login(model, "Search", "Job", 1);
 		}
 
 		public ActionResult EmployerLogin()
@@ -90,7 +90,7 @@ namespace Zoekjaar.Web.Controllers
 
 			if (this.IsAuthenticated(model.Email, model.Password, 1))
 			{
-				return this.RedirectToAction("EditProfile", "Graduate");
+				return this.RedirectToAction("Edit", "Graduate");
 			}
 
 			return this.View(model);
@@ -121,7 +121,7 @@ namespace Zoekjaar.Web.Controllers
 
 			if (this.IsAuthenticated(model.Email, model.Password, 2))
 			{
-				return this.RedirectToAction("EditProfile", "Company");
+				return this.RedirectToAction("Edit", "Company");
 			}
 
 			return this.View(model);

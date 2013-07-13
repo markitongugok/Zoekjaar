@@ -220,6 +220,7 @@
     <Compile Include="Controllers\GraduateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\MultipleButtonAttribute.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
@@ -228,9 +229,12 @@
     </Compile>
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CompanyProfileModel.cs" />
+    <Compile Include="Models\CompanyProfileViewModel.cs" />
+    <Compile Include="Models\GraduateDegreeModel.cs" />
     <Compile Include="Models\GraduateProfileModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\HtmlEditorModel.cs" />
+    <Compile Include="Models\JobApplicationModel.cs" />
     <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\ViewCandidatesModel.cs" />
     <Compile Include="Models\ViewJobModel.cs" />
@@ -827,8 +831,14 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <Content Include="Views\Graduate\_Education.cshtml" />
+    <TypeScriptCompile Include="Scripts\Views\Company.Edit.ts" />
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Profile\Company.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Candidate\Applications.cshtml" />
+    <Content Include="Views\Home\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Home\TermsOfService.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Job.AddOrEdit.ts" />
     <Content Include="Views\Shared\_CompanyProfile.cshtml" />
     <Content Include="Views\Job\Details.cshtml" />
@@ -837,13 +847,12 @@
     <Content Include="Views\Job\AddOrEdit.cshtml" />
     <Content Include="Views\Shared\_HtmlEditor.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Home.Index.ts" />
-    <TypeScriptCompile Include="Scripts\Views\Graduate.SearchJob.ts" />
-    <Content Include="Views\Company\EditProfile.cshtml" />
+    <TypeScriptCompile Include="Scripts\Views\Job.Search.ts" />
     <TypeScriptCompile Include="Scripts\Views\ViewBase.ts" />
-    <TypeScriptCompile Include="Scripts\Views\Graduate.EditProfile.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Graduate.Edit.ts" />
     <Content Include="Views\Graduate\JobApplication.cshtml" />
     <Content Include="Views\Account\EmployerLogin.cshtml" />
-    <Content Include="Views\Graduate\EditProfile.cshtml" />
+    <Content Include="Views\Graduate\Edit.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Company.Job.ts" />
     <Content Include="Scripts\Views\Account.CreateGraduateProfile.ts" />

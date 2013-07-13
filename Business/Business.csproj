@@ -55,6 +55,9 @@
     <Compile Include="BusinessObjectsContainerComposer.cs" />
     <Compile Include="CandidateView.cs" />
     <Compile Include="CandidateViewRepository.cs" />
+    <Compile Include="GraduateDegreeRepository.cs" />
+    <Compile Include="JobApplicationView.cs" />
+    <Compile Include="JobApplicationViewRepository.cs" />
     <Compile Include="JobRepository.cs" />
     <Compile Include="CompanyRepository.cs" />
     <Compile Include="CompanyView.cs" />

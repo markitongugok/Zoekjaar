@@ -17,7 +17,8 @@ namespace Entities
         public int Id { get; set; }
         public int JobId { get; set; }
         public int GraduateId { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
+        public System.DateTime DateApplied { get; set; }
     
         public virtual Graduate Graduate { get; set; }
         public virtual Lookup Status { get; set; }

@@ -13,25 +13,8 @@ namespace Zoekjaar.Web.Controllers
 {
 	public sealed class GraduateController : ControllerBase
 	{
-		private ModelContainer context = new ModelContainer();
-
 		[Authorize(Roles = "Graduate")]
-		[HttpPost]
-		public ActionResult Apply(int id)
-		{
-			var jobApplication = this.JobApplicationRepository.Create();
-			jobApplication.JobId = id;
-			jobApplication.GraduateId = this.UserIdentity.EntityId;
-			jobApplication.StatusId = null;
-
-			this.JobApplicationRepository.Add(jobApplication);
-			this.JobApplicationRepository.SaveChanges();
-
-			return this.Json(true);
-		}
-
-		[Authorize(Roles = "Graduate")]
-		public ActionResult EditProfile()
+		public ActionResult Edit()
 		{
 			var name = this.User.Identity.Name;
 
@@ -42,7 +25,7 @@ namespace Zoekjaar.Web.Controllers
 
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
-		public ActionResult EditProfile(GraduateProfileModel model)
+		public ActionResult Edit(GraduateProfileModel model)
 		{
 			if (model == null)
 			{
@@ -53,7 +36,55 @@ namespace Zoekjaar.Web.Controllers
 			this.GraduateRepository.SaveChanges();
 			return this.View(model);
 		}
-				
+
+		[Authorize(Roles = "Graduate")]
+		public ActionResult Education()
+		{
+			var model = this.CreateEducationModel();
+			return this.PartialView("_Education", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult Education(GraduateDegreeModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			if (model.Template.Id == 0)
+			{
+				model.Template.GraduateId = this.UserIdentity.EntityId;
+				this.GraduateDegreeRepository.Add(model.Template);
+			}
+			else
+			{
+				this.GraduateDegreeRepository.Attach(model.Template);
+			}
+			this.GraduateDegreeRepository.SaveChanges();
+			return this.PartialView("_Education", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult DeleteEducation(int id)
+		{
+			this.GraduateDegreeRepository.Remove(_ => _.Id == id);
+			this.GraduateDegreeRepository.SaveChanges();
+			return this.PartialView("_Education", this.CreateEducationModel());
+		}
+		private GraduateDegreeModel CreateEducationModel()
+		{
+			var graduateId = this.UserIdentity.EntityId;
+
+			return new GraduateDegreeModel
+			{
+				Template = this.GraduateDegreeRepository.Create(),
+				Degrees = this.GraduateDegreeRepository.Fetch(_ => _.GraduateId == graduateId)
+			};
+		}
+
 		public GraduateProfileModel CreateProfileModel()
 		{
 			return new GraduateProfileModel
@@ -61,7 +92,8 @@ namespace Zoekjaar.Web.Controllers
 				CurrentStatus = this.GetLookups("Current Status"),
 				Proficiencies = this.GetLookups("Proficiency"),
 				VisaStatus = this.GetLookups("Visa Status"),
-				Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId)
+				Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId),
+				Degree = new GraduateDegree()
 			};
 		}
 
@@ -69,7 +101,9 @@ namespace Zoekjaar.Web.Controllers
 		{
 			return modelType == typeof(GraduateProfileModel)
 					? this.CreateProfileModel()
-					: Activator.CreateInstance(modelType);
+					: modelType == typeof(GraduateDegreeModel)
+						? this.CreateEducationModel()
+						: Activator.CreateInstance(modelType);
 		}
 
 
@@ -77,6 +111,6 @@ namespace Zoekjaar.Web.Controllers
 
 		public IRepository<JobApplication> JobApplicationRepository { get; set; }
 
-
+		public IRepository<GraduateDegree> GraduateDegreeRepository { get; set; }
 	}
 }

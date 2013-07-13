@@ -46,6 +46,29 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
+		[Authorize(Roles = "Company")]
+		public ActionResult Edit()
+		{
+			var model = this.CreateProfileModel();
+
+			return this.View(model);
+		}
+
+		[Authorize(Roles = "Company")]
+		[HttpPost]
+		public ActionResult Edit(CompanyProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			this.CompanyRepository.Attach(model.Company);
+			this.CompanyRepository.SaveChanges();
+
+			return this.View(model);
+		}
+
 		private GraduateSearchModel CreateSearchModel()
 		{
 			return new GraduateSearchModel
@@ -59,15 +82,30 @@ namespace Zoekjaar.Web.Controllers
 			};
 		}
 
+		private CompanyProfileModel CreateProfileModel()
+		{
+			var companyId = this.UserIdentity.EntityId;
+
+			return new CompanyProfileModel
+			{
+				Company = this.CompanyRepository.Get(_ => _.Id == companyId)
+			};
+		}
+
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
 			return modelType == typeof(GraduateSearchModel)
 				? this.CreateSearchModel()
-				: Activator.CreateInstance(modelType);
+				: modelType == typeof(CompanyProfileModel)
+					? this.CreateProfileModel()
+					: Activator.CreateInstance(modelType);
 		}
 
 
 		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }
 
+		public IRepository<Company> CompanyRepository { get; set; }
+
+		public IRepository<Lookup> LookupRepository { get; set; }
 	}
 }

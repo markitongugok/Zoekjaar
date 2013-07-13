@@ -13,6 +13,22 @@ namespace Zoekjaar.Web.Controllers
 {
 	public class JobController : ControllerBase
 	{
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult Apply(int id)
+		{
+			var jobApplication = this.JobApplicationRepository.Create();
+			jobApplication.JobId = id;
+			jobApplication.GraduateId = this.UserIdentity.EntityId;
+			jobApplication.StatusId = 300;
+			jobApplication.DateApplied = DateTime.Now.Date;
+
+			this.JobApplicationRepository.Add(jobApplication);
+			this.JobApplicationRepository.SaveChanges();
+
+			return this.Json(true);
+		}
+
 		public ActionResult Search(int? pageNumber = null)
 		{
 			var model = this.CreateSearchModel();
@@ -161,5 +177,7 @@ namespace Zoekjaar.Web.Controllers
 		public IRepository<Company> CompanyRepository { get; set; }
 
 		public ISearchRepository<JobView, SearchCriteria> JobRepository { get; set; }
+
+		public IRepository<JobApplication> JobApplicationRepository { get; set; }
 	}
 }

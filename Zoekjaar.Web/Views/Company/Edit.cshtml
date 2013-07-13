@@ -1,0 +1,67 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Resources
+
+@model CompanyProfileModel
+@{
+	ViewBag.Title = ApplicationStrings.EditProfile;
+}
+
+<div class="body">
+	<div class="container">
+		<div class="row-fluid margin-bottom-10">
+			<div class="span9">
+				@using (Html.BeginForm())
+	{
+					@Html.AntiForgeryToken()
+					@Html.HiddenFor(_ => _.Company.Id)
+					@Html.HiddenFor(_ => _.Company.UserId)
+					@Html.HiddenFor(_ => _.Company.IsActive)
+					@Html.HiddenFor(_ => _.Company.IsFeatured)
+					<div class="controls">
+						@Html.LabelFor(_ => _.Company.Name)
+						@Html.TextBoxFor(_ => _.Company.Name, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.Name)
+						@Html.LabelFor(_ => _.Company.Website)
+						@Html.TextBoxFor(_ => _.Company.Website, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.Website)
+						@Html.LabelFor(_ => _.Company.Sector)
+						@Html.TextBoxFor(_ => _.Company.Sector, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.Sector)
+						@Html.LabelFor(_ => _.Company.LinkedIn)
+						@Html.TextBoxFor(_ => _.Company.LinkedIn, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.LinkedIn)
+						@Html.LabelFor(_ => _.Company.City)
+						@Html.TextBoxFor(_ => _.Company.City, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.City)
+						@Html.LabelFor(_ => _.Company.GooglePlus)
+						@Html.TextBoxFor(_ => _.Company.GooglePlus, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.GooglePlus)
+						@Html.LabelFor(_ => _.Company.LogoUrl)
+						@Html.TextBoxFor(_ => _.Company.LogoUrl, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Company.LogoUrl)
+					</div>
+					<div class="controls">
+						<div class="span12 margin-bottom-10">
+							@Html.Label("editor", "Profile")
+							@Html.Partial("_HtmlEditor", new HtmlEditorModel
+  {
+	  Id = "editor",
+	  ModelId = "Company_Profile",
+	  Content = Model.Company.Profile
+  })
+							@Html.HiddenFor(_ => _.Company.Profile)
+						</div>
+					</div>
+					<div class="controls form-inline">
+						<input type="submit" value="@ApplicationStrings.SaveChanges" class="btn-u pull-right collect-wysiwyg" />
+					</div>
+	
+	}
+			</div>
+		</div>
+	</div>
+</div>
+
+@section scripts{
+	@Scripts.Render("~/bundles/wysiwyg")
+}

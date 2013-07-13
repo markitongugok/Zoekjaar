@@ -1,4 +1,3 @@
-/// <reference path="../typings/jqueryui/jqueryui.d.ts" />
 /// <reference path="../Utility.ts" />
 /// <reference path="IView.ts" />
 
