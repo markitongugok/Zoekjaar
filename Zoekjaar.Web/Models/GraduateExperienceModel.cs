@@ -6,7 +6,7 @@ using Entities;
 
 namespace Zoekjaar.Web.Models
 {
-	public sealed class GraduateDegreeModel : GraduateDetailModelBase<GraduateDegree>
+	public sealed class GraduateExperienceModel : GraduateDetailModelBase<GraduateExperience>
 	{
 	}
 }

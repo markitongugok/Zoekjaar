@@ -56,6 +56,8 @@
     <Compile Include="CandidateView.cs" />
     <Compile Include="CandidateViewRepository.cs" />
     <Compile Include="GraduateDegreeRepository.cs" />
+    <Compile Include="GraduateExperienceRepository.cs" />
+    <Compile Include="GraduateLanguageRepository.cs" />
     <Compile Include="JobApplicationView.cs" />
     <Compile Include="JobApplicationViewRepository.cs" />
     <Compile Include="JobRepository.cs" />

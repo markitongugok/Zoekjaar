@@ -106,6 +106,5 @@ namespace Zoekjaar.Web.Controllers
 
 		public IRepository<Company> CompanyRepository { get; set; }
 
-		public IRepository<Lookup> LookupRepository { get; set; }
 	}
 }

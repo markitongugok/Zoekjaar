@@ -13,57 +13,15 @@
 			@using (Html.BeginForm())
    { 
 				<div class="span8 profile-container">
-
-					@Html.HiddenFor(_ => _.Graduate.Id)
-					@Html.HiddenFor(_ => _.Graduate.UserId)
-					@Html.HiddenFor(_ => _.Graduate.IsActive)
-					<div class="controls">
-						<div class="span6">
-							@Html.LabelFor(_ => _.Graduate.FirstName)
-							@Html.TextBoxFor(_ => _.Graduate.FirstName, new { @class = "span12" })
-						</div>
-						<div class="span6">
-							@Html.LabelFor(_ => _.Graduate.LastName)
-							@Html.TextBoxFor(_ => _.Graduate.LastName, new { @class = "span12" })
-						</div>
-					</div>
-					<div class="controls">
-						<div class="span6">
-							@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
-							@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"), new { @class = "span12" })
-						</div>
-						<div class="span6">
-							@Html.LabelFor(_ => _.Graduate.VisaStatusId)
-							@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"), new { @class = "span12" })
-						</div>
-					</div>
-					<div class="controls">
-						<div class="span12">
-							@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
-							@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, new { @class = "date-picker span6" })
-						</div>
-					</div>
-					<div class="controls">
-						<div class="span12 margin-bottom-10">
-							@Html.Label("editor", "Profile")
-							@Html.Partial("_HtmlEditor", new HtmlEditorModel
-  {
-	  Id = "editor",
-	  ModelId = "Graduate_Profile",
-	  Content = Model.Graduate.Profile
-  })
-							@Html.HiddenFor(_ => _.Graduate.Profile)
-						</div>
-					</div>
-					<input id="save" type="submit" name="submit-profile" class="btn-u pull-right collect-wysiwyg btn-save" value="@ApplicationStrings.SaveChanges" />
+					@Html.Partial("_PersonalInformation", Model)
 				</div>
 				<div class="span4 sidebar pull-right">
 					<ul class="nav nav-list">
-						<li><a class="graduate-menu" data-target-url="@Url.Action("PersonalInformation")" href="#">Personal Information</a></li>
-						<li><a class="graduate-menu" data-target-url="@Url.Action("Education")" href="#">Education</a></li>
-						<li><a class="graduate-menu active" data-target-url="@Url.Action("Languages")" href="#">Languages</a></li>
-						<li><a class="graduate-menu" data-target-url="@Url.Action("ProfessionalExperience")" href="#">Professional Experience</a></li>
-						<li><a class="graduate-menu" data-target-url="@Url.Action("Others")" href="#">Others</a></li>
+						<li><a class="graduate-menu" data-target-url="@Url.Action("PersonalInformation")" href="#">@ApplicationStrings.PersonalInformation</a></li>
+						<li><a class="graduate-menu" data-target-url="@Url.Action("Education")" href="#">@ApplicationStrings.Education</a></li>
+						<li><a class="graduate-menu" data-target-url="@Url.Action("Language")" href="#">@ApplicationStrings.Languages</a></li>
+						<li><a class="graduate-menu" data-target-url="@Url.Action("Experience")" href="#">@ApplicationStrings.ProfessionalExperience</a></li>
+						<li><a class="graduate-menu" data-target-url="@Url.Action("Link")" href="#">@ApplicationStrings.OtherLinks</a></li>
 					</ul>
 				</div>
    }

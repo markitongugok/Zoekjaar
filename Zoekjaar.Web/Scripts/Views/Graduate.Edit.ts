@@ -14,17 +14,17 @@ module Zoekjaar.Graduate {
 			$('.graduate-menu').on('click', $.proxy(this.onMenuClick, this));
 
 			$(document).on('click', '.btn-save', $.proxy(this.onSubmit, this));
-			$(document).on('click', '.add-degree', $.proxy(this.onAddDegreeClick, this));
-			$(document).on('click', '.edit-degree', $.proxy(this.onEditDegreeClick, this));
-			$(document).on('click', '.delete-degree', $.proxy(this.onDeleteDegreeClick, this));
+			$(document).on('click', '.btn-add', $.proxy(this.onAddDegreeClick, this));
+			$(document).on('click', '.btn-edit', $.proxy(this.onEditDegreeClick, this));
+			$(document).on('click', '.btn-delete', $.proxy(this.onDeleteDegreeClick, this));
 		}
 		destroy() {
 			$('.graduate-menu').off('click');
 
 			$(document).off('click', '.btn-save');
-			$(document).off('click', '.add-degree');
-			$(document).off('click', '.edit-degree');
-			$(document).off('click', '.delete-degree');
+			$(document).off('click', '.btn-add');
+			$(document).off('click', '.btn-edit');
+			$(document).off('click', '.btn-delete');
 		}
 		onSubmit(e: JQueryEventObject) {
 			var editor = $('.wysiwyg-editor');

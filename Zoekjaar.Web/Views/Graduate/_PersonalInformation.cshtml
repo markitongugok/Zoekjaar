@@ -1,0 +1,48 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+
+@model GraduateProfileModel
+
+@Html.HiddenFor(_ => _.Graduate.Id)
+@Html.HiddenFor(_ => _.Graduate.UserId)
+@Html.HiddenFor(_ => _.Graduate.IsActive)
+<div class="controls">
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.FirstName)
+		@Html.TextBoxFor(_ => _.Graduate.FirstName, new { @class = "span12" })
+	</div>
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.LastName)
+		@Html.TextBoxFor(_ => _.Graduate.LastName, new { @class = "span12" })
+	</div>
+</div>
+<div class="controls">
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
+		@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"), new { @class = "span12" })
+	</div>
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.VisaStatusId)
+		@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"), new { @class = "span12" })
+	</div>
+</div>
+<div class="controls">
+	<div class="span12">
+		@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
+		@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, new { @class = "date-picker span6" })
+	</div>
+</div>
+<div class="controls">
+	<div class="span12 margin-bottom-10">
+		@Html.Label("editor", "Profile")
+		@Html.Partial("_HtmlEditor", new HtmlEditorModel
+  {
+	  Id = "editor",
+	  ModelId = "Graduate_Profile",
+	  Content = Model.Graduate.Profile
+  })
+		@Html.HiddenFor(_ => _.Graduate.Profile)
+	</div>
+</div>
+<input id="save" type="submit" name="submit-personal-information" class="btn-u pull-right btn-save" data-target-url="@Url.Action("PersonalInformation")" value="@ApplicationStrings.SaveChanges" />

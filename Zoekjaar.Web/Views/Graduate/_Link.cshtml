@@ -1,0 +1,19 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Resources
+
+@model GraduateLinkModel
+
+<div class="controls">
+	@Html.LabelFor(_ => _.LinkedIn)
+	@Html.TextBoxFor(_ => _.LinkedIn, new { @class = "span12" })
+	@Html.ValidationMessageFor(_ => _.LinkedIn)
+
+	@Html.LabelFor(_ => _.GooglePlus)
+	@Html.TextBoxFor(_ => _.GooglePlus, new { @class = "span12" })
+	@Html.ValidationMessageFor(_ => _.GooglePlus)
+</div>
+<div class="controls">
+	<div class="span12">
+		<input id="save" type="submit" name="submit-link" class="btn-u pull-right btn-save" data-target-url="@Url.Action("Link")" value="@ApplicationStrings.SaveChanges" />
+	</div>
+</div>

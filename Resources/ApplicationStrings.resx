@@ -348,4 +348,19 @@
   <data name="MyProfile" xml:space="preserve">
     <value>My Profile</value>
   </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="OtherLinks" xml:space="preserve">
+    <value>Other Links</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="ProfessionalExperience" xml:space="preserve">
+    <value>Professional Experience</value>
+  </data>
 </root>

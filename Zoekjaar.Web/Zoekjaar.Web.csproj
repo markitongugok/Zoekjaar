@@ -231,6 +231,10 @@
     <Compile Include="Models\CompanyProfileModel.cs" />
     <Compile Include="Models\CompanyProfileViewModel.cs" />
     <Compile Include="Models\GraduateDegreeModel.cs" />
+    <Compile Include="Models\GraduateDetailModelBase.cs" />
+    <Compile Include="Models\GraduateExperienceModel.cs" />
+    <Compile Include="Models\GraduateLanguageModel.cs" />
+    <Compile Include="Models\GraduateLinkModel.cs" />
     <Compile Include="Models\GraduateProfileModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\HtmlEditorModel.cs" />
@@ -832,6 +836,10 @@
     </Content>
     <Content Include="Scripts\Utility.ts" />
     <Content Include="Views\Graduate\_Education.cshtml" />
+    <Content Include="Views\Graduate\_Language.cshtml" />
+    <Content Include="Views\Graduate\_Experience.cshtml" />
+    <Content Include="Views\Graduate\_Link.cshtml" />
+    <Content Include="Views\Graduate\_PersonalInformation.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Company.Edit.ts" />
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Profile\Company.cshtml" />

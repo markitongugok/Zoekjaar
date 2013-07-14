@@ -2,7 +2,7 @@
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
 
-@model GraduateDegreeModel
+@model GraduateExperienceModel
 
 @{
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
@@ -12,25 +12,25 @@
 	@Html.HiddenFor(_ => _.Template.Id)
 	@Html.HiddenFor(_ => _.Template.GraduateId)
 	<div class="controls">
-		@Html.LabelFor(_ => _.Template.University)
-		@Html.TextBoxFor(_ => _.Template.University, new { @class = "span6" })
-		@Html.ValidationMessageFor(_ => _.Template.University)
+		@Html.LabelFor(_ => _.Template.CompanyName)
+		@Html.TextBoxFor(_ => _.Template.CompanyName, new { @class = "span6" })
+		@Html.ValidationMessageFor(_ => _.Template.CompanyName)
 	</div>
 	<div class="controls">
 		<div class="span6">
-			@Html.LabelFor(_ => _.Template.Degree)
-			@Html.TextBoxFor(_ => _.Template.Degree, new { @class = "span12" })
-			@Html.ValidationMessageFor(_ => _.Template.Degree)
+			@Html.LabelFor(_ => _.Template.CompanyProfile)
+			@Html.TextBoxFor(_ => _.Template.CompanyProfile, new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.Template.CompanyProfile)
 		</div>
 		<div class="span6">
-			@Html.LabelFor(_ => _.Template.Specialisation)
-			@Html.TextBoxFor(_ => _.Template.Specialisation, new { @class = "span12" })
-			@Html.ValidationMessageFor(_ => _.Template.Degree)
+			@Html.LabelFor(_ => _.Template.Experience)
+			@Html.TextBoxFor(_ => _.Template.Experience, new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.Template.Experience)
 		</div>
 	</div>
 	<div class="controls">
 		<div class="span12">
-			<input id="save" type="submit" name="submit-education" class="btn-u pull-right btn-save" data-target-url="@Url.Action("Education")" value="@ApplicationStrings.SaveChanges" />
+			<input id="save" type="submit" name="submit-experience" class="btn-u pull-right btn-save" data-target-url="@Url.Action("Experience")" value="@ApplicationStrings.SaveChanges" />
 		</div>
 	</div>
 </div>
@@ -50,13 +50,13 @@
 				<div class="media-body">
 					@Html.HiddenFor(_ => degree.Id, new { data_target_element = "#Template_Id" })
 					@Html.HiddenFor(_ => degree.GraduateId, new { data_target_element = "#Template_GraduateId" })
-					<h4 class="media-heading" data-target-element="#Template_University">@Html.DisplayFor(_ => degree.University)</h4>
+					<h4 class="media-heading" data-target-element="#Template_CompanyName">@Html.DisplayFor(_ => degree.CompanyName)</h4>
 					<ul class="pull-right unstyled inline">
 						<li><a href="#" class="btn-edit"><i class="icon-edit"></i></a></li>
-						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteEducation")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
+						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteExperience")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
 					</ul>
-					<p data-target-element = "#Template_Degree">@Html.DisplayFor(_ => degree.Degree)</p>
-					<p data-target-element = "#Template_Specialisation">@Html.DisplayFor(_ => degree.Specialisation)</p>
+					<p data-target-element = "#Template_CompanyProfile">@Html.DisplayFor(_ => degree.CompanyProfile)</p>
+					<p data-target-element = "#Template_Experience">@Html.DisplayFor(_ => degree.Experience)</p>
 				</div>
 			</div>
 			<hr />
