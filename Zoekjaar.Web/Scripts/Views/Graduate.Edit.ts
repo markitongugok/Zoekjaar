@@ -48,7 +48,8 @@ module Zoekjaar.Graduate {
 			e.preventDefault();
 		}
 		viewLoaded(data: any) {
-			$('.profile-container').html(data);
+			var container = $('.profile-container');
+			container.html(data);
 		}
 		onAddDegreeClick(e: JQueryEventObject) {
 			$('.template-container').toggle(true);
@@ -62,7 +63,12 @@ module Zoekjaar.Graduate {
 			rowContainer.find('[data-target-element]')
 				.each(function (index: any, element: any) {
 					var $element = $(element);
-					$('.template-container').find($element.data('target-element')).val($element.val() || $element.text());
+					if ($element.hasClass('select-value')) {
+						templateContainer.find($element.data('target-element')).val($element.data('select-value'));
+					}
+					else {
+						templateContainer.find($element.data('target-element')).val($element.val() || $element.text());
+					}
 				});
 
 			rowContainer.append(templateContainer);

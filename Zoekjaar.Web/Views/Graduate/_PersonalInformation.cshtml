@@ -4,6 +4,9 @@
 
 @model GraduateProfileModel
 
+<div class="headline">
+	<h4>@ApplicationStrings.PersonalInformation</h4>
+</div>
 @Html.HiddenFor(_ => _.Graduate.Id)
 @Html.HiddenFor(_ => _.Graduate.UserId)
 @Html.HiddenFor(_ => _.Graduate.IsActive)

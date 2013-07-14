@@ -3,6 +3,9 @@
 
 @model GraduateLinkModel
 
+<div class="headline">
+	<h4>@ApplicationStrings.OtherLinks</h4>
+</div>
 <div class="controls">
 	@Html.LabelFor(_ => _.LinkedIn)
 	@Html.TextBoxFor(_ => _.LinkedIn, new { @class = "span12" })

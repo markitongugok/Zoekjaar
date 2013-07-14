@@ -8,6 +8,9 @@
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 	var hidden = Model.Items.Count() > 0 ? "hidden" : "";
 }
+<div class="headline">
+	<h4>@ApplicationStrings.Languages</h4>
+</div>
 <div class="template-container" @hidden>
 	@Html.HiddenFor(_ => _.Template.Id)
 	@Html.HiddenFor(_ => _.Template.GraduateId)
@@ -50,7 +53,7 @@
 						<li><a href="#" class="btn-edit"><i class="icon-edit"></i></a></li>
 						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteLanguage")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
 					</ul>
-					<p data-target-element="#Template_ProficiencyId">@Html.DisplayFor(_ => degree.ProficiencyId)</p>
+					<p data-target-element="#Template_ProficiencyId" data-select-value="@degree.ProficiencyId" class="select-value">@Html.DisplayFor(_ => degree.Proficiency.Name)</p>
 				</div>
 			</div>
 			<hr />

@@ -8,6 +8,9 @@
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 	var hidden = Model.Items.Count() > 0 ? "hidden" : "";
 }
+<div class="headline">
+	<h4>@ApplicationStrings.Education</h4>
+</div>
 <div class="template-container" @hidden>
 	@Html.HiddenFor(_ => _.Template.Id)
 	@Html.HiddenFor(_ => _.Template.GraduateId)
