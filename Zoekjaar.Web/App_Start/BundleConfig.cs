@@ -44,6 +44,9 @@ namespace Zoekjaar.Web
 				//"~/Content/unify/css/themes/headers/default.css"
 				));
 
+			bundles.Add(new Bundle("~/Content/upload", cssTransformer).Include(
+						"~/Content/FileUpload/css/jquery.fileupload-ui.css"));
+
 			bundles.Add(new Bundle("~/Content/style", cssTransformer).Include("~/Content/style.css"));
 
 			bundles.Add(new Bundle("~/bundles/bootstrap", jsTransformer).Include("~/Scripts/bootstrap*",
@@ -62,6 +65,10 @@ namespace Zoekjaar.Web
 				"~/Content/unify/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js",
 				"~/Content/unify/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"));
 
+			bundles.Add(new Bundle("~/bundles/upload", jsTransformer).Include(
+				"~/Scripts/FileUpload/jqueryui/jquery.ui.widget.js",
+				"~/Scripts/FileUpload/jquery.iframe-transport.js",
+				"~/Scripts/FileUpload/jquery.fileupload.js"));
 			BundleTable.EnableOptimizations = true;
 		}
 

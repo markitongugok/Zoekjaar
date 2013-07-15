@@ -9,15 +9,25 @@ module Zoekjaar.Graduate {
 		}
 		init() {
 			$('.collect-wysiwyg').on('click', $.proxy(this.onSubmit, this));
+
+			var uploader: any = $('#fileupload');
+			
+			uploader.fileupload({
+				dataType: 'json',
+				done: function (e, data) {
+					$('#company-logo').prop('src', data.result.file);
+				}
+			});
+
 		}
 		destroy() {
 			$('.collect-wysiwyg').off('click');
+			var uploader: any = $('#fileupload');
+			uploader.fileupload('destroy');
 		}
 		onSubmit(e: JQueryEventObject) {
 			var source = $('.wysiwyg-editor');
 			$(source.data('wysiwyg-editor-target')).val(source.html());
-			//source.closest('form').submit();
-			//e.preventDefault();
 		}
 	}
 }

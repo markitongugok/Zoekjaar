@@ -6,17 +6,20 @@
 }
 
 @model HomeModel
-<div class="container">
-	<div class="jumbotron">
-		@using (Html.BeginForm("Search", "Job", FormMethod.Post, new { @class = "form-search" }))
-  {
-			@Html.AntiForgeryToken()
+<div class="jumbotron">
+	@using (Html.BeginForm("Search", "Job", FormMethod.Post, new { @class = "form-search" }))
+ {
+		@Html.AntiForgeryToken()
+		<div class="container">
 			<div class="input-append pagination-centered span12">
 				<input type="text" class="border-radius-none input-xxlarge search-query" placeholder="What kind of job are you looking for?" name="Criteria.Keyword" id="Criteria_Keyword">
 				<button type="submit" class="btn-u"><i class="icon-search"></i></button>
 			</div>
-  }
-	</div>
+		</div>
+ }
+</div>
+<div class="container">
+
 	<div class="pagination-centered">
 		<h3>Hire Skilled International Graduates.</h3>
 		<h4>A complete ecosystem for Zoekjaar students.</h4>
@@ -54,30 +57,21 @@
 			<div class="headline">
 				<h3>@ApplicationStrings.FeaturedInternships</h3>
 			</div>
-			@foreach (var job in Model.FeaturedInternships)
-   {
-				@Html.Partial("_FeaturedJob", job)
-   }
+			@Html.Partial("_FeaturedJob", Model.FeaturedInternships)
 		</div>
 
 		<div class="span4">
 			<div class="headline">
 				<h3>@ApplicationStrings.FeaturedJobs</h3>
 			</div>
-			@foreach (var job in Model.FeaturedJobs)
-   {
-				@Html.Partial("_FeaturedJob", job)
-   }
+			@Html.Partial("_FeaturedJob", Model.FeaturedJobs)
 		</div>
 
 		<div class="span4">
 			<div class="headline">
 				<h3>@ApplicationStrings.LatestJobs</h3>
 			</div>
-			@foreach (var job in Model.LatestJobs)
-   {
-				@Html.Partial("_FeaturedJob", job)
-   }
+			@Html.Partial("_FeaturedJob", Model.LatestJobs)
 		</div>
 	</div>
 

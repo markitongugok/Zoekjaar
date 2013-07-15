@@ -17,6 +17,7 @@
 					@Html.HiddenFor(_ => _.Company.UserId)
 					@Html.HiddenFor(_ => _.Company.IsActive)
 					@Html.HiddenFor(_ => _.Company.IsFeatured)
+					
 					<div class="controls">
 						@Html.LabelFor(_ => _.Company.Name)
 						@Html.TextBoxFor(_ => _.Company.Name, new { @class = "span12" })
@@ -36,9 +37,6 @@
 						@Html.LabelFor(_ => _.Company.GooglePlus)
 						@Html.TextBoxFor(_ => _.Company.GooglePlus, new { @class = "span12" })
 						@Html.ValidationMessageFor(_ => _.Company.GooglePlus)
-						@Html.LabelFor(_ => _.Company.LogoUrl)
-						@Html.TextBoxFor(_ => _.Company.LogoUrl, new { @class = "span12" })
-						@Html.ValidationMessageFor(_ => _.Company.LogoUrl)
 					</div>
 					<div class="controls">
 						<div class="span12 margin-bottom-10">
@@ -58,10 +56,27 @@
 	
 	}
 			</div>
+
+			<div class="span3">
+				<div class="thumbnail-img">
+					<div class="overflow-hidden">
+						<img id="company-logo" data-src="holder.js/200x200" alt="200x200" style="width: 200px; height: 200px;" src="">
+					</div>
+					<span class="btn btn-success fileinput-button">
+						<i class="icon icon-camera"></i>
+						<input id="fileupload" type="file" name="files[]" data-url="@Url.Action("Upload")">
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
+@section styles{
+	@Styles.Render("~/Content/upload")
+}
+
 @section scripts{
 	@Scripts.Render("~/bundles/wysiwyg")
+	@Scripts.Render("~/bundles/upload")
 }

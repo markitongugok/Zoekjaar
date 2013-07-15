@@ -52,7 +52,9 @@ module Zoekjaar.Graduate {
 			container.html(data);
 		}
 		onAddDegreeClick(e: JQueryEventObject) {
-			$('.template-container').toggle(true);
+			var container = $('.template-container');
+			container.find('input[type="text"],select').val(null);
+			container.toggle(true);
 			e.preventDefault();
 		}
 		onEditDegreeClick(e: JQueryEventObject) {

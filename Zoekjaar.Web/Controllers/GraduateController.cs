@@ -69,6 +69,7 @@ namespace Zoekjaar.Web.Controllers
 				this.GraduateDegreeRepository.Attach(model.Template);
 			}
 			this.GraduateDegreeRepository.SaveChanges();
+			model.SaveSuccessful = true;
 			return this.PartialView("_Education", model);
 		}
 

@@ -1,14 +1,23 @@
 ﻿@using Business
 @using Zoekjaar.Web.Extensions
 
-@model JobView
+@model IEnumerable<JobView>
 @{
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
-	currentRoute["id"] = Model.JobId;
 }
-<div class="who margin-bottom-30">
-	<blockquote>
-		<h3>@Html.ActionLink(Model.Title, "ViewJob", "Job", currentRoute, new Dictionary<string, object>())</h3>
-		@Html.Raw(Model.Description)
-	</blockquote>
-</div>
+
+<table class="table table-striped">
+	@foreach (var job in Model)
+ {
+	 currentRoute["id"] = job.JobId;
+		<tr>
+			<td>
+				<span class="label">@job.JobType</span>
+				@Html.ActionLink(job.Title, "ViewJob", "Job", currentRoute, new Dictionary<string, object>())
+			</td>
+			<td>
+				@Html.DisplayFor(_ => job.DatePosted)
+			</td>
+		</tr>	
+ }
+</table>

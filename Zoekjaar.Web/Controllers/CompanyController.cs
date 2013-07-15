@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Business;
 using Business.Core;
@@ -14,37 +17,6 @@ namespace Zoekjaar.Web.Controllers
 	public sealed class CompanyController : ControllerBase
 	{
 		public const int PageSize = 5;
-
-		[Authorize(Roles = "Company")]
-		public ActionResult SearchGraduate(int? pageNumber = null)
-		{
-			var model = this.CreateSearchModel();
-
-			if (pageNumber.HasValue)
-			{
-				model.Criteria.PageNumber = pageNumber.GetValueOrDefault();
-			}
-			model.Graduates = pageNumber.HasValue
-				? this.GraduateViewRepository.Fetch(model.Criteria)
-				: new List<GraduateView>();
-
-			return this.View(model);
-		}
-
-		[Authorize(Roles = "Company")]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult SearchGraduate(GraduateSearchModel model)
-		{
-			if (model == null)
-			{
-				throw new ArgumentNullException("model");
-			}
-
-			model.Graduates = this.GraduateViewRepository.Fetch(model.Criteria);
-
-			return this.View(model);
-		}
 
 		[Authorize(Roles = "Company")]
 		public ActionResult Edit()
@@ -69,17 +41,74 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
-		private GraduateSearchModel CreateSearchModel()
+		[Authorize(Roles = "Company")]
+		[HttpPost]
+		public ActionResult Upload()
 		{
-			return new GraduateSearchModel
+			// Validate we have a file being posted
+			if (this.Request.Files.Count == 0)
 			{
-				CurrentStatus = this.GetLookups("Current Status"),
-				VisaStatus = this.GetLookups("Visa Status"),
-				Criteria = new SearchCriteria
+				return this.Json(new { statusCode = 500, status = "No image provided." }, "text/html");
+			}
+
+			// File we want to resize and save.
+			var file = Request.Files[0];
+
+			try
+			{
+				var filename = this.UploadFile(file);
+
+				// Return JSON
+				return Json(new
 				{
-					PageSize = CompanyController.PageSize
-				}
+					statusCode = 200,
+					status = "Image uploaded.",
+					file = filename,
+				}, "text/html");
+			}
+			catch (Exception ex)
+			{
+				// Log using "NLog" NuGet package
+				//Logger.ErrorException(ex.ToString(), ex);
+				return Json(new
+				{
+					statusCode = 500,
+					status = "Error uploading image.",
+					file = string.Empty
+				}, "text/html");
+			}
+		}
+
+		private string UploadFile(HttpPostedFileBase file)
+		{
+			// Initialize variables we'll need for resizing and saving
+			var width = 100;
+			var height = 100;
+
+			var relativePath = string.Format("/Content/Images/Companies/{0}/", this.UserIdentity.EntityId);
+			var absPath = this.HttpContext.Server.MapPath(relativePath);
+			var absFileAndPath = string.Format("{0}{1}", absPath, file.FileName);
+
+			// Create directory as necessary and save image on server
+			if (!Directory.Exists(absPath))
+				Directory.CreateDirectory(absPath);
+			file.SaveAs(absFileAndPath);
+
+			// Resize image using "ImageResizer" NuGet package.
+			var resizeSettings = new ImageResizer.ResizeSettings
+			{
+				Scale = ImageResizer.ScaleMode.DownscaleOnly,
+				Width = width,
+				Height = height,
+				Mode = ImageResizer.FitMode.Crop
 			};
+			var b = ImageResizer.ImageBuilder.Current.Build(absFileAndPath, resizeSettings);
+
+			// Save resized image
+			b.Save(absFileAndPath);
+
+			// Return relative file path
+			return string.Format("..{0}{1}", relativePath, file.FileName);
 		}
 
 		private CompanyProfileModel CreateProfileModel()
@@ -94,15 +123,10 @@ namespace Zoekjaar.Web.Controllers
 
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
-			return modelType == typeof(GraduateSearchModel)
-				? this.CreateSearchModel()
-				: modelType == typeof(CompanyProfileModel)
+			return modelType == typeof(CompanyProfileModel)
 					? this.CreateProfileModel()
 					: Activator.CreateInstance(modelType);
 		}
-
-
-		public ISearchRepository<GraduateView, SearchCriteria> GraduateViewRepository { get; set; }
 
 		public IRepository<Company> CompanyRepository { get; set; }
 

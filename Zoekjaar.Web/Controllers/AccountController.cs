@@ -42,7 +42,7 @@ namespace Zoekjaar.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult EmployerLogin(UserAccountModel model)
 		{
-			return this.Login(model, "Job", "Company", 2);
+			return this.Login(model, "Index", "Job", 2);
 		}
 
 		private ActionResult Login(UserAccountModel model, string action, string controller, int loginType)

@@ -11,6 +11,15 @@
 <div class="headline">
 	<h4>@ApplicationStrings.Education</h4>
 </div>
+
+@if (Model.SaveSuccessful.HasValue && Model.SaveSuccessful.Value)
+{
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<strong>Success!</strong> Education added to your profile.
+	</div>
+}
+
 <div class="template-container" @hidden>
 	@Html.HiddenFor(_ => _.Template.Id)
 	@Html.HiddenFor(_ => _.Template.GraduateId)
@@ -58,8 +67,8 @@
 						<li><a href="#" class="btn-edit"><i class="icon-edit"></i></a></li>
 						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteEducation")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
 					</ul>
-					<p data-target-element = "#Template_Degree">@Html.DisplayFor(_ => degree.Degree)</p>
-					<p data-target-element = "#Template_Specialisation">@Html.DisplayFor(_ => degree.Specialisation)</p>
+					<p data-target-element="#Template_Degree">@Html.DisplayFor(_ => degree.Degree)</p>
+					<p data-target-element="#Template_Specialisation">@Html.DisplayFor(_ => degree.Specialisation)</p>
 				</div>
 			</div>
 			<hr />

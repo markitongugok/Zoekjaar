@@ -4,9 +4,9 @@ using Business.Criteria;
 
 namespace Business
 {
-	public sealed class GraduateViewRepository : SearchRepositoryBase<GraduateView, SearchCriteria>
+	public sealed class GraduateViewRepository : SearchRepositoryBase<GraduateView, GraduateSearchCriteria>
 	{
-		public override IEnumerable<GraduateView> Fetch(SearchCriteria criteria)
+		public override IEnumerable<GraduateView> Fetch(GraduateSearchCriteria criteria)
 		{
 			var query = this.Context.Graduates.Where(_ => true);
 			if (criteria.CurrentStatusId.HasValue)

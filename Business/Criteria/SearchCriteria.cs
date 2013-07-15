@@ -4,11 +4,8 @@ using Zoekjaar.Resources;
 
 namespace Business.Criteria
 {
-	public sealed class SearchCriteria
+	public sealed class SearchCriteria : SearchCriteriaBase
 	{
-		[Display(Name = "Keyword", ResourceType = typeof(ApplicationStrings))]
-		public string Keyword { get; set; }
-
 		[Display(Name = "CurrentStatus", ResourceType = typeof(ApplicationStrings))]
 		public int? CurrentStatusId { get; set; }
 
@@ -26,11 +23,5 @@ namespace Business.Criteria
 
 		[Display(Name = "DatePosted", ResourceType = typeof(ApplicationStrings))]
 		public DateTime? DatePosted { get; set; }
-
-		public int? EntityId { get; set; }
-
-		public int PageNumber { get; set; }
-		public int PageSize { get; set; }
-		public int? TotalRecords { get; set; }
 	}
 }
