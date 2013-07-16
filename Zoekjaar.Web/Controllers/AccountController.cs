@@ -8,6 +8,8 @@ using Core;
 using Entities;
 using Zoekjaar.Web.Authentication.Contracts;
 using Zoekjaar.Web.Models;
+using Core.Extensions;
+using Entities;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -148,9 +150,9 @@ namespace Zoekjaar.Web.Controllers
 				Graduate = this.ValueProvider.GetValue("id") != null
 					? this.GraduateRepository.Get(_ => _.Id == id)
 					: this.GraduateRepository.Create(),
-				CurrentStatus = this.GetLookups("Current Status"),
-				VisaStatus = this.GetLookups("Visa Status"),
-				Proficiencies = this.GetLookups("Proficiency")
+				CurrentStatus = Identifiers.CurrentStatus.NA.ToEnumerable(),
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
+				Proficiencies = Identifiers.Proficiency.BasicUnderstanding.ToEnumerable()
 			};
 		}
 
@@ -159,7 +161,7 @@ namespace Zoekjaar.Web.Controllers
 			return new CompanyModel
 			{
 				Company = this.CompanyRepository.Create(),
-				VisaStatus = this.GetLookups("Visa Status")
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable()
 			};
 		}
 
@@ -171,7 +173,7 @@ namespace Zoekjaar.Web.Controllers
 					? this.CreateCompanyModel()
 					: base.CreateModel(modelType, valueProvider);
 		}
-				
+
 		public IRepository<Graduate> GraduateRepository { get; set; }
 
 		public IApplicationAuthentication Authentication { get; set; }

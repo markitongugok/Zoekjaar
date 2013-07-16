@@ -8,6 +8,7 @@ using Business.Core;
 using Business.Criteria;
 using Entities;
 using Zoekjaar.Web.Models;
+using Core.Extensions;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -121,8 +122,8 @@ namespace Zoekjaar.Web.Controllers
 			return new JobModel
 			{
 				Job = id.HasValue ? this.CompanyJobRepository.Get(_ => _.Id == id) : this.CompanyJobRepository.Create(),
-				VisaStatus = this.GetLookups("Visa Status"),
-				JobTypes = this.GetLookups("Job Type")
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
+				JobTypes = Identifiers.JobType.FreeLance.ToEnumerable()
 			};
 		}
 		private JobsModel CreateJobsModel()
@@ -151,14 +152,14 @@ namespace Zoekjaar.Web.Controllers
 		{
 			return new JobSearchModel
 			{
-				CurrentStatus = this.GetLookups("Current Status"),
-				VisaStatus = this.GetLookups("Visa Status"),
+				CurrentStatus = Identifiers.CurrentStatus.NA.ToEnumerable(),
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
 				Criteria = new SearchCriteria
 				{
 					PageSize = CompanyController.PageSize,
 					EntityId = this.UserIdentity != null ? (int?)this.UserIdentity.EntityId : null
 				},
-				JobTypes = this.GetLookups("Job Type")
+				JobTypes = Identifiers.JobType.FreeLance.ToEnumerable()
 			};
 		}
 

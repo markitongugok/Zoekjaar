@@ -1,19 +1,25 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Resources
+@using Entities
+@using Core.Extensions
 
 @model GraduateProfileModel
 
+@{
+	var currentStatus = ((Identifiers.CurrentStatus)Model.Graduate.CurrentStatusId).GetDisplayName();
+	var visaStatus = ((Identifiers.VisaStatus)Model.Graduate.VisaStatusId).GetDisplayName();
+}
 <div class="container">
 	<div class="headline">
 		<h3>@Model.Graduate.LastName, @Model.Graduate.FirstName</h3>
 		<ul class="unstyled inline pull-right">
 			@if (!string.IsNullOrEmpty(Model.Graduate.LinkedIn))
    { 
-				<li><a href="#"><i class="icon-linkedin"></i> @Model.Graduate.LinkedIn</a></li>
+				<li><a href="#"><i class="icon-linkedin"></i>@Model.Graduate.LinkedIn</a></li>
    }
 			@if (!string.IsNullOrEmpty(Model.Graduate.GooglePlus))
    { 
-				<li><a href="#"><i class="icon-google-plus"></i> @Model.Graduate.GooglePlus</a></li>
+				<li><a href="#"><i class="icon-google-plus"></i>@Model.Graduate.GooglePlus</a></li>
    }
 		</ul>
 	</div>
@@ -26,11 +32,11 @@
 			<div class="controls">
 				<div class="span6">
 					@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
-					@Html.DisplayFor(_ => _.Graduate.CurrentStatus.Name)
+					@currentStatus
 				</div>
 				<div class="span6">
 					@Html.LabelFor(_ => _.Graduate.VisaStatusId)
-					@Html.DisplayFor(_ => _.Graduate.VisaStatus.Name)
+					@visaStatus
 				</div>
 			</div>
 		</div>
@@ -69,10 +75,11 @@
 				</div>
 				@foreach (var degree in Model.Graduate.GraduateLanguages)
 	{
+		var proficiency = ((Identifiers.Proficiency)degree.ProficiencyId).GetDisplayName();
 					<div class="media row-container">
 						<div class="media-body">
 							<h4 class="media-heading">@Html.DisplayFor(_ => degree.Language)</h4>
-							<p>@Html.DisplayFor(_ => degree.Proficiency.Name)</p>
+							<p>@proficiency</p>
 						</div>
 					</div>
 					<hr />

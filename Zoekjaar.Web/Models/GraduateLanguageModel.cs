@@ -8,7 +8,7 @@ namespace Zoekjaar.Web.Models
 {
 	public sealed class GraduateLanguageModel : GraduateDetailModelBase<GraduateLanguage>
 	{
-		public IEnumerable<Lookup> Proficiencies { get; set; }
+		public IEnumerable<Entities.Identifiers.Proficiency> Proficiencies { get; set; }
 
 		public string PCSkills { get; set; }
 

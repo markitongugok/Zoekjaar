@@ -15,13 +15,6 @@ namespace Zoekjaar.Web.Controllers
 			return Activator.CreateInstance(modelType);
 		}
 
-		protected virtual IEnumerable<Lookup> GetLookups(string lookupTypeName)
-		{
-			return this.LookupRepository.Fetch(lookupTypeName);
-		}
-
-		public ISearchRepository<Lookup, string> LookupRepository { get; set; }
-
 		public UserIdentity UserIdentity
 		{
 			get

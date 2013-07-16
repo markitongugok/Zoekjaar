@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Business.Criteria;
+using Entities;
+using Core.Extensions;
 
 namespace Business
 {
@@ -55,7 +57,7 @@ namespace Business
 					Title = _.Job.Title,
 					Description = _.Job.JobDescription,
 					JobNumber = _.Job.JobNumber,
-					JobType = _.Job.JobType.Name,
+					JobTypeId = _.Job.JobTypeId,
 					Function = _.Job.JobFunction,
 					HiringManager = _.Job.HiringManager,
 					HrManager = _.Job.HrManager,
@@ -81,7 +83,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType.Name,
+					JobTypeId = _.JobTypeId,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,
@@ -98,7 +100,7 @@ namespace Business
 		{
 			return this.Context.Jobs
 				.OrderByDescending(_ => _.DatePosted)
-				.Where(_ => _.JobType.Name != "Internship" && _.IsFeatured)
+				.Where(_ => _.JobTypeId != (int)Identifiers.JobType.Internship && _.IsFeatured)
 				.Select(_ => new JobView
 				{
 					JobId = _.Id,
@@ -107,7 +109,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType.Name,
+					JobTypeId = _.JobTypeId,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,
@@ -134,7 +136,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType.Name,
+					JobTypeId = _.JobTypeId,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,
@@ -150,7 +152,7 @@ namespace Business
 		public IEnumerable<JobView> FetchFeaturedInternships()
 		{
 			return this.Context.Jobs
-				.Where(_ => _.JobType.Name == "Internship" && _.IsFeatured)
+				.Where(_ => _.JobTypeId == (int)Identifiers.JobType.Internship && _.IsFeatured)
 				.OrderByDescending(_ => _.DatePosted)
 				.Take(10)
 				.Select(_ => new JobView
@@ -161,7 +163,7 @@ namespace Business
 					Title = _.Title,
 					Description = _.JobDescription,
 					JobNumber = _.JobNumber,
-					JobType = _.JobType.Name,
+					JobTypeId = _.JobTypeId,
 					Function = _.JobFunction,
 					HiringManager = _.HiringManager,
 					HrManager = _.HrManager,

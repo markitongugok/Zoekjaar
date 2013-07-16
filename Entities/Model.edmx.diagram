@@ -11,23 +11,16 @@
         <EntityTypeShape EntityType="Model.GraduateExperience" Width="1.5" PointX="2.375" PointY="24.5" />
         <EntityTypeShape EntityType="Model.GraduateLanguage" Width="1.5" PointX="5.75" PointY="24.5" />
         <EntityTypeShape EntityType="Model.JobApplication" Width="1.5" PointX="0.875" PointY="26.625" />
-        <EntityTypeShape EntityType="Model.Lookup" Width="1.5" PointX="8.2234940343645828" PointY="0.24598264705668327" />
-        <EntityTypeShape EntityType="Model.LookupType" Width="1.5" PointX="7.2041810374726456" PointY="19.621086353259667" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8.9376170583710159" PointY="27.493297619509185" />
         <AssociationConnector Association="Model.FK_Company_UserId_User" />
-        <AssociationConnector Association="Model.FK_Graduate_CurrentStatusId_Lookup" />
         <AssociationConnector Association="Model.FK_Graduate_UserId_User" />
-        <AssociationConnector Association="Model.FK_Graduate_VisaStatusId_Lookup" />
         <AssociationConnector Association="Model.FK_GraduateDegree_Graduate" />
         <AssociationConnector Association="Model.FK_GraduateExperience_Graduate" />
         <AssociationConnector Association="Model.FK_GraduateLanguage_Graduate" />
         <AssociationConnector Association="Model.FK_JobApplication_Graduate" />
-        <AssociationConnector Association="Model.FK_GraduateLanguage_Lookup" />
-        <AssociationConnector Association="Model.FK_JobApplication_Lookup" />
         <EntityTypeShape EntityType="Model.Job" Width="1.5" PointX="2.625" PointY="14" />
         <AssociationConnector Association="Model.FK_CompanyJob_Company1" />
         <AssociationConnector Association="Model.FK_JobApplication_CompanyJob1" />
-        <AssociationConnector Association="Model.FK_Job_Lookup" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

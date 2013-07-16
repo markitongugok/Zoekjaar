@@ -1,12 +1,29 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Entities
 
 @model GraduateProfileModel
 
 <div class="headline">
 	<h4>@ApplicationStrings.PersonalInformation</h4>
 </div>
+
+@if (Model.IsSuccessful.HasValue)
+{
+	string message;
+	if (Model.IsSuccessful.Value)
+	{
+		message = string.Format("{1} {0}", ApplicationStrings.Saved, ApplicationStrings.PersonalInformation);
+	<div class="alert alert-success"><strong>@ApplicationStrings.Success</strong>  @message</div>
+	}
+	else
+	{
+		message = string.Format("Error {0} {1}", ApplicationStrings.Saving, ApplicationStrings.PersonalInformation);
+	<div class="alert alert-error"><strong>@ApplicationStrings.Failed</strong> @message</div>
+	}
+}
+
 @Html.HiddenFor(_ => _.Graduate.Id)
 @Html.HiddenFor(_ => _.Graduate.UserId)
 @Html.HiddenFor(_ => _.Graduate.IsActive)
@@ -23,11 +40,11 @@
 <div class="controls">
 	<div class="span6">
 		@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
-		@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"), new { @class = "span12" })
+		@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList(), new { @class = "span12" })
 	</div>
 	<div class="span6">
 		@Html.LabelFor(_ => _.Graduate.VisaStatusId)
-		@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"), new { @class = "span12" })
+		@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
 	</div>
 </div>
 <div class="controls">

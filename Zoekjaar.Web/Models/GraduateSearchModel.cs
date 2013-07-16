@@ -9,7 +9,7 @@ namespace Zoekjaar.Web.Models
 	{
 		public GraduateSearchCriteria Criteria { get; set; }
 		public IEnumerable<GraduateView> Graduates { get; set; }
-		public IEnumerable<Lookup> CurrentStatus { get; set; }
-		public IEnumerable<Lookup> VisaStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.CurrentStatus> CurrentStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.VisaStatus> VisaStatus { get; set; }
 	}
 }

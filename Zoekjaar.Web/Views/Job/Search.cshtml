@@ -2,6 +2,8 @@
 @using Zoekjaar.Web.Controllers
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Core.Extensions
+@using Entities
 
 @{
 	ViewBag.Title = ApplicationStrings.SearchJobs;
@@ -27,7 +29,7 @@
 			<div class="controls">
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.JobTypeId)
-					@Html.DropDownListFor(_ => _.Criteria.JobTypeId, new SelectList(Model.JobTypes, "Id", "Name"))
+					@Html.DropDownListFor(_ => _.Criteria.JobTypeId, Identifiers.JobType.FreeLance.ToSelectList())
 				</div>
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.Function)
@@ -39,7 +41,7 @@
 				</div>
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList())
 				</div>
 			</div>
 		
@@ -66,9 +68,10 @@
 		var logo = !string.IsNullOrEmpty(job.LogoUrl) ? job.LogoUrl : Url.Content("~/Content/images/logo.png");
 		currentRoute["id"] = job.JobId;
 		currentRoute["companyId"] = job.CompanyId;
+		var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
 					<tr>
 						<td>
-							<span class="label">@job.JobType</span>
+							<span class="label">@jobType</span>
 							@Html.ActionLink(job.Title, "Details", "Job", currentRoute, null)
 						</td>
 						<td>

@@ -1,5 +1,7 @@
 ﻿@using Business
 @using Zoekjaar.Web.Extensions
+@using Core.Extensions
+@using Entities
 
 @model IEnumerable<JobView>
 @{
@@ -10,10 +12,11 @@
 	@foreach (var job in Model)
  {
 	 currentRoute["id"] = job.JobId;
+	 var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
 		<tr>
 			<td>
-				<span class="label">@job.JobType</span>
-				@Html.ActionLink(job.Title, "ViewJob", "Job", currentRoute, new Dictionary<string, object>())
+				<span class="label">@jobType</span>
+				@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new Dictionary<string, object>())
 			</td>
 			<td>
 				@Html.DisplayFor(_ => job.DatePosted)

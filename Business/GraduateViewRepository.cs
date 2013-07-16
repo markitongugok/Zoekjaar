@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Business.Criteria;
+using Core.Extensions;
+using Entities;
 
 namespace Business
 {
@@ -28,8 +30,8 @@ namespace Business
 				{
 					GraduateId = _.Id,
 					Name = string.Format("{0}, {1}", _.LastName, _.FirstName),
-					VisaStatus = _.VisaStatus.Name,
-					CurrentStatus = _.CurrentStatus.Name,
+					VisaStatus = ((Identifiers.VisaStatus)_.VisaStatusId).GetDisplayName(),
+					CurrentStatus = ((Identifiers.CurrentStatus)_.CurrentStatusId).GetDisplayName(),
 					Applications = _.JobApplications.Where(__ => __.Job.CompanyId == criteria.EntityId).Select(__ => new Tuple<int, string>(__.JobId, __.Job.Title))
 				});
 		}

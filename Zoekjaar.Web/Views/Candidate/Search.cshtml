@@ -3,6 +3,7 @@
 @using Zoekjaar.Web.Controllers
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Entities
 
 @{
 	ViewBag.Title = ApplicationStrings.SearchJobs;
@@ -28,11 +29,11 @@
 			<div class="controls">
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"))
+					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList())
 				</div>
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
-					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"))
+					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList())
 				</div>
 			</div>
 		

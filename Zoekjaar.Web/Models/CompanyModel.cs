@@ -17,7 +17,7 @@ namespace Zoekjaar.Web.Models
 		[Required]
 		public string Password { get; set; }
 
-		public IEnumerable<Lookup> VisaStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.VisaStatus> VisaStatus { get; set; }
 
 	}
 }

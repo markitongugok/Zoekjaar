@@ -22,11 +22,10 @@
 	/* Recruitment Stage */
 	UNION SELECT 300, 4, 'Applied', 1, 1
 	UNION SELECT 301, 4, 'Invited for Interview', 1, 0
-	UNION SELECT 302, 4, 'Invited for Interview', 1, 0
-	UNION SELECT 303, 4, 'Conducted Interview', 1, 0
-	UNION SELECT 304, 4, 'Offer Sent', 1, 0
-	UNION SELECT 305, 4, 'Rejected', 1, 0
-	UNION SELECT 306, 4, 'Recruited', 1, 0
+	UNION SELECT 302, 4, 'Conducted Interview', 1, 0
+	UNION SELECT 303, 4, 'Offer Sent', 1, 0
+	UNION SELECT 304, 4, 'Rejected', 1, 0
+	UNION SELECT 305, 4, 'Recruited', 1, 0
 
 	/* Date Posted */
 	UNION SELECT 500, 6, 'Any Date', 1, 1

@@ -1,6 +1,7 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Resources
 @using Zoekjaar.Web.Extensions
+@using Entities
 
 @model GraduateModel
 @{
@@ -47,11 +48,11 @@
 				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
-						@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, new SelectList(Model.CurrentStatus, "Id", "Name"), new { @class = "span12" })
+						@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList(), new { @class = "span12" })
 					</div>
 					<div class="span6">
 						@Html.LabelFor(_ => _.Graduate.VisaStatusId)
-						@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, new SelectList(Model.VisaStatus, "Id", "Name"), new { @class = "span12" })
+						@Html.DropDownListFor(_ => _.Graduate.VisaStatusId,  Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
 					</div>
 				</div>
 				<div class="controls">

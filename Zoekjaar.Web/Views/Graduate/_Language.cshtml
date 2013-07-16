@@ -1,6 +1,8 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Entities
+@using Core.Extensions
 
 @model GraduateLanguageModel
 
@@ -38,7 +40,7 @@
 		</div>
 		<div class="span6">
 			@Html.LabelFor(_ => _.Template.ProficiencyId)
-			@Html.DropDownListFor(_ => _.Template.ProficiencyId, new SelectList(Model.Proficiencies, "Id", "Name"), new { @class = "span12" })
+			@Html.DropDownListFor(_ => _.Template.ProficiencyId, Identifiers.Proficiency.BasicUnderstanding.ToSelectList(), new { @class = "span12" })
 			@Html.ValidationMessageFor(_ => _.Template.ProficiencyId)
 		</div>
 	</div>
@@ -60,6 +62,7 @@
 		<hr />
 		@foreach (var degree in Model.Items)
   {
+	  var proficiency = ((Identifiers.Proficiency)degree.ProficiencyId).GetDisplayName();
 			<div class="media row-container">
 				<div class="media-body">
 					@Html.HiddenFor(_ => degree.Id, new { data_target_element = "#Template_Id" })
@@ -69,7 +72,7 @@
 						<li><a href="#" class="btn-edit"><i class="icon-edit"></i></a></li>
 						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteLanguage")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
 					</ul>
-					<p data-target-element="#Template_ProficiencyId" data-select-value="@degree.ProficiencyId" class="select-value">@Html.DisplayFor(_ => degree.Proficiency.Name)</p>
+					<p data-target-element="#Template_ProficiencyId" data-select-value="@degree.ProficiencyId" class="select-value">@proficiency</p>
 				</div>
 			</div>
 			<hr />

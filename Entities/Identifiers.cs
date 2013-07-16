@@ -36,53 +36,81 @@ namespace Entities
     	}
     	public enum CurrentStatus
     	{
+    		[Description("N/A")]
     		NA = 1,
+    		[Description("Studying")]
     		Studying = 2,
+    		[Description("Looking for internship")]
     		Lookingforinternship = 3,
+    		[Description("Internship")]
     		Internship = 4,
+    		[Description("Looking for Job")]
     		LookingforJob = 5,
     	}
     	public enum VisaStatus
     	{
+    		[Description("N/A")]
     		NA = 100,
+    		[Description("EU Citizen")]
     		EUCitizen = 101,
+    		[Description("Study & Internship Visa")]
     		StudyAndInternshipVisa = 102,
+    		[Description("Orientation Year Visa")]
     		OrientationYearVisa = 103,
+    		[Description("High Skilled Migrant Visa")]
     		HighSkilledMigrantVisa = 104,
     	}
     	public enum Proficiency
     	{
+    		[Description("Basic Understanding")]
     		BasicUnderstanding = 200,
+    		[Description("Conversational")]
     		Conversational = 201,
+    		[Description("Fluent")]
     		Fluent = 202,
     	}
     	public enum RecruitmentStage
     	{
+    		[Description("Applied")]
     		Applied = 300,
+    		[Description("Invited for Interview")]
     		InvitedforInterview = 301,
-    		InvitedforInterview = 302,
-    		ConductedInterview = 303,
-    		OfferSent = 304,
-    		Rejected = 305,
-    		Recruited = 306,
+    		[Description("Conducted Interview")]
+    		ConductedInterview = 302,
+    		[Description("Offer Sent")]
+    		OfferSent = 303,
+    		[Description("Rejected")]
+    		Rejected = 304,
+    		[Description("Recruited")]
+    		Recruited = 305,
     	}
     	public enum State
     	{
     	}
     	public enum DatePosted
     	{
+    		[Description("Any Date")]
     		AnyDate = 500,
+    		[Description("Last 30 Days")]
     		Last30Days = 501,
+    		[Description("Last 7 Days")]
     		Last7Days = 502,
+    		[Description("Last 3 Days")]
     		Last3Days = 503,
+    		[Description("Since Yesterday")]
     		SinceYesterday = 504,
     	}
     	public enum JobType
     	{
+    		[Description("Free Lance")]
     		FreeLance = 600,
+    		[Description("Full-Time")]
     		FullTime = 601,
+    		[Description("Internship")]
     		Internship = 602,
+    		[Description("Part-Time")]
     		PartTime = 603,
+    		[Description("Temporary")]
     		Temporary = 604,
     	}
     }

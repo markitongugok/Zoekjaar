@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
+using Core.Extensions;
 
 namespace Business
 {
@@ -18,7 +20,6 @@ namespace Business
 					GraduateId = _.Id,
 					Name = _.Graduate.LastName + ", " + _.Graduate.FirstName,
 					RecruitmentStatusId = _.StatusId,
-					RecruitmentStatus = _.Status.Name
 				});
 		}
 	}

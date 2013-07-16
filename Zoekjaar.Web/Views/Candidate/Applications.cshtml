@@ -1,5 +1,7 @@
 ﻿@using Zoekjaar.Resources
 @using Zoekjaar.Web.Models
+@using Entities
+@using Core.Extensions
 
 @{
 	ViewBag.Title = ApplicationStrings.MyJobApplications;
@@ -21,10 +23,11 @@
 				</tr>
 				@foreach (var job in Model.Jobs)
 	{
+		var status = ((Identifiers.RecruitmentStage)job.StatusId).GetDisplayName();
 					<tr>
 						<td>@Html.DisplayFor(_ => job.DateApplied)</td>
 						<td>@Html.DisplayFor(_ => job.Title)</td>
-						<td>@Html.DisplayFor(_ => job.Status)</td>
+						<td>@status</td>
 					</tr>
 	}
 			</table>

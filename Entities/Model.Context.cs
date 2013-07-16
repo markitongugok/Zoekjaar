@@ -31,8 +31,6 @@ namespace Entities
         public DbSet<GraduateExperience> GraduateExperiences { get; set; }
         public DbSet<GraduateLanguage> GraduateLanguages { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
-        public DbSet<Lookup> Lookups { get; set; }
-        public DbSet<LookupType> LookupTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Job> Jobs { get; set; }
     }

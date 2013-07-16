@@ -36,9 +36,7 @@ namespace Entities
     	public string GooglePlus { get; set; }
     	public bool IsActive { get; set; }
     
-    	public virtual Lookup CurrentStatus { get; set; }
     	public virtual User User { get; set; }
-    	public virtual Lookup VisaStatus { get; set; }
     	public virtual ICollection<GraduateDegree> GraduateDegrees { get; set; }
     	public virtual ICollection<GraduateExperience> GraduateExperiences { get; set; }
     	public virtual ICollection<GraduateLanguage> GraduateLanguages { get; set; }

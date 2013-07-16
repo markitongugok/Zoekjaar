@@ -8,6 +8,7 @@ using Business.Criteria;
 using Entities;
 using Zoekjaar.Web.Contracts;
 using Zoekjaar.Web.Models;
+using Core.Extensions;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -57,7 +58,7 @@ namespace Zoekjaar.Web.Controllers
 				model.IsSuccessful = false;
 			}
 
-			return this.View(model);
+			return this.PartialView("_PersonalInformation", model);
 		}
 
 		[Authorize(Roles = "Graduate")]
@@ -102,14 +103,14 @@ namespace Zoekjaar.Web.Controllers
 			{
 				model.IsSuccessful = false;
 			}
-			
+
 			return this.PartialView("_Education", model);
 		}
 
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
 		public ActionResult DeleteEducation(int id)
-		{			
+		{
 			this.GraduateDegreeRepository.Remove(_ => _.Id == id);
 			this.GraduateDegreeRepository.SaveChanges();
 			return this.PartialView("_Education", this.CreateEducationModel());
@@ -157,7 +158,7 @@ namespace Zoekjaar.Web.Controllers
 			else
 			{
 				model.IsSuccessful = false;
-			}			
+			}
 
 			return this.PartialView("_Language", model);
 		}
@@ -213,7 +214,7 @@ namespace Zoekjaar.Web.Controllers
 			{
 				model.IsSuccessful = false;
 			}
-			
+
 			return this.PartialView("_Experience", model);
 		}
 
@@ -262,7 +263,7 @@ namespace Zoekjaar.Web.Controllers
 			{
 				model.IsSuccessful = false;
 			}
-						
+
 			this.GraduateRepository.SaveChanges();
 			return this.PartialView("_Link", model);
 		}
@@ -284,7 +285,7 @@ namespace Zoekjaar.Web.Controllers
 			{
 				Template = this.GraduateLanguageRepository.Create(),
 				Items = this.GraduateLanguageRepository.Fetch(_ => _.GraduateId == this.UserIdentity.EntityId),
-				Proficiencies = this.GetLookups("Proficiency")
+				Proficiencies = Identifiers.Proficiency.BasicUnderstanding.ToEnumerable()
 			};
 		}
 
@@ -301,9 +302,9 @@ namespace Zoekjaar.Web.Controllers
 		{
 			return new GraduateProfileModel
 			{
-				CurrentStatus = this.GetLookups("Current Status"),
-				Proficiencies = this.GetLookups("Proficiency"),
-				VisaStatus = this.GetLookups("Visa Status"),
+				CurrentStatus = Identifiers.CurrentStatus.NA.ToEnumerable(),
+				Proficiencies = Identifiers.Proficiency.BasicUnderstanding.ToEnumerable(),
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
 				Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId),
 				Degree = new GraduateDegree()
 			};

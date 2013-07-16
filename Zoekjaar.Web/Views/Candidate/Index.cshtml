@@ -1,6 +1,8 @@
 ﻿@using Zoekjaar.Resources
 @using Zoekjaar.Web.Models
 @using Zoekjaar.Web
+@using Entities
+@using Core.Extensions
 
 @{
 	ViewBag.Title = ApplicationStrings.Candidates;
@@ -18,9 +20,10 @@
    {
 	   var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 	   currentRoute[RouteConfig.Id] = candidate.GraduateId;
+	   var status = ((Identifiers.RecruitmentStage)candidate.RecruitmentStatusId).GetDisplayName();
 				<tr>
 					<td>@Html.ActionLink(candidate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
-					<td>@Html.DisplayFor(_ => candidate.RecruitmentStatus)</td>
+					<td>@status</td>
 				</tr>  
    }
 		</table>

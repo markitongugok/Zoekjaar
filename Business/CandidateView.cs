@@ -16,8 +16,5 @@ namespace Business
 
 		[Display(Name = "RecruitmentStatus", ResourceType = typeof(ApplicationStrings))]
 		public int? RecruitmentStatusId { get; set; }
-
-		[Display(Name = "RecruitmentStatus", ResourceType = typeof(ApplicationStrings))]
-		public string RecruitmentStatus { get; set; }
 	}
 }

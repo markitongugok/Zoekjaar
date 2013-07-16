@@ -12,8 +12,8 @@ namespace Zoekjaar.Web.Models
 
 		public bool? IsSuccessful { get; set; }
 
-		public IEnumerable<Lookup> VisaStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.VisaStatus> VisaStatus { get; set; }
 
-		public IEnumerable<Lookup> JobTypes { get; set; }
+		public IEnumerable<Entities.Identifiers.JobType> JobTypes { get; set; }
 	}
 }

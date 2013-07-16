@@ -62,16 +62,13 @@
     <Compile Include="GraduateLanguage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Identifiers.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="JobApplication.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Lookup.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LookupType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Metadata\Company.cs" />
@@ -105,6 +102,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Inflector.CS.ttinclude">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>Inflector.CS1.cs</LastGenOutput>
+    </None>
     <None Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>

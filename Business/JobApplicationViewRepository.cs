@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
+using Core.Extensions;
 
 namespace Business
 {
@@ -18,8 +20,7 @@ namespace Business
 					JobId = _.JobId,
 					Title = _.Job.Title,
 					DateApplied = _.DateApplied,
-					StatusId = _.StatusId,
-					Status = _.Status.Name
+					StatusId = _.StatusId
 				});
 		}
 	}

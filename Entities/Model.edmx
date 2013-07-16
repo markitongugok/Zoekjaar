@@ -13,23 +13,13 @@
           <EntitySet Name="GraduateLanguage" EntityType="Model.Store.GraduateLanguage" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Job" EntityType="Model.Store.Job" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobApplication" EntityType="Model.Store.JobApplication" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Lookup" EntityType="Model.Store.Lookup" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="LookupType" EntityType="Model.Store.LookupType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="Model.Store.User" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Company_UserId_User" Association="Model.Store.FK_Company_UserId_User">
             <End Role="User" EntitySet="User" />
             <End Role="Company" EntitySet="Company" />
           </AssociationSet>
-          <AssociationSet Name="FK_Graduate_CurrentStatusId_Lookup" Association="Model.Store.FK_Graduate_CurrentStatusId_Lookup">
-            <End Role="Lookup" EntitySet="Lookup" />
-            <End Role="Graduate" EntitySet="Graduate" />
-          </AssociationSet>
           <AssociationSet Name="FK_Graduate_UserId_User" Association="Model.Store.FK_Graduate_UserId_User">
             <End Role="User" EntitySet="User" />
-            <End Role="Graduate" EntitySet="Graduate" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Graduate_VisaStatusId_Lookup" Association="Model.Store.FK_Graduate_VisaStatusId_Lookup">
-            <End Role="Lookup" EntitySet="Lookup" />
             <End Role="Graduate" EntitySet="Graduate" />
           </AssociationSet>
           <AssociationSet Name="FK_GraduateDegree_Graduate" Association="Model.Store.FK_GraduateDegree_Graduate">
@@ -44,16 +34,8 @@
             <End Role="Graduate" EntitySet="Graduate" />
             <End Role="GraduateLanguage" EntitySet="GraduateLanguage" />
           </AssociationSet>
-          <AssociationSet Name="FK_GraduateLanguage_Lookup" Association="Model.Store.FK_GraduateLanguage_Lookup">
-            <End Role="Lookup" EntitySet="Lookup" />
-            <End Role="GraduateLanguage" EntitySet="GraduateLanguage" />
-          </AssociationSet>
           <AssociationSet Name="FK_Job_Company" Association="Model.Store.FK_Job_Company">
             <End Role="Company" EntitySet="Company" />
-            <End Role="Job" EntitySet="Job" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Job_Lookup" Association="Model.Store.FK_Job_Lookup">
-            <End Role="Lookup" EntitySet="Lookup" />
             <End Role="Job" EntitySet="Job" />
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_CompanyJob" Association="Model.Store.FK_JobApplication_CompanyJob">
@@ -62,10 +44,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_JobApplication_Graduate" Association="Model.Store.FK_JobApplication_Graduate">
             <End Role="Graduate" EntitySet="Graduate" />
-            <End Role="JobApplication" EntitySet="JobApplication" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobApplication_Lookup" Association="Model.Store.FK_JobApplication_Lookup">
-            <End Role="Lookup" EntitySet="Lookup" />
             <End Role="JobApplication" EntitySet="JobApplication" />
           </AssociationSet>
         </EntityContainer>
@@ -166,23 +144,6 @@
           <Property Name="DateApplied" Type="date" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Lookup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="LookupTypeId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="IsDefault" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LookupType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -206,18 +167,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Graduate_CurrentStatusId_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="0..1" />
-          <End Role="Graduate" Type="Model.Store.Graduate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Graduate">
-              <PropertyRef Name="CurrentStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Graduate_UserId_User">
           <End Role="User" Type="Model.Store.User" Multiplicity="1" />
           <End Role="Graduate" Type="Model.Store.Graduate" Multiplicity="*" />
@@ -227,18 +176,6 @@
             </Principal>
             <Dependent Role="Graduate">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Graduate_VisaStatusId_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="0..1" />
-          <End Role="Graduate" Type="Model.Store.Graduate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Graduate">
-              <PropertyRef Name="VisaStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,18 +215,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GraduateLanguage_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
-          <End Role="GraduateLanguage" Type="Model.Store.GraduateLanguage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GraduateLanguage">
-              <PropertyRef Name="ProficiencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Job_Company">
           <End Role="Company" Type="Model.Store.Company" Multiplicity="1" />
           <End Role="Job" Type="Model.Store.Job" Multiplicity="*" />
@@ -299,18 +224,6 @@
             </Principal>
             <Dependent Role="Job">
               <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Job_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
-          <End Role="Job" Type="Model.Store.Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="JobTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -338,18 +251,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_JobApplication_Lookup">
-          <End Role="Lookup" Type="Model.Store.Lookup" Multiplicity="1" />
-          <End Role="JobApplication" Type="Model.Store.JobApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobApplication">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -361,23 +262,13 @@
           <EntitySet Name="GraduateExperiences" EntityType="Model.GraduateExperience" />
           <EntitySet Name="GraduateLanguages" EntityType="Model.GraduateLanguage" />
           <EntitySet Name="JobApplications" EntityType="Model.JobApplication" />
-          <EntitySet Name="Lookups" EntityType="Model.Lookup" />
-          <EntitySet Name="LookupTypes" EntityType="Model.LookupType" />
           <EntitySet Name="Users" EntityType="Model.User" />
           <AssociationSet Name="FK_Company_UserId_User" Association="Model.FK_Company_UserId_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Company" EntitySet="Companies" />
           </AssociationSet>
-          <AssociationSet Name="FK_Graduate_CurrentStatusId_Lookup" Association="Model.FK_Graduate_CurrentStatusId_Lookup">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="Graduate" EntitySet="Graduates" />
-          </AssociationSet>
           <AssociationSet Name="FK_Graduate_UserId_User" Association="Model.FK_Graduate_UserId_User">
             <End Role="User" EntitySet="Users" />
-            <End Role="Graduate" EntitySet="Graduates" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Graduate_VisaStatusId_Lookup" Association="Model.FK_Graduate_VisaStatusId_Lookup">
-            <End Role="Lookup" EntitySet="Lookups" />
             <End Role="Graduate" EntitySet="Graduates" />
           </AssociationSet>
           <AssociationSet Name="FK_GraduateDegree_Graduate" Association="Model.FK_GraduateDegree_Graduate">
@@ -396,14 +287,6 @@
             <End Role="Graduate" EntitySet="Graduates" />
             <End Role="JobApplication" EntitySet="JobApplications" />
           </AssociationSet>
-          <AssociationSet Name="FK_GraduateLanguage_Lookup" Association="Model.FK_GraduateLanguage_Lookup">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="GraduateLanguage" EntitySet="GraduateLanguages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobApplication_Lookup" Association="Model.FK_JobApplication_Lookup">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="JobApplication" EntitySet="JobApplications" />
-          </AssociationSet>
           <EntitySet Name="Jobs" EntityType="Model.Job" />
           <AssociationSet Name="FK_CompanyJob_Company1" Association="Model.FK_CompanyJob_Company1">
             <End Role="Company" EntitySet="Companies" />
@@ -412,10 +295,6 @@
           <AssociationSet Name="FK_JobApplication_CompanyJob1" Association="Model.FK_JobApplication_CompanyJob1">
             <End Role="Job" EntitySet="Jobs" />
             <End Role="JobApplication" EntitySet="JobApplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Job_Lookup" Association="Model.FK_Job_Lookup">
-            <End Role="Lookup" EntitySet="Lookups" />
-            <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -454,9 +333,7 @@
           <Property Type="String" Name="LinkedIn" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="GooglePlus" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <NavigationProperty Name="CurrentStatus" Relationship="Model.FK_Graduate_CurrentStatusId_Lookup" FromRole="Graduate" ToRole="Lookup" />
           <NavigationProperty Name="User" Relationship="Model.FK_Graduate_UserId_User" FromRole="Graduate" ToRole="User" />
-          <NavigationProperty Name="VisaStatus" Relationship="Model.FK_Graduate_VisaStatusId_Lookup" FromRole="Graduate" ToRole="Lookup" />
           <NavigationProperty Name="GraduateDegrees" Relationship="Model.FK_GraduateDegree_Graduate" FromRole="Graduate" ToRole="GraduateDegree" />
           <NavigationProperty Name="GraduateExperiences" Relationship="Model.FK_GraduateExperience_Graduate" FromRole="Graduate" ToRole="GraduateExperience" />
           <NavigationProperty Name="GraduateLanguages" Relationship="Model.FK_GraduateLanguage_Graduate" FromRole="Graduate" ToRole="GraduateLanguage" />
@@ -493,7 +370,6 @@
           <Property Type="String" Name="Language" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="ProficiencyId" Nullable="false" />
           <NavigationProperty Name="Graduate" Relationship="Model.FK_GraduateLanguage_Graduate" FromRole="GraduateLanguage" ToRole="Graduate" />
-          <NavigationProperty Name="Proficiency" Relationship="Model.FK_GraduateLanguage_Lookup" FromRole="GraduateLanguage" ToRole="Lookup" />
         </EntityType>
         <EntityType Name="JobApplication">
           <Key>
@@ -504,31 +380,8 @@
           <Property Type="Int32" Name="GraduateId" Nullable="false" />
           <Property Type="Int32" Name="StatusId" Nullable="false" />
           <NavigationProperty Name="Graduate" Relationship="Model.FK_JobApplication_Graduate" FromRole="JobApplication" ToRole="Graduate" />
-          <NavigationProperty Name="Status" Relationship="Model.FK_JobApplication_Lookup" FromRole="JobApplication" ToRole="Lookup" />
           <NavigationProperty Name="Job" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="JobApplication" ToRole="Job" />
           <Property Type="DateTime" Name="DateApplied" Nullable="false" Precision="0" />
-        </EntityType>
-        <EntityType Name="Lookup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="LookupTypeId" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <Property Type="Boolean" Name="IsDefault" Nullable="false" />
-          <NavigationProperty Name="Graduates" Relationship="Model.FK_Graduate_CurrentStatusId_Lookup" FromRole="Lookup" ToRole="Graduate" />
-          <NavigationProperty Name="Graduates1" Relationship="Model.FK_Graduate_VisaStatusId_Lookup" FromRole="Lookup" ToRole="Graduate" />
-          <NavigationProperty Name="GraduateLanguages" Relationship="Model.FK_GraduateLanguage_Lookup" FromRole="Lookup" ToRole="GraduateLanguage" />
-          <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_Lookup" FromRole="Lookup" ToRole="JobApplication" />
-          <NavigationProperty Name="Jobs" Relationship="Model.FK_Job_Lookup" FromRole="Lookup" ToRole="Job" />
-        </EntityType>
-        <EntityType Name="LookupType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -555,18 +408,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Graduate_CurrentStatusId_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="0..1" />
-          <End Type="Model.Graduate" Role="Graduate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Graduate">
-              <PropertyRef Name="CurrentStatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Graduate_UserId_User">
           <End Type="Model.User" Role="User" Multiplicity="1" />
           <End Type="Model.Graduate" Role="Graduate" Multiplicity="*" />
@@ -576,18 +417,6 @@
             </Principal>
             <Dependent Role="Graduate">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Graduate_VisaStatusId_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="0..1" />
-          <End Type="Model.Graduate" Role="Graduate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Graduate">
-              <PropertyRef Name="VisaStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -639,30 +468,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GraduateLanguage_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
-          <End Type="Model.GraduateLanguage" Role="GraduateLanguage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GraduateLanguage">
-              <PropertyRef Name="ProficiencyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobApplication_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
-          <End Type="Model.JobApplication" Role="JobApplication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="JobApplication">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Job">
           <Key>
             <PropertyRef Name="Id" />
@@ -687,7 +492,6 @@
           <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="0" />
           <NavigationProperty Name="Company" Relationship="Model.FK_CompanyJob_Company1" FromRole="Job" ToRole="Company" />
           <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="Job" ToRole="JobApplication" />
-          <NavigationProperty Name="JobType" Relationship="Model.FK_Job_Lookup" FromRole="Job" ToRole="Lookup" />
         </EntityType>
         <Association Name="FK_CompanyJob_Company1">
           <End Type="Model.Company" Role="Company" Multiplicity="1" />
@@ -710,18 +514,6 @@
             </Principal>
             <Dependent Role="JobApplication">
               <PropertyRef Name="JobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Job_Lookup">
-          <End Type="Model.Lookup" Role="Lookup" Multiplicity="1" />
-          <End Type="Model.Job" Role="Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lookup">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="JobTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -809,25 +601,6 @@
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="GraduateId" ColumnName="GraduateId" />
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lookups">
-            <EntityTypeMapping TypeName="Model.Lookup">
-              <MappingFragment StoreEntitySet="Lookup">
-                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LookupTypeId" ColumnName="LookupTypeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LookupTypes">
-            <EntityTypeMapping TypeName="Model.LookupType">
-              <MappingFragment StoreEntitySet="LookupType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

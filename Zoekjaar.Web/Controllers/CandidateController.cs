@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using Business;
 using Business.Core;
 using Business.Criteria;
+using Entities;
 using Zoekjaar.Web.Models;
+using Core.Extensions;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -80,8 +82,8 @@ namespace Zoekjaar.Web.Controllers
 		{
 			return new GraduateSearchModel
 			{
-				CurrentStatus = this.GetLookups("Current Status"),
-				VisaStatus = this.GetLookups("Visa Status"),
+				CurrentStatus = Identifiers.CurrentStatus.NA.ToEnumerable(),
+				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
 				Criteria = new GraduateSearchCriteria
 				{
 					PageSize = CompanyController.PageSize,

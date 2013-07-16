@@ -21,7 +21,6 @@ namespace Entities
     	public System.DateTime DateApplied { get; set; }
     
     	public virtual Graduate Graduate { get; set; }
-    	public virtual Lookup Status { get; set; }
     	public virtual Job Job { get; set; }
     }
 }

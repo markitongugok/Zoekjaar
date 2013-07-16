@@ -58,11 +58,7 @@ namespace Entities
 
 		public bool IsActive { get; set; }
 
-		public virtual Lookup CurrentStatus { get; set; }
-
 		public virtual User User { get; set; }
-
-		public virtual Lookup VisaStatus { get; set; }
 
 		public virtual ICollection<GraduateDegree> GraduateDegrees { get; set; }
 

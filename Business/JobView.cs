@@ -23,7 +23,7 @@ namespace Business
 		public string Description { get; set; }
 
 		[Display(Name = "JobType", ResourceType = typeof(ApplicationStrings))]
-		public string JobType { get; set; }
+		public int JobTypeId { get; set; }
 
 		[Display(Name = "Function", ResourceType = typeof(ApplicationStrings))]
 		public string Function { get; set; }

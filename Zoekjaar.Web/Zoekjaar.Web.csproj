@@ -226,6 +226,7 @@
     <Compile Include="Controllers\MultipleButtonAttribute.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Extensions\BundleExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

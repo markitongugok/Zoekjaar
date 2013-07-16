@@ -276,6 +276,7 @@ public static class Identifiers
 		foreach(var lookup in lookups)
 		{
 #>
+		[Description("<#=lookup.Item2#>")]
 		<#=SafeName(lookup.Item2)#> = <#=lookup.Item1#>,
 <#
 		}

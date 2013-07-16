@@ -78,6 +78,5 @@ namespace Entities
 
 		public virtual Company Company { get; set; }
 		public virtual ICollection<JobApplication> JobApplications { get; set; }
-		public virtual Lookup JobType { get; set; }
 	}
 }

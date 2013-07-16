@@ -9,11 +9,11 @@ namespace Zoekjaar.Web.Models
 	{
 		public Graduate Graduate { get; set; }
 
-		public IEnumerable<Lookup> CurrentStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.CurrentStatus> CurrentStatus { get; set; }
 
-		public IEnumerable<Lookup> VisaStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.VisaStatus> VisaStatus { get; set; }
 
-		public IEnumerable<Lookup> Proficiencies { get; set; }
+		public IEnumerable<Entities.Identifiers.Proficiency> Proficiencies { get; set; }
 
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
 		[Required]

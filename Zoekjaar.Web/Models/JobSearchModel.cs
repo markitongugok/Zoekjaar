@@ -9,8 +9,8 @@ namespace Zoekjaar.Web.Models
 	{
 		public IEnumerable<JobView> Jobs { get; set; }
 		public SearchCriteria Criteria { get; set; }
-		public IEnumerable<Lookup> VisaStatus { get; set; }
-		public IEnumerable<Lookup> CurrentStatus { get; set; }
-		public IEnumerable<Lookup> JobTypes { get; set; }
+		public IEnumerable<Entities.Identifiers.VisaStatus> VisaStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.CurrentStatus> CurrentStatus { get; set; }
+		public IEnumerable<Entities.Identifiers.JobType> JobTypes { get; set; }
 	}
 }

@@ -20,7 +20,5 @@ namespace Business
 		public DateTime DateApplied { get; set; }
 		[Display(Name = "RecruitmentStatus", ResourceType = typeof(ApplicationStrings))]
 		public int StatusId { get; set; }
-		[Display(Name = "RecruitmentStatus", ResourceType = typeof(ApplicationStrings))]
-		public string Status { get; set; }
 	}
 }

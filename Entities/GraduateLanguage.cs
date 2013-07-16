@@ -20,6 +20,5 @@ namespace Entities
     	public int ProficiencyId { get; set; }
     
     	public virtual Graduate Graduate { get; set; }
-    	public virtual Lookup Proficiency { get; set; }
     }
 }
