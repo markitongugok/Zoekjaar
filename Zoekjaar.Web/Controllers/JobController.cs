@@ -93,10 +93,17 @@ namespace Zoekjaar.Web.Controllers
 				{
 					this.CompanyJobRepository.Attach(model.Job);
 				}
-				this.CompanyJobRepository.SaveChanges();
-
-				model.IsSuccessful = true;
-				ModelState.Clear();
+				try
+				{
+					this.CompanyJobRepository.SaveChanges();
+					model.IsSuccessful = true;
+					ModelState.Clear();
+				}
+				catch (Exception ex)
+				{
+					model.IsSuccessful = false;
+					this.ModelState.AddModelError(ex.Message, ex);
+				}
 			}
 			else
 			{

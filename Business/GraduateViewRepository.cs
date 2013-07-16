@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Business.Criteria;
 
@@ -22,10 +23,14 @@ namespace Business
 			return query.OrderBy(_ => _.LastName)
 				.ThenBy(_ => _.FirstName)
 				.Skip(criteria.PageNumber * criteria.PageSize)
-				.Take(criteria.PageSize).AsEnumerable().Select(_ => new GraduateView
+				.Take(criteria.PageSize).AsEnumerable()
+				.Select(_ => new GraduateView
 				{
 					GraduateId = _.Id,
-					Name = string.Format("{0}, {1}", _.LastName, _.FirstName)
+					Name = string.Format("{0}, {1}", _.LastName, _.FirstName),
+					VisaStatus = _.VisaStatus.Name,
+					CurrentStatus = _.CurrentStatus.Name,
+					Applications = _.JobApplications.Where(__ => __.Job.CompanyId == criteria.EntityId).Select(__ => new Tuple<int, string>(__.JobId, __.Job.Title))
 				});
 		}
 	}

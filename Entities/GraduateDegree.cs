@@ -14,12 +14,12 @@ namespace Entities
     
     public partial class GraduateDegree
     {
-        public int Id { get; set; }
-        public int GraduateId { get; set; }
-        public string University { get; set; }
-        public string Degree { get; set; }
-        public string Specialisation { get; set; }
+    	public int Id { get; set; }
+    	public int GraduateId { get; set; }
+    	public string University { get; set; }
+    	public string Degree { get; set; }
+    	public string Specialisation { get; set; }
     
-        public virtual Graduate Graduate { get; set; }
+    	public virtual Graduate Graduate { get; set; }
     }
 }

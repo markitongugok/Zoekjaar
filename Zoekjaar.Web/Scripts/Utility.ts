@@ -27,10 +27,10 @@ module Zoekjaar {
 			validator.settings.validClass = '';
 
 			validator.settings.highlight = function (element, errorClass, validClass) {
-				$(element).closest('.control-group').addClass('error');
+				$(element).closest('.controls').addClass('error');
 			};
 			validator.settings.unhighlight = function (element, errorClass, validClass) {
-				$(element).closest('.control-group').removeClass('error');
+				$(element).closest('.controls').removeClass('error');
 			}
 			$(".date-picker").datepicker({
 				format: 'mm/dd/yyyy'

@@ -900,7 +900,6 @@
     <TypeScriptCompile Include="Scripts\Views\Job.Search.ts" />
     <TypeScriptCompile Include="Scripts\Views\ViewBase.ts" />
     <TypeScriptCompile Include="Scripts\Views\Graduate.Edit.ts" />
-    <Content Include="Views\Graduate\JobApplication.cshtml" />
     <Content Include="Views\Account\EmployerLogin.cshtml" />
     <Content Include="Views\Graduate\Edit.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />

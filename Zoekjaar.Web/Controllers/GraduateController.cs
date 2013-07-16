@@ -38,8 +38,25 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			this.GraduateRepository.Attach(model.Graduate);
-			this.GraduateRepository.SaveChanges();
+			if (this.ModelState.IsValid)
+			{
+				try
+				{
+					this.GraduateRepository.Attach(model.Graduate);
+					this.GraduateRepository.SaveChanges();
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
+
 			return this.View(model);
 		}
 
@@ -59,24 +76,40 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			if (model.Template.Id == 0)
+			if (this.ModelState.IsValid)
 			{
-				model.Template.GraduateId = this.UserIdentity.EntityId;
-				this.GraduateDegreeRepository.Add(model.Template);
+				try
+				{
+					if (model.Template.Id == 0)
+					{
+						model.Template.GraduateId = this.UserIdentity.EntityId;
+						this.GraduateDegreeRepository.Add(model.Template);
+					}
+					else
+					{
+						this.GraduateDegreeRepository.Attach(model.Template);
+					}
+					this.GraduateDegreeRepository.SaveChanges();
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
 			}
 			else
 			{
-				this.GraduateDegreeRepository.Attach(model.Template);
+				model.IsSuccessful = false;
 			}
-			this.GraduateDegreeRepository.SaveChanges();
-			model.SaveSuccessful = true;
+			
 			return this.PartialView("_Education", model);
 		}
 
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
 		public ActionResult DeleteEducation(int id)
-		{
+		{			
 			this.GraduateDegreeRepository.Remove(_ => _.Id == id);
 			this.GraduateDegreeRepository.SaveChanges();
 			return this.PartialView("_Education", this.CreateEducationModel());
@@ -99,16 +132,32 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			if (model.Template.Id == 0)
+			if (this.ModelState.IsValid)
 			{
-				model.Template.GraduateId = this.UserIdentity.EntityId;
-				this.GraduateLanguageRepository.Add(model.Template);
+				try
+				{
+					if (model.Template.Id == 0)
+					{
+						model.Template.GraduateId = this.UserIdentity.EntityId;
+						this.GraduateLanguageRepository.Add(model.Template);
+					}
+					else
+					{
+						this.GraduateLanguageRepository.Attach(model.Template);
+					}
+					this.GraduateLanguageRepository.SaveChanges();
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
 			}
 			else
 			{
-				this.GraduateLanguageRepository.Attach(model.Template);
-			}
-			this.GraduateLanguageRepository.SaveChanges();
+				model.IsSuccessful = false;
+			}			
 
 			return this.PartialView("_Language", model);
 		}
@@ -138,16 +187,33 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			if (model.Template.Id == 0)
+			if (this.ModelState.IsValid)
 			{
-				model.Template.GraduateId = this.UserIdentity.EntityId;
-				this.GraduateExperienceRepository.Add(model.Template);
+				try
+				{
+					if (model.Template.Id == 0)
+					{
+						model.Template.GraduateId = this.UserIdentity.EntityId;
+						this.GraduateExperienceRepository.Add(model.Template);
+					}
+					else
+					{
+						this.GraduateExperienceRepository.Attach(model.Template);
+					}
+					this.GraduateExperienceRepository.SaveChanges();
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
 			}
 			else
 			{
-				this.GraduateExperienceRepository.Attach(model.Template);
+				model.IsSuccessful = false;
 			}
-			this.GraduateExperienceRepository.SaveChanges();
+			
 			return this.PartialView("_Experience", model);
 		}
 
@@ -176,11 +242,27 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
-			var graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId);
+			if (this.ModelState.IsValid)
+			{
+				try
+				{
+					var graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId);
 
-			graduate.LinkedIn = model.LinkedIn;
-			graduate.GooglePlus = model.GooglePlus;
-
+					graduate.LinkedIn = model.LinkedIn;
+					graduate.GooglePlus = model.GooglePlus;
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
+						
 			this.GraduateRepository.SaveChanges();
 			return this.PartialView("_Link", model);
 		}

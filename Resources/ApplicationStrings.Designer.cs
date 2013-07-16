@@ -70,6 +70,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Applications.
+        /// </summary>
+        public static string ActiveApplications {
+            get {
+                return ResourceManager.GetString("ActiveApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -250,6 +259,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed!.
+        /// </summary>
+        public static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Featured.
         /// </summary>
         public static string Featured {
@@ -367,6 +385,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job.
+        /// </summary>
+        public static string Job {
+            get {
+                return ResourceManager.GetString("Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Description.
         /// </summary>
         public static string JobDescription {
@@ -480,6 +507,15 @@ namespace Zoekjaar.Resources {
         public static string LoginCreateProfile {
             get {
                 return ResourceManager.GetString("LoginCreateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logo.
+        /// </summary>
+        public static string Logo {
+            get {
+                return ResourceManager.GetString("Logo", resourceCulture);
             }
         }
         
@@ -610,6 +646,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to posting.
+        /// </summary>
+        public static string Posting {
+            get {
+                return ResourceManager.GetString("Posting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post Job.
         /// </summary>
         public static string PostJob {
@@ -691,6 +736,24 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to saved.
+        /// </summary>
+        public static string Saved {
+            get {
+                return ResourceManager.GetString("Saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to saving.
+        /// </summary>
+        public static string Saving {
+            get {
+                return ResourceManager.GetString("Saving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -741,6 +804,15 @@ namespace Zoekjaar.Resources {
         public static string StartDate {
             get {
                 return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success!.
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
             }
         }
         

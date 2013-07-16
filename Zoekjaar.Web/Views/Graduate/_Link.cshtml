@@ -6,6 +6,22 @@
 <div class="headline">
 	<h4>@ApplicationStrings.OtherLinks</h4>
 </div>
+
+@if (Model.IsSuccessful.HasValue)
+{
+	string message;
+	if (Model.IsSuccessful.Value)
+	{
+		message = string.Format("{1} {0}", ApplicationStrings.Saved, ApplicationStrings.OtherLinks);
+	<div class="alert alert-success"><strong>@ApplicationStrings.Success</strong>  @message</div>
+	}
+	else
+	{
+		message = string.Format("Error {0} {1}", ApplicationStrings.Saving, ApplicationStrings.OtherLinks);
+	<div class="alert alert-error"><strong>@ApplicationStrings.Failed</strong> @message</div>
+	}
+}
+
 <div class="controls">
 	@Html.LabelFor(_ => _.LinkedIn)
 	@Html.TextBoxFor(_ => _.LinkedIn, new { @class = "span12" })

@@ -11,6 +11,6 @@ namespace Zoekjaar.Web.Models
 
 		public virtual IEnumerable<TEntity> Items { get; set; }
 
-		public bool? SaveSuccessful { get; set; }
+		public bool? IsSuccessful { get; set; }
 	}
 }

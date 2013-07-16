@@ -14,32 +14,32 @@ namespace Entities
     
     public partial class Job
     {
-        public Job()
-        {
-            this.JobApplications = new HashSet<JobApplication>();
-        }
+    	public Job()
+    	{
+    		this.JobApplications = new HashSet<JobApplication>();
+    	}
     
-        public int Id { get; set; }
-        public int CompanyId { get; set; }
-        public string JobNumber { get; set; }
-        public string Title { get; set; }
-        public string HiringManager { get; set; }
-        public string HrManager { get; set; }
-        public int JobTypeId { get; set; }
-        public string JobFunction { get; set; }
-        public string OrgLevel { get; set; }
-        public string JobDescription { get; set; }
-        public string Criteria { get; set; }
-        public string Degree { get; set; }
-        public string Specialisation { get; set; }
-        public string OtherCriteria { get; set; }
-        public int VisaStatusId { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public bool IsFeatured { get; set; }
-        public System.DateTime DatePosted { get; set; }
+    	public int Id { get; set; }
+    	public int CompanyId { get; set; }
+    	public string JobNumber { get; set; }
+    	public string Title { get; set; }
+    	public string HiringManager { get; set; }
+    	public string HrManager { get; set; }
+    	public int JobTypeId { get; set; }
+    	public string JobFunction { get; set; }
+    	public string OrgLevel { get; set; }
+    	public string JobDescription { get; set; }
+    	public string Criteria { get; set; }
+    	public string Degree { get; set; }
+    	public string Specialisation { get; set; }
+    	public string OtherCriteria { get; set; }
+    	public int VisaStatusId { get; set; }
+    	public Nullable<System.DateTime> StartDate { get; set; }
+    	public bool IsFeatured { get; set; }
+    	public System.DateTime DatePosted { get; set; }
     
-        public virtual Company Company { get; set; }
-        public virtual ICollection<JobApplication> JobApplications { get; set; }
-        public virtual Lookup JobType { get; set; }
+    	public virtual Company Company { get; set; }
+    	public virtual ICollection<JobApplication> JobApplications { get; set; }
+    	public virtual Lookup JobType { get; set; }
     }
 }

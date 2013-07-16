@@ -17,13 +17,16 @@
    {
 	   if (Model.IsSuccessful.HasValue)
 	   {
+		   string message;
 		   if (Model.IsSuccessful.Value)
 		   {
-				<div class="alert alert-success">Job Posted.</div>
+			   message = string.Format("{1} {0}", Model.Job.Id == 0 ? ApplicationStrings.Posted : ApplicationStrings.Saved, ApplicationStrings.Job);
+				<div class="alert alert-success"><strong>@ApplicationStrings.Success</strong>  @message</div>
 		   }
 		   else
-		   { 
-				<div class="alert alert-error">There was an error in saving the Job.</div>
+		   {
+			   message = string.Format("Error {0} {1}", Model.Job.Id == 0 ? ApplicationStrings.Posting : ApplicationStrings.Saving, ApplicationStrings.Job);
+				<div class="alert alert-error"><strong>@ApplicationStrings.Failed</strong> @message</div>
 		   }
 	   }
 				@Html.AntiForgeryToken()
@@ -130,7 +133,10 @@
 				<div class="controls">
 					<div class="span12">
 						@Html.ControlLabelFor(_ => _.Job.StartDate)
-						@Html.TextBoxFor(_ => _.Job.StartDate, new { @class = "span6 date-picker" })
+						<div class="input-append date date-picker" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+							@Html.TextBoxFor(_ => _.Job.StartDate, "{0:MM/dd/yyyy}", new { @class = "span12" })
+							<span class="add-on"><i class="icon-calendar"></i></span>
+						</div>
 						@Html.ControlValidationMessageFor(_ => _.Job.StartDate)
 					</div>
 				</div>

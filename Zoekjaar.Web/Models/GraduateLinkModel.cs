@@ -10,5 +10,7 @@ namespace Zoekjaar.Web.Models
 		public string LinkedIn { get; set; }
 
 		public string GooglePlus { get; set; }
+
+		public bool? IsSuccessful { get; set; }
 	}
 }

@@ -8,6 +8,9 @@ module Zoekjaar.Graduate {
 
 		}
 		init() {
+			var editor: any = $('.wysiwyg-editor');
+			editor.wysiwyg();
+
 			$('.collect-wysiwyg').on('click', $.proxy(this.onSubmit, this));
 
 			var uploader: any = $('#fileupload');

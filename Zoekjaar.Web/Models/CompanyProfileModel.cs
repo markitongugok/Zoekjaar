@@ -9,5 +9,7 @@ namespace Zoekjaar.Web.Models
 	public class CompanyProfileModel
 	{
 		public Company Company { get; set; }
+
+		public bool? IsSuccessful { get; set; }
 	}
 }

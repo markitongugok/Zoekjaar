@@ -34,10 +34,26 @@ namespace Zoekjaar.Web.Controllers
 			{
 				throw new ArgumentNullException("model");
 			}
+			model.IsSuccessful = null;
+			if (this.ModelState.IsValid)
+			{
+				try
+				{
+					this.CompanyRepository.Attach(model.Company);
+					this.CompanyRepository.SaveChanges();
 
-			this.CompanyRepository.Attach(model.Company);
-			this.CompanyRepository.SaveChanges();
-
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError(ex.Message, ex);
+					model.IsSuccessful = false;
+				}
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
 			return this.View(model);
 		}
 

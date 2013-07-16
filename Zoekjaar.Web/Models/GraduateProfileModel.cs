@@ -19,5 +19,7 @@ namespace Zoekjaar.Web.Models
 		public GraduateLanguage Language { get; set; }
 
 		public GraduateExperience Experience { get; set; }
+
+		public bool? IsSuccessful { get; set; }
 	}
 }

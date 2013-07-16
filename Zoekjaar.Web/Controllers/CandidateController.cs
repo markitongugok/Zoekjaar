@@ -84,8 +84,9 @@ namespace Zoekjaar.Web.Controllers
 				VisaStatus = this.GetLookups("Visa Status"),
 				Criteria = new GraduateSearchCriteria
 				{
-					PageSize = CompanyController.PageSize
-				}
+					PageSize = CompanyController.PageSize,
+					EntityId = this.UserIdentity.EntityId
+				},
 			};
 		}
 

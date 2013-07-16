@@ -14,25 +14,25 @@ namespace Entities
     
     public partial class Lookup
     {
-        public Lookup()
-        {
-            this.Graduates = new HashSet<Graduate>();
-            this.Graduates1 = new HashSet<Graduate>();
-            this.GraduateLanguages = new HashSet<GraduateLanguage>();
-            this.JobApplications = new HashSet<JobApplication>();
-            this.Jobs = new HashSet<Job>();
-        }
+    	public Lookup()
+    	{
+    		this.Graduates = new HashSet<Graduate>();
+    		this.Graduates1 = new HashSet<Graduate>();
+    		this.GraduateLanguages = new HashSet<GraduateLanguage>();
+    		this.JobApplications = new HashSet<JobApplication>();
+    		this.Jobs = new HashSet<Job>();
+    	}
     
-        public int Id { get; set; }
-        public int LookupTypeId { get; set; }
-        public string Name { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsDefault { get; set; }
+    	public int Id { get; set; }
+    	public int LookupTypeId { get; set; }
+    	public string Name { get; set; }
+    	public bool IsActive { get; set; }
+    	public bool IsDefault { get; set; }
     
-        public virtual ICollection<Graduate> Graduates { get; set; }
-        public virtual ICollection<Graduate> Graduates1 { get; set; }
-        public virtual ICollection<GraduateLanguage> GraduateLanguages { get; set; }
-        public virtual ICollection<JobApplication> JobApplications { get; set; }
-        public virtual ICollection<Job> Jobs { get; set; }
+    	public virtual ICollection<Graduate> Graduates { get; set; }
+    	public virtual ICollection<Graduate> Graduates1 { get; set; }
+    	public virtual ICollection<GraduateLanguage> GraduateLanguages { get; set; }
+    	public virtual ICollection<JobApplication> JobApplications { get; set; }
+    	public virtual ICollection<Job> Jobs { get; set; }
     }
 }

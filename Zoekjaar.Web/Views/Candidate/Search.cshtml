@@ -51,12 +51,23 @@
 			<table class="table table-striped">
 				<tr>
 					<th>@ApplicationStrings.Name</th>
+					<th>@ApplicationStrings.VisaStatus</th>
+					<th>@ApplicationStrings.CurrentStatus</th>
+					<th>@ApplicationStrings.ActiveApplications</th>
 				</tr>
 				@foreach (var graduate in Model.Graduates)
 	{
 		currentRoute[RouteConfig.Id] = graduate.GraduateId;
 					<tr>
 						<td>@Html.ActionLink(graduate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
+						<td>@Html.DisplayFor(_ => graduate.VisaStatus)</td>
+						<td>@Html.DisplayFor(_ => graduate.CurrentStatus)</td>
+						<td>@foreach (var application in graduate.Applications)
+		  {
+			  currentRoute[RouteConfig.Id] = application.Item1;
+							<p><a href="@Url.Action("Details", "Job", currentRoute)">@application.Item2</a></p>
+		  }
+						</td>
 					</tr>
 	}
 			</table>

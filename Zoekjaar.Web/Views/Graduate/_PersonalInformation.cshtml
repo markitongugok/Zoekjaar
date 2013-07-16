@@ -33,7 +33,11 @@
 <div class="controls">
 	<div class="span12">
 		@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
-		@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, new { @class = "date-picker span6" })
+		<div class="input-append date date-picker" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+			@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, "{0:MM/dd/yyyy}", new { @class = "span12" })
+			<span class="add-on"><i class="icon-calendar"></i></span>
+		</div>
+
 	</div>
 </div>
 <div class="controls">

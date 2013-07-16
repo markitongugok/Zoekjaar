@@ -50,6 +50,13 @@ module Zoekjaar.Graduate {
 		viewLoaded(data: any) {
 			var container = $('.profile-container');
 			container.html(data);
+			
+			var editor: any = $('.wysiwyg-editor');
+			editor.wysiwyg();
+
+			$(".date-picker").datepicker({
+				format: 'mm/dd/yyyy'
+			});
 		}
 		onAddDegreeClick(e: JQueryEventObject) {
 			var container = $('.template-container');

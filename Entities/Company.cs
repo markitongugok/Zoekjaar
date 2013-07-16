@@ -14,25 +14,25 @@ namespace Entities
     
     public partial class Company
     {
-        public Company()
-        {
-            this.Jobs = new HashSet<Job>();
-        }
+    	public Company()
+    	{
+    		this.Jobs = new HashSet<Job>();
+    	}
     
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Sector { get; set; }
-        public string City { get; set; }
-        public string Profile { get; set; }
-        public string Website { get; set; }
-        public string LinkedIn { get; set; }
-        public string GooglePlus { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsFeatured { get; set; }
-        public string LogoUrl { get; set; }
+    	public int Id { get; set; }
+    	public int UserId { get; set; }
+    	public string Name { get; set; }
+    	public string Sector { get; set; }
+    	public string City { get; set; }
+    	public string Profile { get; set; }
+    	public string Website { get; set; }
+    	public string LinkedIn { get; set; }
+    	public string GooglePlus { get; set; }
+    	public bool IsActive { get; set; }
+    	public bool IsFeatured { get; set; }
+    	public string LogoUrl { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual ICollection<Job> Jobs { get; set; }
+    	public virtual User User { get; set; }
+    	public virtual ICollection<Job> Jobs { get; set; }
     }
 }

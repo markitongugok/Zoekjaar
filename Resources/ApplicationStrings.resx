@@ -363,4 +363,28 @@
   <data name="ProfessionalExperience" xml:space="preserve">
     <value>Professional Experience</value>
   </data>
+  <data name="ActiveApplications" xml:space="preserve">
+    <value>Active Applications</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed!</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="Logo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="Posting" xml:space="preserve">
+    <value>posting</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>saved</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>saving</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success!</value>
+  </data>
 </root>

@@ -14,7 +14,7 @@ namespace Entities
     
     public partial class LookupType
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+    	public int Id { get; set; }
+    	public string Name { get; set; }
     }
 }
