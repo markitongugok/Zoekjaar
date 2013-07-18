@@ -18,5 +18,14 @@ namespace Zoekjaar.Web.Extensions
 			items.Insert(0, new Tuple<int?, string>(null, ApplicationStrings.Select));
 			return new SelectList(items, "Item1", "Item2");
 		}
+
+		public static SelectList ToSelectList(this object @this, object selectedValue)
+		{
+			var items = Enum.GetValues(@this.GetType())
+				.Cast<object>()
+				.Select(_ => new Tuple<int?, string>((int)_, _.GetDisplayName())).ToList();
+			items.Insert(0, new Tuple<int?, string>(null, ApplicationStrings.Select));
+			return new SelectList(items, "Item1", "Item2", selectedValue);
+		}
 	}
 }

@@ -6,6 +6,7 @@
 @model GraduateProfileModel
 
 @{
+	ViewBag.Title = ApplicationStrings.Profile;
 	var currentStatus = ((Identifiers.CurrentStatus)Model.Graduate.CurrentStatusId).GetDisplayName();
 	var visaStatus = ((Identifiers.VisaStatus)Model.Graduate.VisaStatusId).GetDisplayName();
 }

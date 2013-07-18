@@ -23,7 +23,6 @@ namespace Business
 					Website = _.Website,
 					LogoUrl = _.LogoUrl
 				}).Single();
-			//throw new NotImplementedException();
 		}
 
 		public IEnumerable<CompanyView> FetchFeaturedCompanies()

@@ -4,6 +4,7 @@
 @using Zoekjaar.Resources
 @using Core.Extensions
 @using Entities
+@using Core.Annotations
 
 @{
 	ViewBag.Title = ApplicationStrings.SearchJobs;
@@ -29,7 +30,7 @@
 			<div class="controls">
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.JobTypeId)
-					@Html.DropDownListFor(_ => _.Criteria.JobTypeId, Identifiers.JobType.FreeLance.ToSelectList())
+					@Html.DropDownListFor(_ => _.Criteria.JobTypeId, Identifiers.JobType.Freelance.ToSelectList())
 				</div>
 				<div class="span3">
 					@Html.LabelFor(_ => _.Criteria.Function)
@@ -69,9 +70,10 @@
 		currentRoute["id"] = job.JobId;
 		currentRoute["companyId"] = job.CompanyId;
 		var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
+		var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>().ClassName;
 					<tr>
 						<td>
-							<span class="label">@jobType</span>
+							<span class="label @className">@jobType</span>
 							@Html.ActionLink(job.Title, "Details", "Job", currentRoute, null)
 						</td>
 						<td>

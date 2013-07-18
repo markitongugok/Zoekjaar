@@ -3,30 +3,36 @@
 @using Zoekjaar.Web
 @using Entities
 @using Core.Extensions
+@using Zoekjaar.Web.Extensions
 
 @{
 	ViewBag.Title = ApplicationStrings.Candidates;
+	var i = 0;
 }
 @model ViewCandidatesModel
 
 <div class="container">
 	<div class="row-fluid">
-		<table class="table table-striped">
-			<tr>
-				<th>@ApplicationStrings.Name</th>
-				<th>@ApplicationStrings.RecruitmentStatus</th>
-			</tr>
-			@foreach (var candidate in Model.Candidates)
-   {
-	   var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
-	   currentRoute[RouteConfig.Id] = candidate.GraduateId;
-	   var status = ((Identifiers.RecruitmentStage)candidate.RecruitmentStatusId).GetDisplayName();
+		@using (Html.BeginForm())
+  { 
+			<table class="table table-striped">
 				<tr>
-					<td>@Html.ActionLink(candidate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
-					<td>@status</td>
-				</tr>  
-   }
-		</table>
+					<th>@ApplicationStrings.Name</th>
+					<th>@ApplicationStrings.RecruitmentStatus</th>
+				</tr>
+				
+				@foreach (var candidate in Model.Candidates)
+	{
+		var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
+		currentRoute[RouteConfig.Id] = candidate.GraduateId;
+					<tr>
+						<td>@Html.ActionLink(candidate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
+						<td>@Html.DropDownList(string.Format("Candidates[{0}]", i), Identifiers.RecruitmentStage.Applied.ToSelectList((int?)candidate.RecruitmentStatus))</td>
+					</tr>  
+		i++;
+	}
+			</table>
 
+  }
 	</div>
 </div>

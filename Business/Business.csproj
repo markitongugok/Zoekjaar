@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjectsContainerComposer.cs" />
+    <Compile Include="Criteria\CandidateSearchCriteria.cs" />
     <Compile Include="Criteria\GraduateSearchCriteria.cs" />
     <Compile Include="CandidateView.cs" />
     <Compile Include="CandidateViewRepository.cs" />

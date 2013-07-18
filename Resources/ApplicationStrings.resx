@@ -390,4 +390,16 @@
   <data name="Select" xml:space="preserve">
     <value>Select</value>
   </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new {0}</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirm Email</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
 </root>

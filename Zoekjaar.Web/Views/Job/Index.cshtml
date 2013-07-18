@@ -1,5 +1,8 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Resources
+@using Entities
+@using Core.Extensions
+@using Core.Annotations
 
 @model JobsModel
 
@@ -28,14 +31,17 @@
 				@foreach (var job in Model.PostedJobs)
 	{
 		currentRoute["id"] = job.Id;
+		var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
+		var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>();
 					<tr>
 						<td>
 							<h3>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new Dictionary<string, object>()) <small>(@Html.DisplayFor(_ => job.JobNumber))</small></h3>
+							<span class="label @className.ClassName">@jobType</span>
 							<span>@Html.DisplayFor(_ => job.Company.City)</span>
 						</td>
 						<td>
-							<div><small><span class="label label-success">@ApplicationStrings.HiringManager</span> @Html.DisplayFor(_ => job.HiringManager)</small></div>
-							<div><small><span class="label label-success">@ApplicationStrings.HrManager</span> @Html.DisplayFor(_ => job.HrManager)</small></div>
+							<div><small><span class="label">@ApplicationStrings.HiringManager</span> @Html.DisplayFor(_ => job.HiringManager)</small></div>
+							<div><small><span class="label">@ApplicationStrings.HrManager</span> @Html.DisplayFor(_ => job.HrManager)</small></div>
 						</td>
 						<td>
 							@Html.DisplayFor(_ => job.JobFunction)

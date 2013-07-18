@@ -222,6 +222,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using Core.Annotations;
 
 <#
 BeginNamespace(code);
@@ -275,6 +276,22 @@ public static class Identifiers
 
 		foreach(var lookup in lookups)
 		{
+			var metadata = new List<string>();
+			using(var metadataCommand = connection.CreateCommand())
+			{
+				metadataCommand.CommandText = string.Format("SELECT Metadata FROM LookupMetadata WHERE LookupId = {0}", lookup.Item1);
+				var metadataReader = metadataCommand.ExecuteReader();
+				while(metadataReader.Read())
+				{
+					metadata.Add(metadataReader.GetString(0));
+				}
+			}
+			foreach(var m in metadata)
+			{
+#>
+		<#=m#>
+<#
+			}
 #>
 		[Description("<#=lookup.Item2#>")]
 		<#=SafeName(lookup.Item2)#> = <#=lookup.Item1#>,

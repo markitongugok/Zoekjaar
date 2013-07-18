@@ -23,5 +23,12 @@ namespace Core.Extensions
 				? descriptionAttribute.Description
 				: string.Empty;
 		}
+
+		public static T GetAttribute<T>(this object @this) where T: Attribute
+		{
+			var type = @this.GetType();
+
+			return type.GetMember(@this.ToString())[0].GetCustomAttributes(typeof(T), false).Cast<T>().SingleOrDefault();
+		}
 	}
 }

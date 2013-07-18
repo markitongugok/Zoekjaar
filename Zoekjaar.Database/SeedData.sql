@@ -12,6 +12,7 @@ Post-Deployment Script Template
 
 :r .\InsertLookupType.sql
 :r .\InsertLookup.sql
+:r .\InsertLookupMetadata.sql
 :r .\InsertUser.sql
 :r .\InsertGraduate.sql
 :r .\InsertCompany.sql

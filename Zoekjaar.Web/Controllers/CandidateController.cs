@@ -19,7 +19,11 @@ namespace Zoekjaar.Web.Controllers
 		{
 			var jobId = int.Parse(this.ValueProvider.GetValue("id").AttemptedValue);
 			var model = this.CreateViewCandidatesModel();
-			model.Candidates = this.CandidateRepository.Fetch(jobId);
+			model.Candidates = this.CandidateRepository.Fetch(new CandidateSearchCriteria
+			{
+				JobId = jobId,
+				CompanyId = this.UserIdentity.EntityId
+			});
 			return this.View(model);
 		}
 
@@ -103,7 +107,7 @@ namespace Zoekjaar.Web.Controllers
 					: base.CreateModel(modelType, valueProvider);
 		}
 
-		public ISearchRepository<CandidateView, int> CandidateRepository { get; set; }
+		public ISearchRepository<CandidateView, CandidateSearchCriteria> CandidateRepository { get; set; }
 
 		public ISearchRepository<JobApplicationView, int> JobsRepository { get; set; }
 

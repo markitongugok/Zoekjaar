@@ -18,11 +18,11 @@
 				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Email)
-						@Html.TextBoxFor(_ => _.Email, new { @class = "span12" })
+						@Html.EditorFor(_ => _.Email, new { @class = "span12" })
 					</div>
 					<div class="span6">
-						@Html.Label("confirm-email", "Confirm Email", new { @class = "control-label" })
-						@Html.TextBox("confirm-email", "", new { @class = "span12" })
+						@Html.LabelFor(_ => _.ConfirmEmail)
+						@Html.EditorFor(_ => _.ConfirmEmail, new { @class = "span12" })
 					</div>
 				</div>
 				<div class="controls">
@@ -31,8 +31,8 @@
 						@Html.PasswordFor(_ => _.Password, new { @class = "span12" })
 					</div>
 					<div class="span6">
-						@Html.Label("confirm-password", "Confirm Password")
-						@Html.Password("confirm-password", null, new { @class = "span12" })
+						@Html.LabelFor(_ => _.ConfirmPassword)
+						@Html.PasswordFor(_ => _.ConfirmPassword, new { @class = "span12" })
 					</div>
 				</div>
 				<div class="controls">
@@ -52,7 +52,7 @@
 					</div>
 					<div class="span6">
 						@Html.LabelFor(_ => _.Graduate.VisaStatusId)
-						@Html.DropDownListFor(_ => _.Graduate.VisaStatusId,  Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
+						@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
 					</div>
 				</div>
 				<div class="controls">

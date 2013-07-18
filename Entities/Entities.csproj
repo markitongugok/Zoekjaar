@@ -72,6 +72,8 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Metadata\Company.cs" />
+    <Compile Include="Metadata\GraduateExperience.cs" />
+    <Compile Include="Metadata\GraduateLanguage.cs" />
     <Compile Include="Metadata\Job.cs" />
     <Compile Include="Metadata\Graduate.cs" />
     <Compile Include="Metadata\GraduateDegree.cs" />
@@ -125,6 +127,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{b5b589c3-d3ed-457e-9c5e-6b7562a9759d}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{1f6c4ec0-efe3-4469-a500-6b10884d35b6}</Project>
       <Name>Resources</Name>

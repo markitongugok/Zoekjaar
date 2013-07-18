@@ -12,6 +12,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using Core.Annotations;
 
 namespace Entities
 {
@@ -102,14 +103,19 @@ namespace Entities
     	}
     	public enum JobType
     	{
-    		[Description("Free Lance")]
-    		FreeLance = 600,
+    		[Badge("label-success")]
+    		[Description("Freelance")]
+    		Freelance = 600,
+    		[Badge("label-warning")]
     		[Description("Full-Time")]
     		FullTime = 601,
+    		[Badge("label-info")]
     		[Description("Internship")]
     		Internship = 602,
+    		[Badge("label-inverse")]
     		[Description("Part-Time")]
     		PartTime = 603,
+    		[Badge("label-default")]
     		[Description("Temporary")]
     		Temporary = 604,
     	}

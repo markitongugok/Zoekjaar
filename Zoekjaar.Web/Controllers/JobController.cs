@@ -123,7 +123,7 @@ namespace Zoekjaar.Web.Controllers
 			{
 				Job = id.HasValue ? this.CompanyJobRepository.Get(_ => _.Id == id) : this.CompanyJobRepository.Create(),
 				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
-				JobTypes = Identifiers.JobType.FreeLance.ToEnumerable()
+				JobTypes = Identifiers.JobType.Freelance.ToEnumerable()
 			};
 		}
 		private JobsModel CreateJobsModel()
@@ -159,7 +159,7 @@ namespace Zoekjaar.Web.Controllers
 					PageSize = CompanyController.PageSize,
 					EntityId = this.UserIdentity != null ? (int?)this.UserIdentity.EntityId : null
 				},
-				JobTypes = Identifiers.JobType.FreeLance.ToEnumerable()
+				JobTypes = Identifiers.JobType.Freelance.ToEnumerable()
 			};
 		}
 

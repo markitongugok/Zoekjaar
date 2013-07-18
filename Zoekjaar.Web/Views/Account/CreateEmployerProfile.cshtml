@@ -20,12 +20,13 @@
 				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Email)
-						@Html.TextBoxFor(_ => _.Email, new { @class = "span12" })
+						@Html.EditorFor(_ => _.Email, new { @class = "span12" })
 						@Html.ValidationMessageFor(_ => _.Email)
 					</div>
 					<div class="span6">
-						@Html.Label("confirm-email", "Confirm Email", new { @class = "control-label" })
-						@Html.TextBox("confirm-email", "", new { @class = "span12" })
+						@Html.LabelFor(_ => _.ConfirmEmail)
+						@Html.EditorFor(_ => _.ConfirmEmail, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.ConfirmEmail)
 					</div>
 				</div>
 				<div class="controls">
@@ -35,8 +36,9 @@
 						@Html.ValidationMessageFor(_ => _.Password)
 					</div>
 					<div class="span6">
-						@Html.Label("confirm-password", "Confirm Password", new { @class = "control-label" })
-						@Html.Password("confirm-password", "", new { @class = "span12" })
+						@Html.LabelFor(_ => _.ConfirmPassword)
+						@Html.PasswordFor(_ => _.ConfirmPassword, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.ConfirmPassword)
 					</div>
 				</div>
 				<div class="controls">

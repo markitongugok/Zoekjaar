@@ -56,7 +56,7 @@
 				<div class="controls">
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.JobTypeId)
-						@Html.DropDownListFor(_ => _.Job.JobTypeId, Identifiers.JobType.FreeLance.ToSelectList(), new { @class = "span12" })
+						@Html.DropDownListFor(_ => _.Job.JobTypeId, Identifiers.JobType.Freelance.ToSelectList(), new { @class = "span12" })
 						@Html.ControlValidationMessageFor(_ => _.Job.JobTypeId)
 					</div>
 					<div class="span6">

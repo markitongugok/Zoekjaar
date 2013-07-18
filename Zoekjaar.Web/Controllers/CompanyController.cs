@@ -72,7 +72,14 @@ namespace Zoekjaar.Web.Controllers
 
 			try
 			{
-				var filename = this.UploadFile(file);
+				var company = this.CompanyRepository.Get(_ => _.Id == this.UserIdentity.EntityId);
+				if (string.IsNullOrEmpty(company.LogoUrl))
+				{
+					company.LogoUrl = string.Format("{0}.png", Guid.NewGuid());
+					this.CompanyRepository.SaveChanges();
+				}
+
+				var filename = this.UploadFile(file, company.LogoUrl);
 
 				// Return JSON
 				return Json(new
@@ -95,15 +102,15 @@ namespace Zoekjaar.Web.Controllers
 			}
 		}
 
-		private string UploadFile(HttpPostedFileBase file)
+		private string UploadFile(HttpPostedFileBase file, string filename)
 		{
 			// Initialize variables we'll need for resizing and saving
 			var width = 100;
 			var height = 100;
 
-			var relativePath = string.Format("/Content/Images/Companies/{0}/", this.UserIdentity.EntityId);
+			var relativePath = "/Content/Images/Companies/";
 			var absPath = this.HttpContext.Server.MapPath(relativePath);
-			var absFileAndPath = string.Format("{0}{1}", absPath, file.FileName);
+			var absFileAndPath = string.Format("{0}{1}", absPath, filename);
 
 			// Create directory as necessary and save image on server
 			if (!Directory.Exists(absPath))
@@ -121,10 +128,10 @@ namespace Zoekjaar.Web.Controllers
 			var b = ImageResizer.ImageBuilder.Current.Build(absFileAndPath, resizeSettings);
 
 			// Save resized image
-			b.Save(absFileAndPath);
+			b.Save(absFileAndPath, System.Drawing.Imaging.ImageFormat.Png);
 
 			// Return relative file path
-			return string.Format("..{0}{1}", relativePath, file.FileName);
+			return string.Format("..{0}{1}", relativePath, filename);
 		}
 
 		private CompanyProfileModel CreateProfileModel()

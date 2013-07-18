@@ -2,6 +2,7 @@
 @using Zoekjaar.Web.Extensions
 @using Core.Extensions
 @using Entities
+@using Core.Annotations
 
 @model IEnumerable<JobView>
 @{
@@ -13,9 +14,11 @@
  {
 	 currentRoute["id"] = job.JobId;
 	 var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
+
+	 var badgeAttribute = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>();
 		<tr>
 			<td>
-				<span class="label">@jobType</span>
+				<span class="label @badgeAttribute.ClassName">@jobType</span>
 				@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new Dictionary<string, object>())
 			</td>
 			<td>

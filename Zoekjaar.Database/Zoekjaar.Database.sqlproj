@@ -68,6 +68,7 @@
     <Build Include="dbo\JobApplication.sql" />
     <Build Include="dbo\User.sql" />
     <None Include="InsertJob.sql" />
+    <Build Include="dbo\LookupMetadata.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="InsertLookupType.sql" />
@@ -75,6 +76,7 @@
     <None Include="InsertGraduate.sql" />
     <None Include="InsertUser.sql" />
     <None Include="InsertCompany.sql" />
+    <None Include="InsertLookupMetadata.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="SeedData.sql" />

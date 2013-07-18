@@ -15,12 +15,24 @@ namespace Zoekjaar.Web.Models
 
 		public IEnumerable<Entities.Identifiers.Proficiency> Proficiencies { get; set; }
 
+		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		public string Email { get; set; }
 
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "ConfirmEmail", ResourceType = typeof(ApplicationStrings))]
+		[Compare("Email")]
+		[Required]
+		public string ConfirmEmail { get; set; }
+
 		[Display(Name = "Password", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		public string Password { get; set; }
+
+		[Display(Name = "ConfirmPassword", ResourceType = typeof(ApplicationStrings))]
+		[Compare("Password")]
+		[Required]
+		public string ConfirmPassword { get; set; }
 	}
 }

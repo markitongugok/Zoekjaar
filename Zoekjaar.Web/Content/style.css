@@ -59,3 +59,14 @@ div[data-role="editor-toolbar"] {
 .jumbotron div {
   padding-top: 100px;
 }
+div.upload-image {
+  position: relative;
+}
+div.upload-image img {
+  width: 200px;
+  height: 200px;
+}
+div.upload-image span.upload-image-overlay {
+  position: absolute;
+  bottom: 0;
+}

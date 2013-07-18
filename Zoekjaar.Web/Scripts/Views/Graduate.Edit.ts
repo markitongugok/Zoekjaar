@@ -30,12 +30,16 @@ module Zoekjaar.Graduate {
 			var editor = $('.wysiwyg-editor');
 			$(editor.data('wysiwyg-editor-target')).val(editor.html());
 			var source = $(e.target);
-			$.ajax({
-				url: source.data('target-url'),
-				data: source.closest('form').serialize(),
-				type: 'POST',
-				success: $.proxy(this.viewLoaded, this)
-			});
+			var form = source.closest('form');
+			form.validate();
+			if (form.valid()) {
+				$.ajax({
+					url: source.data('target-url'),
+					data: form.serialize(),
+					type: 'POST',
+					success: $.proxy(this.viewLoaded, this)
+				});
+			}
 			e.preventDefault();
 		}
 		onMenuClick(e: JQueryEventObject) {
@@ -50,13 +54,19 @@ module Zoekjaar.Graduate {
 		viewLoaded(data: any) {
 			var container = $('.profile-container');
 			container.html(data);
-			
+
 			var editor: any = $('.wysiwyg-editor');
 			editor.wysiwyg();
 
 			$(".date-picker").datepicker({
 				format: 'mm/dd/yyyy'
 			});
+
+			var form = container.closest('form');
+			form.removeData("validator");
+			form.removeData("unobtrusiveValidation");
+			var validator: any = $.validator;
+			validator.unobtrusive.parse(form);
 		}
 		onAddDegreeClick(e: JQueryEventObject) {
 			var container = $('.template-container');

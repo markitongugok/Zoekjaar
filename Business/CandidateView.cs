@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entities;
 using Zoekjaar.Resources;
 
 namespace Business
@@ -15,6 +16,6 @@ namespace Business
 		public string Name { get; set; }
 
 		[Display(Name = "RecruitmentStatus", ResourceType = typeof(ApplicationStrings))]
-		public int? RecruitmentStatusId { get; set; }
+		public Identifiers.RecruitmentStage? RecruitmentStatus { get; set; }
 	}
 }

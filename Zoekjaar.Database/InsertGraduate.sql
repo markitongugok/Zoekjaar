@@ -1,5 +1,5 @@
 ﻿; WITH Graduate_CTE (Id, UserId, FirstName, LastName, [Profile], CurrentStatusId, VisaStatusId, AvailableFromDate, IsActive) AS (
-		  SELECT 1, 1, 'Admin', 'Graduate', 'Admin Graduate Profile', 1, 1, getdate(), 1
+		  SELECT 1, 1, 'Admin', 'Graduate', 'Admin Graduate Profile', 1, 100, getdate(), 1
 ) 
 MERGE INTO dbo.Graduate
 	USING Graduate_CTE as cte

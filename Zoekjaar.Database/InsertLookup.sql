@@ -35,7 +35,7 @@
 	UNION SELECT 504, 6, 'Since Yesterday', 1, 0
 
 	/* Job Type */
-	UNION SELECT 600, 7, 'Free Lance', 1, 1
+	UNION SELECT 600, 7, 'Freelance', 1, 1
 	UNION SELECT 601, 7, 'Full-Time', 1, 0
 	UNION SELECT 602, 7, 'Internship', 1, 0
 	UNION SELECT 603, 7, 'Part-Time', 1, 0

@@ -40,7 +40,7 @@
 	  {
 		  var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 		  currentRoute["id"] = company.Id;
-		  var imageUrl = !string.IsNullOrEmpty(company.LogoUrl) ? company.LogoUrl : Url.Content("~/Content/images/logo.png");
+		  var imageUrl = !string.IsNullOrEmpty(company.LogoUrl) ? Url.Content(string.Format("~/Content/images/Companies/{0}?width:129", company.LogoUrl)) : Url.Content("~/Content/images/logo.png");
 							<li style="width: 129px; float: left; display: block;">
 								<a href="@Url.Action("Company", "Profile", currentRoute)">
 									<img src="@imageUrl" alt="@company.Name" />

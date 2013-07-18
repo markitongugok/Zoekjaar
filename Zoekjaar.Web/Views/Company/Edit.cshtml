@@ -70,14 +70,16 @@
 	
 	}
 			</div>
-
+			@{
+				var logo = string.IsNullOrEmpty(Model.Company.LogoUrl) ? "~/Content/images/logo.png" : string.Format("~/Content/images/Companies/{0}", Model.Company.LogoUrl);
+			}
 			<div class="span3">
-				<div class="thumbnail-img">
+				<div class="thumbnail-img upload-image">
 					<div class="overflow-hidden">
-						<img id="company-logo" data-src="holder.js/200x200" alt="200x200" style="width: 200px; height: 200px;" src="">
+						<img id="company-logo" data-src="holder.js/200x200" alt="200x200" src="@Url.Content(logo)">
 					</div>
-					<span class="btn btn-success fileinput-button">
-						<i class="icon icon-camera"></i>
+					<span class="btn btn-primary fileinput-button upload-image-overlay">
+						<i class="icon icon-camera"></i> <span>Change</span>
 						<input id="fileupload" type="file" name="files[]" data-url="@Url.Action("Upload")">
 					</span>
 				</div>
