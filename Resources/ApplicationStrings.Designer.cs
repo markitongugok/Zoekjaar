@@ -286,6 +286,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employers.
+        /// </summary>
+        public static string Employers {
+            get {
+                return ResourceManager.GetString("Employers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Experience.
         /// </summary>
         public static string Experience {

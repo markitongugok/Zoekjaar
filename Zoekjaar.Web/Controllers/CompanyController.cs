@@ -105,8 +105,8 @@ namespace Zoekjaar.Web.Controllers
 		private string UploadFile(HttpPostedFileBase file, string filename)
 		{
 			// Initialize variables we'll need for resizing and saving
-			var width = 100;
-			var height = 100;
+			var width = 200;
+			var height = 200;
 
 			var relativePath = "/Content/Images/Companies/";
 			var absPath = this.HttpContext.Server.MapPath(relativePath);

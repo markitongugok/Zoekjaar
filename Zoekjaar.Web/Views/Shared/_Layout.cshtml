@@ -12,6 +12,7 @@
 	@Scripts.Render("~/Content/modernizr")
 	@Styles.Render("~/Content/unifycss")
 	@Styles.Render("~/Content/style")
+	@Styles.Render("~/Content/font-awesome")
 	<link rel="stylesheet" href="~/Content/unify/css/themes/default.css" id="style_color">
 	<link rel="stylesheet" href="~/Content/unify/css/themes/headers/default.css" id="style_color-header-1">
 	@RenderSection("styles", required: false)
@@ -33,15 +34,22 @@
 		</div>
 		<div class="container">
 			<ul class="loginbar pull-right">
-				<li><a href="page_faq.html" class="login-btn">Help</a></li>
-				<li class="devider">&nbsp;</li>
+
 				@if (Request.IsAuthenticated)
 	{ 
 					<li>@Html.ActionLink(@ApplicationStrings.Logout, "Logout", "Account")</li>}
 	else
 	{ 
-					<li><a href="@Url.Action("GraduateLogin", "Account")" class="login-btn">@ApplicationStrings.Login</a></li>
+					<li>
+						<a href="#" class="login-btn">@ApplicationStrings.Login<i class="icon-sort-up"></i></a>
+						<ul class="nav-list">
+							<li><a href="@Url.Action("GraduateLogin", "Account")">@ApplicationStrings.Graduates</a></li>
+							<li><a href="@Url.Action("EmployerLogin", "Account")">@ApplicationStrings.Employers</a></li>
+						</ul>
+					</li>
 	}
+				<li class="devider">&nbsp;</li>
+				<li><a href="page_faq.html" class="login-btn">Help</a></li>
 			</ul>
 		</div>
 	</div>
@@ -179,22 +187,19 @@
 							<h3>Recent Blog Entries</h3>
 						</div>
 						<dl class="dl-horizontal">
-							<dt><a href="#">
-								</dt>
+							<dt><a href="#"></dt>
 							<dd>
 								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
 							</dd>
 						</dl>
 						<dl class="dl-horizontal">
-							<dt><a href="#">
-								</dt>
+							<dt><a href="#"></dt>
 							<dd>
 								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
 							</dd>
 						</dl>
 						<dl class="dl-horizontal">
-							<dt><a href="#">
-								</dt>
+							<dt><a href="#"></dt>
 							<dd>
 								<p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
 							</dd>
@@ -247,7 +252,7 @@
 				<div class="span8">
 					<p>2013 © Unify. ALL Rights Reserved. <a href="@Url.Action("PrivacyPolicy", "Home")">@ApplicationStrings.PrivacyPolicy</a> | <a href="@Url.Action("TermsOfService", "Home")">@ApplicationStrings.TermsOfService</a></p>
 				</div>
-				
+
 			</div>
 			<!--/row-fluid-->
 		</div>

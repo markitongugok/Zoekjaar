@@ -33,8 +33,10 @@ namespace Zoekjaar.Web
 					"~/Content/bootstrap-responsive.css"
 				));
 
+			bundles.Add(new Bundle("~/Content/font-awesome", cssTransformer).Include(
+				"~/Content/font-awesome*"));
+
 			bundles.Add(new Bundle("~/Content/unifycss", cssTransformer).Include(
-				"~/Content/font-awesome*",
 				"~/Content/unify/css/style.css",
 				"~/Content/unify/css/headers/header1.css",
 				"~/Content/unify/css/style_responsive.css",

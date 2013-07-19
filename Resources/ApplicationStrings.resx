@@ -402,4 +402,7 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
+  <data name="Employers" xml:space="preserve">
+    <value>Employers</value>
+  </data>
 </root>
