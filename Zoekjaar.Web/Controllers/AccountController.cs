@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Business.Core;
 using Business.Criteria;
 using Core;
-using Entities;
-using Zoekjaar.Web.Authentication.Contracts;
-using Zoekjaar.Web.Models;
 using Core.Extensions;
 using Entities;
+using Recaptcha.Web;
+using Recaptcha.Web.Mvc;
+using Zoekjaar.Web.Authentication.Contracts;
+using Zoekjaar.Web.Models;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -82,6 +82,12 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
+			this.VerifyCaptcha();
+
+			if (!this.ModelState.IsValid)
+			{
+				return this.View(model);
+			}
 			var generator = new PasswordGenerator(model.Password);
 			model.Graduate.User.Username = model.Email;
 			model.Graduate.User.Salt = generator.Salt.ToArray();
@@ -113,6 +119,13 @@ namespace Zoekjaar.Web.Controllers
 				throw new ArgumentNullException("model");
 			}
 
+			this.VerifyCaptcha();
+
+			if (!this.ModelState.IsValid)
+			{
+				return this.View(model);
+			}
+
 			var generator = new PasswordGenerator(model.Password);
 			model.Company.User.Username = model.Email;
 			model.Company.User.Salt = generator.Salt.ToArray();
@@ -138,6 +151,23 @@ namespace Zoekjaar.Web.Controllers
 				Authenticate = true,
 				UserTypeId = userTypeId
 			});
+		}
+
+		private void VerifyCaptcha()
+		{
+			var recaptchaHelper = this.GetRecaptchaVerificationHelper();
+
+			if (String.IsNullOrEmpty(recaptchaHelper.Response))
+			{
+				ModelState.AddModelError("", "Captcha answer cannot be empty.");
+			}
+
+			RecaptchaVerificationResult recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+
+			if (recaptchaResult != RecaptchaVerificationResult.Success)
+			{
+				ModelState.AddModelError("", "Incorrect captcha answer.");
+			}
 		}
 
 		private GraduateModel CreateGraduateModel()

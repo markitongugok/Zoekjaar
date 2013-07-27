@@ -1,6 +1,7 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Recaptcha.Web.Mvc
 
 @model CompanyModel
 @{
@@ -65,6 +66,9 @@
 					@Html.LabelFor(_ => _.Company.Profile)
 					@Html.TextAreaFor(_ => _.Company.Profile, new { @class = "span12" })
 					@Html.ValidationMessageFor(_ => _.Company.Profile)
+				</div>
+				<div class="controls">
+					@Html.Recaptcha()
 				</div>
 				<div class="controls form-inline">
 					<label class="checkbox">

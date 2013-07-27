@@ -2,6 +2,7 @@
 @using Zoekjaar.Resources
 @using Zoekjaar.Web.Extensions
 @using Entities
+@using Recaptcha.Web.Mvc
 
 @model GraduateModel
 @{
@@ -60,6 +61,9 @@
 						@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
 						@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, new { @class = "date-picker span6" })
 					</div>
+				</div>
+				<div class="controls">
+					@Html.Recaptcha()
 				</div>
 				<div class="controls form-inline">
 					<label class="checkbox">

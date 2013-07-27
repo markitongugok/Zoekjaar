@@ -14,6 +14,10 @@ namespace Business
 
 		public override void Add(Graduate entity)
 		{
+			//if (this.Context.Users.Where(g => g.Username == entity.User.Username).FirstOrDefault() != null)
+			//{
+			//	throw new ValidationException("User already exists.");
+			//}
 			entity.User.IsActive = true;
 			entity.User.UserType = 1;
 			entity.IsActive = true;
