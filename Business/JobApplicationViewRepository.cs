@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Entities;
-using Core.Extensions;
 
 namespace Business
 {
@@ -20,7 +16,10 @@ namespace Business
 					JobId = _.JobId,
 					Title = _.Job.Title,
 					DateApplied = _.DateApplied,
-					StatusId = _.StatusId
+					StatusId = _.StatusId,
+					CompanyId = _.Job.CompanyId,
+					CompanyName = _.Job.Company.Name,
+					JobTypeId = (Identifiers.JobType)_.Job.JobTypeId
 				});
 		}
 	}

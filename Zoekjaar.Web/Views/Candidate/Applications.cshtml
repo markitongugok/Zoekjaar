@@ -2,9 +2,11 @@
 @using Zoekjaar.Web.Models
 @using Entities
 @using Core.Extensions
+@using Core.Annotations
 
 @{
 	ViewBag.Title = ApplicationStrings.MyJobApplications;
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 }
 
 @model JobApplicationModel
@@ -16,18 +18,24 @@
 	  if (Model.Jobs.Count() > 0)
 	  { 
 			<table class="table table-hover">
-				<tr>
-					<th>@ApplicationStrings.DateApplied</th>
-					<th>@ApplicationStrings.Title</th>
-					<th>@ApplicationStrings.RecruitmentStatus</th>
-				</tr>
 				@foreach (var job in Model.Jobs)
 	{
 		var status = ((Identifiers.RecruitmentStage)job.StatusId).GetDisplayName();
+		currentRoute["id"] = job.JobId;
+		currentRoute["companyId"] = job.CompanyId;
+		var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
+		var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>().ClassName;
+		var htmlAttributes = new Dictionary<string, object>();
+		htmlAttributes["class"] = "text-info";
+		
 					<tr>
-						<td>@Html.DisplayFor(_ => job.DateApplied)</td>
-						<td>@Html.DisplayFor(_ => job.Title)</td>
-						<td>@status</td>
+						<td>
+							<h4>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, htmlAttributes)</h4>
+							<p class="muted">@Html.DisplayFor(_ => job.CompanyName)</p>
+							<p><span class="label @className">@jobType</span></p>
+						</td>
+						<td><span class="text-error">@ApplicationStrings.DateApplied: <strong>@Html.DisplayFor(_ => job.DateApplied)</strong></span></td>
+						<td><span class="label label-info">@status</span></td>
 					</tr>
 	}
 			</table>
