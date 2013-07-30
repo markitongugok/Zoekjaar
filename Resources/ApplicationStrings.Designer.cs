@@ -106,11 +106,29 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available From Date.
         /// </summary>
         public static string AvailableFromDate {
             get {
                 return ResourceManager.GetString("AvailableFromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -174,6 +192,24 @@ namespace Zoekjaar.Resources {
         public static string ConfirmEmail {
             get {
                 return ResourceManager.GetString("ConfirmEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Job Application.
+        /// </summary>
+        public static string ConfirmJobApplication {
+            get {
+                return ResourceManager.GetString("ConfirmJobApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to submit your application to Job &quot;{0}&quot;.  Do you want to proceed?.
+        /// </summary>
+        public static string ConfirmJobApplicationMessage {
+            get {
+                return ResourceManager.GetString("ConfirmJobApplicationMessage", resourceCulture);
             }
         }
         

@@ -438,4 +438,16 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ConfirmJobApplication" xml:space="preserve">
+    <value>Confirm Job Application</value>
+  </data>
+  <data name="ConfirmJobApplicationMessage" xml:space="preserve">
+    <value>You are about to submit your application to Job "{0}".  Do you want to proceed?</value>
+  </data>
 </root>

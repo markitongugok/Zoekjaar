@@ -85,7 +85,7 @@
 									<div>
 										@if (job.CanApply)
 		  { 
-											<button id="apply-button" class="btn btn-primary btn-mini apply" data-target-url="@Url.Action("Apply", currentRoute)">@Html.LabelFor(_ => job.CanApply)</button>
+											<button id="apply-button" class="btn btn-primary btn-mini apply" data-target-url="@Url.Action("Apply", currentRoute)" data-job-title="@job.Title">@Html.LabelFor(_ => job.CanApply)</button>
 		  }
 		  else
 		  {
@@ -123,3 +123,22 @@
 	 }
  }
 </div>
+<!-- Modal -->
+<div class="modal" id="confirm" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">@ApplicationStrings.ConfirmJobApplication</h4>
+			</div>
+			<div class="modal-body" data-format-string='@ApplicationStrings.ConfirmJobApplicationMessage'></div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">@ApplicationStrings.Cancel</a>
+				<a href="#" id="confirm-application" class="btn-u">@ApplicationStrings.Apply</a>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

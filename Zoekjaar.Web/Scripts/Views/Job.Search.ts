@@ -7,26 +7,43 @@ module Zoekjaar.Graduate {
 
 		}
 		init() {
-			$(".apply").on("click", $.proxy(this.onApply, this));
+			$(".apply").on("click", $.proxy(this.confirmApplication, this));
+			$('#confirm-application').on('click', $.proxy(this.onApply, this));
 		}
 		destroy() {
 			$(".apply").off("click");
+			$('#confirm-application').off('click');
+		}
+		confirmApplication(e: JQueryEventObject) {
+			var modal = $('#confirm');
+			var button = modal.find('#confirm-application');
+			var target = $(e.target);
+			var source = target.is('button') ? target : target.parent();
+			source.addClass('application-trigger');
+			button.attr('data-target-url', source.data('target-url'));
+			
+			var body = modal.find('.modal-body');
+			body.html('<p>' + Zoekjaar.Utility.formatString(body.data('format-string'), '<strong>' + source.data('job-title') + '</strong>') + '</p>');
+
+			(<any>modal).modal('show');
+
+			e.preventDefault();
 		}
 		onApply(e: JQueryEventObject) {
 			var target = $(e.target);
-			var source = target.is('button') ? target : target.parent();
-
 			$.ajax({
-				url: source.data("target-url"),
+				url: target.data("target-url"),
 				type: "POST",
-				success: $.proxy(this.onApplied, source),
+				success: $.proxy(this.onApplied, this),
 				cache: false
 			});
+			var modal = $('#confirm');
+			(<any>modal).modal('hide');
 			e.preventDefault();
 		}
 		onApplied(data: any) {
 			if (data) {
-				var source = $(this);
+				var source = $('.application-trigger');
 				source.parent().append('<label class="label label-info">Applied</label>');
 				source.remove();
 			}
