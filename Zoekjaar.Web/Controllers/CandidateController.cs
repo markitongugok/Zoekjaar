@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Business;
 using Business.Core;
 using Business.Criteria;
+using Core.Extensions;
 using Entities;
 using Zoekjaar.Web.Models;
-using Core.Extensions;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -25,6 +24,24 @@ namespace Zoekjaar.Web.Controllers
 				CompanyId = this.UserIdentity.EntityId
 			});
 			return this.View(model);
+		}
+
+		[Authorize(Roles = "Company")]
+		[HttpPost]
+		public ActionResult Index(CandidateStatusModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			var application = this.JobApplicationRepository.Fetch(_ => _.GraduateId == model.GraduateId && _.JobId == model.JobId).Single();
+
+			application.StatusId = model.StatusId;
+
+			this.JobApplicationRepository.SaveChanges();
+
+			return this.Json(true);
 		}
 
 		[Authorize(Roles = "Graduate")]
@@ -112,5 +129,7 @@ namespace Zoekjaar.Web.Controllers
 		public ISearchRepository<JobApplicationView, int> JobsRepository { get; set; }
 
 		public ISearchRepository<GraduateView, GraduateSearchCriteria> GraduateViewRepository { get; set; }
+
+		public IRepository<JobApplication> JobApplicationRepository { get; set; }
 	}
 }

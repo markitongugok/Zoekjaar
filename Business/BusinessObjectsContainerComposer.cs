@@ -23,6 +23,7 @@ namespace Business
 			component.RegisterType(typeof(CompanyViewRepository)).As<ISearchRepository<CompanyView, int>>();
 			component.RegisterType(typeof(CandidateViewRepository)).As<ISearchRepository<CandidateView, CandidateSearchCriteria>>();
 			component.RegisterType(typeof(JobApplicationViewRepository)).As<ISearchRepository<JobApplicationView, int>>();
+			component.RegisterType(typeof(UserRepository)).As<IRepository<User>>();
 		}
 	}
 }

@@ -81,6 +81,7 @@
     <Compile Include="SearchRepositoryBase.cs" />
     <Compile Include="UserIdentity.cs" />
     <Compile Include="UserIdentityRepository.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Core\Business.Core.csproj">

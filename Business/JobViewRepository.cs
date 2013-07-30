@@ -2,7 +2,6 @@
 using System.Linq;
 using Business.Criteria;
 using Entities;
-using Core.Extensions;
 
 namespace Business
 {
@@ -66,6 +65,7 @@ namespace Business
 					StartDate = _.Job.StartDate,
 					CandidateCount = _.Applicants.Count(),
 					CanApply = !_.Applicants.Any(__ => criteria.EntityId == null || __.GraduateId == criteria.EntityId),
+					MyStatus = _.Applicants.Where(a => a.GraduateId == criteria.EntityId).Select(a => ((Identifiers.RecruitmentStage)a.StatusId)).FirstOrDefault(),
 					IsFeatured = _.Job.IsFeatured,
 					LogoUrl = _.Job.Company.LogoUrl,
 					DatePosted = _.Job.DatePosted
@@ -100,7 +100,7 @@ namespace Business
 		{
 			return this.Context.Jobs
 				.OrderByDescending(_ => _.DatePosted)
-				.Where(_ => _.JobTypeId != (int)Identifiers.JobType.Internship && _.IsFeatured)
+				.Where(_ => _.IsFeatured)
 				.Select(_ => new JobView
 				{
 					JobId = _.Id,

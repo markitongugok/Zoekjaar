@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Extensions
 {
@@ -13,7 +11,7 @@ namespace Core.Extensions
 		{
 			return Enum.GetValues(@this.GetType()).Cast<T>().AsEnumerable();
 		}
-				
+
 		public static string GetDisplayName<T>(this T @this)
 		{
 			var type = @this.GetType();
@@ -24,7 +22,7 @@ namespace Core.Extensions
 				: string.Empty;
 		}
 
-		public static T GetAttribute<T>(this object @this) where T: Attribute
+		public static T GetAttribute<T>(this object @this) where T : Attribute
 		{
 			var type = @this.GetType();
 

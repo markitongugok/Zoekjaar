@@ -19,15 +19,20 @@
 				<tr>
 					<th>@ApplicationStrings.Name</th>
 					<th>@ApplicationStrings.RecruitmentStatus</th>
+					<th>@ApplicationStrings.Actions</th>
 				</tr>
-				
+
 				@foreach (var candidate in Model.Candidates)
 	{
 		var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 		currentRoute[RouteConfig.Id] = candidate.GraduateId;
+		var id = string.Format("Candidates[{0}]", i);
+		var safeId = string.Format("Candidates_{0}_", i);
 					<tr>
 						<td>@Html.ActionLink(candidate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
-						<td>@Html.DropDownList(string.Format("Candidates[{0}]", i), Identifiers.RecruitmentStage.Applied.ToSelectList((int?)candidate.RecruitmentStatus))</td>
+						<td>@Html.DropDownList(id, Identifiers.RecruitmentStage.Applied.ToSelectList((int?)candidate.RecruitmentStatus))</td>
+						<td>
+							<button id="save" class="btn-u" data-job-id="@this.ViewContext.RouteData.Values[RouteConfig.Id]" data-candidate-id="@candidate.GraduateId" data-target-url="@Url.Action("Index", currentRoute)" data-control-selector="@safeId">@ApplicationStrings.SaveChanges</button>
 					</tr>  
 		i++;
 	}

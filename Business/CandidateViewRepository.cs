@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Entities;
-using Core.Extensions;
 using Business.Criteria;
+using Entities;
 
 namespace Business
 {
@@ -18,7 +14,7 @@ namespace Business
 				.SelectMany(_ => _.JobApplications)
 				.Select(_ => new CandidateView
 				{
-					GraduateId = _.Id,
+					GraduateId = _.GraduateId,
 					Name = _.Graduate.LastName + ", " + _.Graduate.FirstName,
 					RecruitmentStatus = (Identifiers.RecruitmentStage)_.StatusId,
 				});

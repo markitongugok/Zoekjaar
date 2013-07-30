@@ -8,6 +8,7 @@ using Core.Extensions;
 using Entities;
 using Recaptcha.Web;
 using Recaptcha.Web.Mvc;
+using Zoekjaar.Resources;
 using Zoekjaar.Web.Authentication.Contracts;
 using Zoekjaar.Web.Models;
 
@@ -15,6 +16,8 @@ namespace Zoekjaar.Web.Controllers
 {
 	public class AccountController : ControllerBase
 	{
+		public const string ChangePasswordKey = "ChangePassword";
+
 		public ActionResult GraduateLogin()
 		{
 			var model = new UserAccountModel
@@ -142,6 +145,42 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
+		[Authorize]
+		public ActionResult ChangePassword()
+		{
+			var model = new ChangePasswordModel();
+			return this.View(model);
+		}
+
+		[Authorize]
+		[HttpPost]
+		public ActionResult ChangePassword(ChangePasswordModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+			var generator = new PasswordGenerator(model.CurrentPassword);
+
+			var user = this.UserRepository.Fetch(_ => _.Id == this.UserIdentity.UserId).Single();
+
+			if (!generator.Password.ToArray().IsEqualTo(user.Hash))
+			{
+				this.ModelState.AddModelError(AccountController.ChangePasswordKey, ApplicationStrings.IncorrectPassword);
+				model.IsSuccessful = false;
+				return this.View(model);
+			}
+
+			generator = new PasswordGenerator(model.NewPassword);
+			user.Salt = generator.Salt.ToArray();
+			user.Hash = generator.Password.ToArray();
+			this.UserRepository.SaveChanges();
+
+			model.IsSuccessful = true;
+
+			return this.View(model);
+		}
+
 		private bool IsAuthenticated(string username, string password, int userTypeId)
 		{
 			return this.Authentication.Login(new UserIdentityCriteria
@@ -159,14 +198,14 @@ namespace Zoekjaar.Web.Controllers
 
 			if (String.IsNullOrEmpty(recaptchaHelper.Response))
 			{
-				ModelState.AddModelError("", "Captcha answer cannot be empty.");
+				this.ModelState.AddModelError("", "Captcha answer cannot be empty.");
 			}
 
 			RecaptchaVerificationResult recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
 
 			if (recaptchaResult != RecaptchaVerificationResult.Success)
 			{
-				ModelState.AddModelError("", "Incorrect captcha answer.");
+				this.ModelState.AddModelError("", "Incorrect captcha answer.");
 			}
 		}
 
@@ -209,6 +248,8 @@ namespace Zoekjaar.Web.Controllers
 		public IApplicationAuthentication Authentication { get; set; }
 
 		public IRepository<Company> CompanyRepository { get; set; }
+
+		public IRepository<User> UserRepository { get; set; }
 	}
 
 }

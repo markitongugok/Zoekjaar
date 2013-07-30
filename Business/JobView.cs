@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Entities;
 using Zoekjaar.Resources;
 namespace Business
 {
 	public sealed class JobView
 	{
 		public int JobId { get; set; }
-		
+
 		[Display(Name = "Company", ResourceType = typeof(ApplicationStrings))]
 		public int CompanyId { get; set; }
 
@@ -58,5 +59,7 @@ namespace Business
 
 		[Display(Name = "Featured", ResourceType = typeof(ApplicationStrings))]
 		public bool IsFeatured { get; set; }
+
+		public Identifiers.RecruitmentStage? MyStatus { get; set; }
 	}
 }

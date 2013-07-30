@@ -14,61 +14,62 @@
 	@using (Html.BeginForm())
  {
 		@Html.AntiForgeryToken()
-		
-		<div class="pull-right margin-bottom-20">
-			<a href="@Url.Action("AddOrEdit")" class="btn-u">@ApplicationStrings.Add</a>
-		</div>
-		<div class="row-fluid">
-			<table class="table table-striped posted-jobs">
-				<tr>
-					<th>@ApplicationStrings.Title</th>
-					<th>@ApplicationStrings.Description</th>
-					<th>@ApplicationStrings.JobFunction</th>
-					<th>@ApplicationStrings.DatePosted</th>
-					<th>@ApplicationStrings.Candidates</th>
-					<th>@ApplicationStrings.Options</th>
-				</tr>
-				@foreach (var job in Model.PostedJobs)
-	{
-		currentRoute["id"] = job.Id;
-		var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
-		var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>();
+		<div class="boxed">
+			<div class="pull-right margin-bottom-20">
+				<a href="@Url.Action("AddOrEdit")" class="btn-u">@ApplicationStrings.Add</a>
+			</div>
+			<div class="row-fluid">
+				<table class="table posted-jobs table-hover">
 					<tr>
-						<td>
-							<h3>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new Dictionary<string, object>()) <small>(@Html.DisplayFor(_ => job.JobNumber))</small></h3>
-							<span class="label @className.ClassName">@jobType</span>
-							<span>@Html.DisplayFor(_ => job.Company.City)</span>
-						</td>
-						<td>
-							<div><small><span class="label">@ApplicationStrings.HiringManager</span> @Html.DisplayFor(_ => job.HiringManager)</small></div>
-							<div><small><span class="label">@ApplicationStrings.HrManager</span> @Html.DisplayFor(_ => job.HrManager)</small></div>
-						</td>
-						<td>
-							@Html.DisplayFor(_ => job.JobFunction)
-						</td>
-						<td>
-							@Html.DisplayFor(_ => job.StartDate)
-						</td>
-						<td>
-							@{
-		var count = job.JobApplications.Select(__ => __.GraduateId).Distinct().Count();
-		var active = string.Format("{0} active", count);
-								<span>@active</span>
-							}
-						</td>
-						<td>
-							<ul class="unstyled who inline">
-								<li><a href="@Url.Action("AddOrEdit", "Job", currentRoute)"><i class="icon-edit"></i></a></li>
-								@if (count > 0)
-		{ 
-									<li><a href="@Url.Action("Index", "Candidate", currentRoute)"><i class="icon-group"></i></a></li>
-		}
-							</ul>
-						</td>
+						<th>@ApplicationStrings.Title</th>
+						<th>@ApplicationStrings.Description</th>
+						<th>@ApplicationStrings.JobFunction</th>
+						<th>@ApplicationStrings.DatePosted</th>
+						<th>@ApplicationStrings.Candidates</th>
+						<th>@ApplicationStrings.Options</th>
 					</tr>
+					@foreach (var job in Model.PostedJobs)
+	 {
+		 currentRoute["id"] = job.Id;
+		 var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
+		 var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>();
+						<tr>
+							<td>
+								<h3>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new Dictionary<string, object>()) <small>(@Html.DisplayFor(_ => job.JobNumber))</small></h3>
+								<span class="label @className.ClassName">@jobType</span>
+								<span>@Html.DisplayFor(_ => job.Company.City)</span>
+							</td>
+							<td>
+								<div><small><span class="label">@ApplicationStrings.HiringManager</span> @Html.DisplayFor(_ => job.HiringManager)</small></div>
+								<div><small><span class="label">@ApplicationStrings.HrManager</span> @Html.DisplayFor(_ => job.HrManager)</small></div>
+							</td>
+							<td>
+								@Html.DisplayFor(_ => job.JobFunction)
+							</td>
+							<td>
+								@Html.DisplayFor(_ => job.StartDate)
+							</td>
+							<td>
+								@{
+		 var count = job.JobApplications.Select(__ => __.GraduateId).Distinct().Count();
+		 var active = string.Format("{0} active", count);
+									<span>@active</span>
+								}
+							</td>
+							<td>
+								<ul class="unstyled who inline">
+									<li><a class="tooltip-trigger" href="@Url.Action("AddOrEdit", "Job", currentRoute)" data-toggle="tooltip" data-placement="top" title="" data-original-title="@ApplicationStrings.Edit"><i class="icon-edit icon-2x"></i></a></li>
+									@if (count > 0)
+		 { 
+										<li><a class="tooltip-trigger" href="@Url.Action("Index", "Candidate", currentRoute)" data-toggle="tooltip" data-placement="top" title="" data-original-title="@ApplicationStrings.ActiveApplications"><i class="icon-group icon-2x"></i></a></li>
+		 }
+								</ul>
+							</td>
+						</tr>
 
-	}
-			</table>
+	 }
+				</table>
+			</div>
 		</div>
  }
 </div>

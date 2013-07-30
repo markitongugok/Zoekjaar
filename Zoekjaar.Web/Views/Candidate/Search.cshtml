@@ -6,18 +6,18 @@
 @using Entities
 
 @{
-	ViewBag.Title = ApplicationStrings.SearchJobs;
+	ViewBag.Title = ApplicationStrings.SearchGraduates;
 	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
 }
 
 @model GraduateSearchModel
 
 <div class="container">
-	<div class="row-fluid">
-		@using (Html.BeginForm())
-  {
+	@using (Html.BeginForm())
+ {
+		<div class="row-fluid">
 			@Html.AntiForgeryToken()
-		
+
 			<div class="controls">
 				<div class="span12">
 					<div class="input-append">
@@ -26,74 +26,71 @@
 					</div>
 				</div>
 			</div>
-			<div class="controls">
-				<div class="span3">
-					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
-					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList())
-				</div>
-				<div class="span3">
-					@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
-					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList())
-				</div>
-			</div>
-		
-  }
-	</div>
-</div>
-<div class="container">
-	<div class="row-fluid search-page">
 
-		@{
-			if (Model.Criteria.TotalRecords.HasValue)
-			{
-				if (Model.Graduates.Any())
-				{
-			<div class="alert alert-success">We found <strong>@Model.Criteria.TotalRecords</strong> matches.</div>
-			<table class="table table-striped">
-				<tr>
-					<th>@ApplicationStrings.Name</th>
-					<th>@ApplicationStrings.VisaStatus</th>
-					<th>@ApplicationStrings.CurrentStatus</th>
-					<th>@ApplicationStrings.ActiveApplications</th>
-				</tr>
-				@foreach (var graduate in Model.Graduates)
-	{
-		currentRoute[RouteConfig.Id] = graduate.GraduateId;
-					<tr>
-						<td>@Html.ActionLink(graduate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
-						<td>@Html.DisplayFor(_ => graduate.VisaStatus)</td>
-						<td>@Html.DisplayFor(_ => graduate.CurrentStatus)</td>
-						<td>@foreach (var application in graduate.Applications)
-		  {
-			  currentRoute[RouteConfig.Id] = application.Item1;
-							<p><a href="@Url.Action("Details", "Job", currentRoute)">@application.Item2</a></p>
-		  }
-						</td>
-					</tr>
-	}
-			</table>
-			<div class="pagination">
-				<ul>
-					@for (var i = 0; i < (Model.Criteria.TotalRecords / CompanyController.PageSize) + (Model.Criteria.TotalRecords % CompanyController.PageSize > 0 ? 1 : 0); i++)
+		</div>
+	 if (Model.Criteria.TotalRecords.HasValue)
 	 {
-		 currentRoute["pageNumber"] = i;
-
-						<li><a href="@Url.Action("Search", currentRoute)">@(i + 1)</a></li>
-	 }
-				</ul>
+		 if (Model.Graduates.Any())
+		 {
+		<div class="row-fluid search-page">
+			<div class="alert alert-success">We found <strong>@Model.Criteria.TotalRecords</strong> matches.</div>
+		</div>
+		<div class="row-fluid search-page">
+			<div class="span3 boxed">
+				<div class="controls">
+					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
+					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "auto-submit" })
+					@Html.LabelFor(_ => _.Criteria.CurrentStatusId)
+					@Html.DropDownListFor(_ => _.Criteria.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList(), new { @class = "auto-submit" })
+				</div>
 			</div>
-				}
-				else
-				{
+			<div class="span9 boxed">
+				<table class="table table-hover">
+					<tr>
+						<th>@ApplicationStrings.Name</th>
+						<th>@ApplicationStrings.VisaStatus</th>
+						<th>@ApplicationStrings.CurrentStatus</th>
+						<th>@ApplicationStrings.ActiveApplications</th>
+					</tr>
+					@foreach (var graduate in Model.Graduates)
+	 {
+		 currentRoute[RouteConfig.Id] = graduate.GraduateId;
+						<tr>
+							<td>@Html.ActionLink(graduate.Name, "Graduate", "Profile", currentRoute, new Dictionary<string, object>())</td>
+							<td>@Html.DisplayFor(_ => graduate.VisaStatus)</td>
+							<td>@Html.DisplayFor(_ => graduate.CurrentStatus)</td>
+							<td>@foreach (var application in graduate.Applications)
+		   {
+			   currentRoute[RouteConfig.Id] = application.Item1;
+								<p><a href="@Url.Action("Details", "Job", currentRoute)">@application.Item2</a></p>
+		   }
+							</td>
+						</tr>
+	 }
+				</table>
+				<div class="pagination">
+					<ul>
+						@for (var i = 0; i < (Model.Criteria.TotalRecords / CompanyController.PageSize) + (Model.Criteria.TotalRecords % CompanyController.PageSize > 0 ? 1 : 0); i++)
+	  {
+		  currentRoute["pageNumber"] = i;
 
+							<li><a href="@Url.Action("Search", currentRoute)">@(i + 1)</a></li>
+	  }
+					</ul>
+				</div>
+			</div>
+		</div>
+		 }
+		 else
+		 {
+		<div class="row-fluid">
 			<div class="alert alert-info">
 				<strong>Ooops!</strong>
 				We found <strong>0</strong> matches.
 			
 			</div>
-				}
-			}
-		}
-	</div>
-
+		</div>
+		 }
+	 }
+ }
 </div>

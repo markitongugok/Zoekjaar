@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Business;
 using Business.Core;
-using Business.Criteria;
-using Entities;
-using Zoekjaar.Web.Contracts;
-using Zoekjaar.Web.Models;
+using Core;
 using Core.Extensions;
+using Entities;
+using Zoekjaar.Resources;
+using Zoekjaar.Web.Models;
 
 namespace Zoekjaar.Web.Controllers
 {
@@ -268,6 +266,55 @@ namespace Zoekjaar.Web.Controllers
 			return this.PartialView("_Link", model);
 		}
 
+		[Authorize(Roles = "Graduate")]
+		public ActionResult ChangePassword()
+		{
+			var model = this.CreateChangePasswordModel();
+			return this.PartialView("_ChangePassword", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult ChangePassword(ChangePasswordModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			if (this.ModelState.IsValid)
+			{
+				try
+				{
+					var user = this.UserRepository.Fetch(_ => _.Id == this.UserIdentity.UserId).Single();
+					var generator = new PasswordGenerator(model.CurrentPassword);
+					if (!generator.Password.ToArray().IsEqualTo(user.Hash))
+					{
+						this.ModelState.AddModelError(AccountController.ChangePasswordKey, ApplicationStrings.IncorrectPassword);
+						model.IsSuccessful = false;
+						return this.PartialView("_ChangePassword", model);
+					}
+
+					generator = new PasswordGenerator(model.NewPassword);
+					user.Salt = generator.Salt.ToArray();
+					user.Hash = generator.Password.ToArray();
+					this.UserRepository.SaveChanges();
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
+
+			this.GraduateRepository.SaveChanges();
+			return this.PartialView("_ChangePassword", model);
+		}
+
 		private GraduateDegreeModel CreateEducationModel()
 		{
 			var graduateId = this.UserIdentity.EntityId;
@@ -320,6 +367,11 @@ namespace Zoekjaar.Web.Controllers
 			};
 		}
 
+		private ChangePasswordModel CreateChangePasswordModel()
+		{
+			return new ChangePasswordModel();
+		}
+
 		public override object CreateModel(Type modelType, IValueProvider valueProvider)
 		{
 			return modelType == typeof(GraduateProfileModel)
@@ -332,7 +384,9 @@ namespace Zoekjaar.Web.Controllers
 								? this.CreateExperienceModel()
 								: modelType == typeof(GraduateLinkModel)
 									? this.CreateGraduateLinkModel()
-									: Activator.CreateInstance(modelType);
+									: modelType == typeof(ChangePasswordModel)
+										? this.CreateChangePasswordModel()
+										: Activator.CreateInstance(modelType);
 		}
 
 
@@ -345,5 +399,7 @@ namespace Zoekjaar.Web.Controllers
 		public IRepository<GraduateLanguage> GraduateLanguageRepository { get; set; }
 
 		public IRepository<GraduateExperience> GraduateExperienceRepository { get; set; }
+
+		public IRepository<User> UserRepository { get; set; }
 	}
 }

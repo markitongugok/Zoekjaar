@@ -405,4 +405,22 @@
   <data name="Employers" xml:space="preserve">
     <value>Employers</value>
   </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="IncorrectPassword" xml:space="preserve">
+    <value>Password is incorrect</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
 </root>

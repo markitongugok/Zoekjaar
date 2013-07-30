@@ -21,7 +21,7 @@ module Zoekjaar {
 		}
 		static load(): void {
 			Zoekjaar.Utility.executeInitQueue();
-			
+
 			var validator: any = $('form').data('validator');
 			validator.settings.errorClass = 'error';
 			validator.settings.validClass = '';
@@ -35,6 +35,12 @@ module Zoekjaar {
 			$(".date-picker").datepicker({
 				format: 'mm/dd/yyyy'
 			});
+
+			$('.auto-submit').on('change', function (e: JQueryEventObject) {
+				var target = $(e.target);
+				target.closest('form').submit();
+				e.preventDefault();
+			});
 			App.init();
 			App.initSliders();
 		}
@@ -43,6 +49,7 @@ module Zoekjaar {
 				var view = Zoekjaar.Utility.queue[i];
 				view.destroy.call(view);
 			}
+			$('.auto-submit').off('change');
 		}
 		static formatString(...a: any[]): string {
 			var s = a[0];
