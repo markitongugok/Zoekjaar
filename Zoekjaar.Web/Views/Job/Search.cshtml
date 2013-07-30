@@ -47,6 +47,10 @@
 					@Html.LabelFor(_ => _.Criteria.VisaStatusId)
 					@Html.DropDownListFor(_ => _.Criteria.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "auto-submit" })
 				</div>
+				<div class="controls form-inline">
+					<input type="submit" class="btn-u" value="@ApplicationStrings.Search" />
+					<button class="btn btn-warning">Reset</button>
+				</div>
 			</div>
 			<div class="span9 boxed">
 				<table class="table table-striped table-hover">
@@ -65,21 +69,23 @@
 		 currentRoute["companyId"] = job.CompanyId;
 		 var jobType = ((Identifiers.JobType)job.JobTypeId).GetDisplayName();
 		 var className = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>().ClassName;
+		 var htmlAttributes = new Dictionary<string, object>();
+		 htmlAttributes["class"] = "text-info";
 						<tr>
 							<td>
-								<h3>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, new { @class = "text-info" })</h3>
+								<h4>@Html.ActionLink(job.Title, "Details", "Job", currentRoute.Values, htmlAttributes)</h4>
 								<p class="muted">@Html.DisplayFor(_ => job.CompanyName)</p>
 								<p><span class="label @className">@jobType</span></p>
 							</td>
 							<td>
-								<p class="text-error">@ApplicationStrings.Posted: @Html.DisplayFor(_ => job.DatePosted)</p>
+								<p class="text-error">@ApplicationStrings.Posted: <strong>@job.DatePosted.ToDescriptive()</strong></p>
 
 								@if (this.User.Identity.IsAuthenticated)
 		{
 									<div>
 										@if (job.CanApply)
 		  { 
-											<button id="apply-button" class="btn-u btn-mini apply" data-target-url="@Url.Action("Apply", currentRoute)">@Html.LabelFor(_ => job.CanApply)</button>
+											<button id="apply-button" class="btn btn-primary btn-mini apply" data-target-url="@Url.Action("Apply", currentRoute)">@Html.LabelFor(_ => job.CanApply)</button>
 		  }
 		  else
 		  {

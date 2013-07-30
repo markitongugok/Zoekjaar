@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Business;
 using Business.Core;
 using Business.Criteria;
+using Core.Extensions;
 using Entities;
 using Zoekjaar.Web.Models;
-using Core.Extensions;
 
 namespace Zoekjaar.Web.Controllers
 {

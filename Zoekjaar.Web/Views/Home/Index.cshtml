@@ -54,7 +54,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row-fluid">
+	<div class="row-fluid margin-bottom-10">
 		<div class="span6"><a href="@Url.Action("CreateEmployerProfile", "Account")" class="btn btn-primary btn-large btn-block">Post a Job.  It's free</a></div>
 		<div class="span6"><a href="@Url.Action("CreateGraduateProfile", "Account")" class="btn btn-success btn-large btn-block">Want a Job?  Sign up now</a></div>
 	</div>
@@ -90,14 +90,14 @@
 			@Html.Partial("_FeaturedJob", Model.FeaturedInternships)
 		</div>*@
 
-		<div class="span6">
+		<div class="span6 boxed">
 			<div class="headline">
 				<h3>@ApplicationStrings.FeaturedJobs</h3>
 			</div>
 			@Html.Partial("_FeaturedJob", Model.FeaturedJobs)
 		</div>
 
-		<div class="span6">
+		<div class="span6 boxed">
 			<div class="headline">
 				<h3>@ApplicationStrings.LatestJobs</h3>
 			</div>

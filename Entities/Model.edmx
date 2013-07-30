@@ -132,7 +132,7 @@
           <Property Name="VisaStatusId" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" />
           <Property Name="IsFeatured" Type="bit" Nullable="false" />
-          <Property Name="DatePosted" Type="date" Nullable="false" />
+          <Property Name="DatePosted" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="JobApplication">
           <Key>
@@ -489,7 +489,7 @@
           <Property Type="Int32" Name="VisaStatusId" Nullable="false" />
           <Property Type="DateTime" Name="StartDate" Precision="0" />
           <Property Type="Boolean" Name="IsFeatured" Nullable="false" />
-          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="3" />
           <NavigationProperty Name="Company" Relationship="Model.FK_CompanyJob_Company1" FromRole="Job" ToRole="Company" />
           <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_CompanyJob1" FromRole="Job" ToRole="JobApplication" />
         </EntityType>

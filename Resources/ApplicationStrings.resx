@@ -423,4 +423,19 @@
   <data name="PasswordChanged" xml:space="preserve">
     <value>Password changed</value>
   </data>
+  <data name="DaysAgo" xml:space="preserve">
+    <value>{0} day{1} ago</value>
+  </data>
+  <data name="HoursAgo" xml:space="preserve">
+    <value>{0} hour{1} ago</value>
+  </data>
+  <data name="JustNow" xml:space="preserve">
+    <value>Just Now</value>
+  </data>
+  <data name="MinutesAgo" xml:space="preserve">
+    <value>{0} minute{1} ago</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
 </root>
