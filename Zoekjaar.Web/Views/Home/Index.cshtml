@@ -19,46 +19,48 @@
  }
 </div>
 <div class="container">
-
 	<div class="pagination-centered sub-text">
-		<h3>Hire Skilled International Graduates.</h3>
-		<h4>A complete ecosystem for Zoekjaar students.</h4>
-		<hr />
-	</div>
-	<div class="row-fluid">
-		<div class="span4">
-			<div class="service clearfix">
-				<i class="icon-group icon-light"></i>
-				<div class="desc">
-					<h4>Post jobs</h4>
-					<p>Post Internships, FullTime , Freelance or Temporary contract jobs</p>
+			<h3>Hire Skilled International Graduates.</h3>
+			<h4>A complete ecosystem for Zoekjaar students.</h4>
+			<hr />
+		</div>
+	@if (!Request.IsAuthenticated)
+ { 
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="service clearfix">
+					<i class="icon-group icon-light"></i>
+					<div class="desc">
+						<h4>Post jobs</h4>
+						<p>Post Internships, FullTime , Freelance or Temporary contract jobs</p>
+					</div>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="service clearfix">
+					<i class="icon-cogs"></i>
+					<div class="desc">
+						<h4>Get Job applicants</h4>
+						<p>Get the Applications from Job seekers</p>
+					</div>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="service clearfix">
+					<i class="icon-plane"></i>
+					<div class="desc">
+						<h4>Hire the candidate</h4>
+						<p>Schedule the interview and select the right candidate.</p>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="span4">
-			<div class="service clearfix">
-				<i class="icon-cogs"></i>
-				<div class="desc">
-					<h4>Get Job applicants</h4>
-					<p>Get the Applications from Job seekers</p>
-				</div>
-			</div>
+		<div class="row-fluid margin-bottom-10">
+			<div class="span6"><a href="@Url.Action("CreateEmployerProfile", "Account")" class="btn btn-primary btn-large btn-block">Post a Job.  It's free</a></div>
+			<div class="span6"><a href="@Url.Action("CreateGraduateProfile", "Account")" class="btn btn-success btn-large btn-block">Want a Job?  Sign up now</a></div>
 		</div>
-		<div class="span4">
-			<div class="service clearfix">
-				<i class="icon-plane"></i>
-				<div class="desc">
-					<h4>Hire the candidate</h4>
-					<p>Schedule the interview and select the right candidate.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row-fluid margin-bottom-10">
-		<div class="span6"><a href="@Url.Action("CreateEmployerProfile", "Account")" class="btn btn-primary btn-large btn-block">Post a Job.  It's free</a></div>
-		<div class="span6"><a href="@Url.Action("CreateGraduateProfile", "Account")" class="btn btn-success btn-large btn-block">Want a Job?  Sign up now</a></div>
-	</div>
-	@*<div class="row-fluid">
+ }
+@*<div class="row-fluid">
 		<div class="span12">
 			<div id="clients-flexslider" class="flexslider home clients">
 				<div class="headline">
@@ -82,6 +84,7 @@
 			</div>
 		</div>
 	</div>*@
+
 	<div class="row-fluid">
 		@*<div class="span4">
 			<div class="headline">

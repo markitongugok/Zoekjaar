@@ -1,0 +1,26 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+
+@model GraduateProfileModel
+@{
+	ViewBag.Title = ApplicationStrings.MyProfile;
+}
+
+<div class="body">
+	<div class="container">
+		<div class="row-fluid margin-bottom-10">
+			@using (Html.BeginForm())
+   { 
+				<div class="span8">
+					@Html.Partial("_PersonalInformationView", Model)
+				</div>
+   }
+		</div>
+	</div>
+</div>
+
+@section scripts{
+	@Scripts.Render("~/bundles/wysiwyg")
+}
+

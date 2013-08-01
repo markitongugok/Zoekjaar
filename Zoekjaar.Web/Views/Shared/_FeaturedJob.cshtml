@@ -20,9 +20,15 @@
 	 var badgeAttribute = ((Identifiers.JobType)job.JobTypeId).GetAttribute<BadgeAttribute>();
 		<tr>
 			<td>
+				@{
+	 var imageUrl = !string.IsNullOrEmpty(job.LogoUrl) ? Url.Content(string.Format("~/Content/images/Companies/{0}", job.LogoUrl)) : Url.Content("~/Content/images/logo.png");
+				}
+				<img src="@imageUrl" alt="@job.CompanyName" style="width:100px;height:100px;" />
+			</td>
+			<td>
 				<h4>@Html.ActionLink(job.Title, "Details", "Job", currentRoute, htmlAttributes)</h4>
-								<p class="muted">@Html.DisplayFor(_ => job.CompanyName)</p>
-								<p><span class="label @badgeAttribute.ClassName">@jobType</span></p>
+				<p class="muted">@Html.DisplayFor(_ => job.CompanyName)</p>
+				<p><span class="label @badgeAttribute.ClassName">@jobType</span></p>
 			</td>
 			<td>
 				<p class="text-error">@ApplicationStrings.Posted: <strong>@job.DatePosted.ToDescriptive()</strong></p>

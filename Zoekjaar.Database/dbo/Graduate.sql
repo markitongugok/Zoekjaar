@@ -14,6 +14,7 @@
 	[GooglePlus] VARCHAR(400) NULL, 
 	[IsActive] BIT NOT NULL DEFAULT 1    
 	CONSTRAINT [FK_Graduate_CurrentStatusId_Lookup] FOREIGN KEY ([CurrentStatusId]) REFERENCES [Lookup]([Id]), 
-	CONSTRAINT [FK_Graduate_VisaStatusId_Lookup] FOREIGN KEY ([VisaStatusId]) REFERENCES [Lookup]([Id]), 
+	[LogoUrl] VARCHAR(200) NULL, 
+    CONSTRAINT [FK_Graduate_VisaStatusId_Lookup] FOREIGN KEY ([VisaStatusId]) REFERENCES [Lookup]([Id]), 
 	CONSTRAINT [FK_Graduate_UserId_User] FOREIGN KEY ([UserId]) REFERENCES [User]([Id]), 
 )

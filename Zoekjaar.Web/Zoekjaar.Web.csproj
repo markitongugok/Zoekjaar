@@ -884,6 +884,9 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Graduate.Detail.ts" />
+    <Content Include="Views\Graduate\Detail.cshtml" />
+    <Content Include="Views\Graduate\_PersonalInformationView.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Candidate.Index.ts" />
     <Content Include="Scripts\Views\Job.Index.ts" />
     <Content Include="Views\Graduate\_Education.cshtml" />

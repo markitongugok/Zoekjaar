@@ -13,6 +13,14 @@ namespace Zoekjaar.Web.Controllers
 	public sealed class GraduateController : ControllerBase
 	{
 		[Authorize(Roles = "Graduate")]
+		public ActionResult Detail()
+		{
+			var model = this.CreateProfileModel();
+
+			return this.View(model);
+		}
+
+		[Authorize(Roles = "Graduate")]
 		public ActionResult Edit()
 		{
 			var model = this.CreateProfileModel();

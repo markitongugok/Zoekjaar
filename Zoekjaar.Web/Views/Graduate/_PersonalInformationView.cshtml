@@ -1,0 +1,65 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+@using Entities
+@using Core.Extensions
+
+@model GraduateProfileModel
+
+<div id="personal-information-container" class="clients-page margin-bottom-20 view-container">
+	<a class="img-hover" href="#">
+		<img src="assets/img/clients/cisco_grey.png" alt="">
+	</a>
+	<h3>@Html.DisplayFor(_ => _.Graduate.LastName), @Html.DisplayFor(_ => _.Graduate.FirstName)</h3>
+	<p>@ApplicationStrings.CurrentStatus: @(((Identifiers.CurrentStatus)Model.Graduate.CurrentStatusId.Value).GetDisplayName())</p>
+	<p>@ApplicationStrings.VisaStatus: @(((Identifiers.VisaStatus)Model.Graduate.VisaStatusId.Value).GetDisplayName())</p>
+	<a class="graduate-menu" data-view-container-selector="#personal-information-container" data-target-url="@Url.Action("PersonalInformation", "Graduate")"><i class="icon-edit icon-2x"></i></a>
+</div>
+
+@*<div class="headline">
+	<h4>@ApplicationStrings.PersonalInformation</h4>
+</div>
+
+<div class="controls">
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.FirstName)
+		@Html.TextBoxFor(_ => _.Graduate.FirstName, new { @class = "span12" })
+	</div>
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.LastName)
+		@Html.TextBoxFor(_ => _.Graduate.LastName, new { @class = "span12" })
+	</div>
+</div>
+<div class="controls">
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.CurrentStatusId)
+		@Html.DropDownListFor(_ => _.Graduate.CurrentStatusId, Identifiers.CurrentStatus.NA.ToSelectList(), new { @class = "span12" })
+	</div>
+	<div class="span6">
+		@Html.LabelFor(_ => _.Graduate.VisaStatusId)
+		@Html.DropDownListFor(_ => _.Graduate.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
+	</div>
+</div>
+<div class="controls">
+	<div class="span12">
+		@Html.LabelFor(_ => _.Graduate.AvailableFromDate)
+		<div class="input-append date date-picker" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+			@Html.TextBoxFor(_ => _.Graduate.AvailableFromDate, "{0:MM/dd/yyyy}", new { @class = "span12" })
+			<span class="add-on"><i class="icon-calendar"></i></span>
+		</div>
+
+	</div>
+</div>
+<div class="controls">
+	<div class="span12 margin-bottom-10">
+		@Html.Label("editor", "Profile")
+		@Html.Partial("_HtmlEditor", new HtmlEditorModel
+  {
+	  Id = "editor",
+	  ModelId = "Graduate_Profile",
+	  Content = Model.Graduate.Profile
+  })
+		@Html.HiddenFor(_ => _.Graduate.Profile)
+	</div>
+</div>
+<input id="save" type="submit" name="submit-personal-information" class="btn-u pull-right btn-save" data-target-url="@Url.Action("PersonalInformation")" value="@ApplicationStrings.SaveChanges" />*@

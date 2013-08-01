@@ -81,6 +81,7 @@
           <Property Name="LinkedIn" Type="varchar" MaxLength="400" />
           <Property Name="GooglePlus" Type="varchar" MaxLength="400" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LogoUrl" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="GraduateDegree">
           <Key>
@@ -338,6 +339,7 @@
           <NavigationProperty Name="GraduateExperiences" Relationship="Model.FK_GraduateExperience_Graduate" FromRole="Graduate" ToRole="GraduateExperience" />
           <NavigationProperty Name="GraduateLanguages" Relationship="Model.FK_GraduateLanguage_Graduate" FromRole="Graduate" ToRole="GraduateLanguage" />
           <NavigationProperty Name="JobApplications" Relationship="Model.FK_JobApplication_Graduate" FromRole="Graduate" ToRole="JobApplication" />
+          <Property Type="String" Name="LogoUrl" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GraduateDegree">
           <Key>
@@ -546,6 +548,7 @@
           <EntitySetMapping Name="Graduates">
             <EntityTypeMapping TypeName="Model.Graduate">
               <MappingFragment StoreEntitySet="Graduate">
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
                 <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
