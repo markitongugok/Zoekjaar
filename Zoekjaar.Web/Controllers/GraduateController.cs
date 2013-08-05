@@ -115,6 +115,38 @@ namespace Zoekjaar.Web.Controllers
 
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
+		public ActionResult EducationView(GraduateProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			try
+			{
+				if (model.DegreeTemplate.Id == 0)
+				{
+					model.DegreeTemplate.GraduateId = this.UserIdentity.EntityId;
+					this.GraduateDegreeRepository.Add(model.DegreeTemplate);
+				}
+				else
+				{
+					this.GraduateDegreeRepository.Attach(model.DegreeTemplate);
+				}
+				this.GraduateDegreeRepository.SaveChanges();
+				model.IsSuccessful = true;
+			}
+			catch (Exception ex)
+			{
+				this.ModelState.AddModelError("Data", ex.Message);
+				model.IsSuccessful = false;
+			}
+
+			return this.PartialView("_EducationView", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
 		public ActionResult DeleteEducation(int id)
 		{
 			this.GraduateDegreeRepository.Remove(_ => _.Id == id);
@@ -167,6 +199,45 @@ namespace Zoekjaar.Web.Controllers
 			}
 
 			return this.PartialView("_Language", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult LanguageView(GraduateProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			if (this.ModelState.IsValid)
+			{
+				try
+				{
+					if (model.LanguageTemplate.Id == 0)
+					{
+						model.LanguageTemplate.GraduateId = this.UserIdentity.EntityId;
+						this.GraduateLanguageRepository.Add(model.LanguageTemplate);
+					}
+					else
+					{
+						this.GraduateLanguageRepository.Attach(model.LanguageTemplate);
+					}
+					this.GraduateLanguageRepository.SaveChanges();
+					model.IsSuccessful = true;
+				}
+				catch (Exception ex)
+				{
+					this.ModelState.AddModelError("Data", ex.Message);
+					model.IsSuccessful = false;
+				}
+			}
+			else
+			{
+				model.IsSuccessful = false;
+			}
+
+			return this.PartialView("_LanguageView", model);
 		}
 
 		[Authorize(Roles = "Graduate")]
@@ -226,6 +297,38 @@ namespace Zoekjaar.Web.Controllers
 
 		[Authorize(Roles = "Graduate")]
 		[HttpPost]
+		public ActionResult ExperienceView(GraduateProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			try
+			{
+				if (model.ExperienceTemplate.Id == 0)
+				{
+					model.ExperienceTemplate.GraduateId = this.UserIdentity.EntityId;
+					this.GraduateExperienceRepository.Add(model.ExperienceTemplate);
+				}
+				else
+				{
+					this.GraduateExperienceRepository.Attach(model.ExperienceTemplate);
+				}
+				this.GraduateExperienceRepository.SaveChanges();
+				model.IsSuccessful = true;
+			}
+			catch (Exception ex)
+			{
+				this.ModelState.AddModelError("Data", ex.Message);
+				model.IsSuccessful = false;
+			}
+
+			return this.PartialView("_ExperienceView", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
 		public ActionResult DeleteExperience(int id)
 		{
 			this.GraduateExperienceRepository.Remove(_ => _.Id == id);
@@ -272,6 +375,54 @@ namespace Zoekjaar.Web.Controllers
 
 			this.GraduateRepository.SaveChanges();
 			return this.PartialView("_Link", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult LinkView(GraduateProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			try
+			{
+				this.GraduateRepository.Attach(model.Graduate);
+				this.GraduateRepository.SaveChanges();
+				model.IsSuccessful = true;
+			}
+			catch (Exception ex)
+			{
+				this.ModelState.AddModelError("Data", ex.Message);
+				model.IsSuccessful = false;
+			}
+
+			return this.PartialView("_LinkView", model);
+		}
+
+		[Authorize(Roles = "Graduate")]
+		[HttpPost]
+		public ActionResult SkillView(GraduateProfileModel model)
+		{
+			if (model == null)
+			{
+				throw new ArgumentNullException("model");
+			}
+
+			try
+			{
+				this.GraduateRepository.Attach(model.Graduate);
+				this.GraduateRepository.SaveChanges();
+				model.IsSuccessful = true;
+			}
+			catch (Exception ex)
+			{
+				this.ModelState.AddModelError("Data", ex.Message);
+				model.IsSuccessful = false;
+			}
+
+			return this.PartialView("_SkillView", model);
 		}
 
 		[Authorize(Roles = "Graduate")]
@@ -361,7 +512,7 @@ namespace Zoekjaar.Web.Controllers
 				Proficiencies = Identifiers.Proficiency.BasicUnderstanding.ToEnumerable(),
 				VisaStatus = Identifiers.VisaStatus.NA.ToEnumerable(),
 				Graduate = this.GraduateRepository.Get(_ => _.Id == this.UserIdentity.EntityId),
-				Degree = new GraduateDegree()
+				DegreeTemplate = new GraduateDegree()
 			};
 		}
 

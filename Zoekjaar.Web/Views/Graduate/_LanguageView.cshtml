@@ -1,0 +1,66 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+@using Entities
+@using Core.Extensions
+
+@model GraduateProfileModel
+
+@{
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
+}
+
+<div class="headline">
+	<h4>@ApplicationStrings.Languages</h4>
+	<div class="unstyled inline pull-right">
+		<a href="#" class="btn-add" data-container-selector=".template-container-language"><i class="icon-plus"></i>@string.Format(ApplicationStrings.AddNew, ApplicationStrings.Language)</a>
+	</div>
+</div>
+
+<div class="row-fluid template-container template-container-language" hidden>
+	@Html.HiddenFor(_ => _.LanguageTemplate.Id)
+	@Html.HiddenFor(_ => _.LanguageTemplate.GraduateId)
+	<div class="controls">
+		<div class="span6">
+			@Html.LabelFor(_ => _.LanguageTemplate.Language)
+			@Html.TextBoxFor(_ => _.LanguageTemplate.Language, new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.LanguageTemplate.Language)
+		</div>
+		<div class="span6">
+			@Html.LabelFor(_ => _.LanguageTemplate.ProficiencyId)
+			@Html.DropDownListFor(_ => _.LanguageTemplate.ProficiencyId, Identifiers.Proficiency.BasicUnderstanding.ToSelectList(), new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.LanguageTemplate.ProficiencyId)
+		</div>
+	</div>
+	<div class="controls forms-inline">
+		<div class="offset9 span1">
+			<button class="btn btn-warning btn-cancel" data-detail-selector=".language-detail">@ApplicationStrings.Cancel</button>
+		</div>
+		<div class="span2">
+			<input id="save" type="submit" name="submit-language" class="btn-u pull-right btn-save" data-target-url="@Url.Action("LanguageView")" value="@ApplicationStrings.SaveChanges" />
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid blog-page blog-item language-detail">
+	<div class="span12">
+		<hr />
+		@foreach (var degree in Model.Graduate.GraduateLanguages)
+  {
+	  var proficiency = ((Identifiers.Proficiency)degree.ProficiencyId).GetDisplayName();
+			<div class="media row-container">
+				<div class="media-body">
+					@Html.HiddenFor(_ => degree.Id, new { data_target_element = "#LanguageTemplate_Id" })
+					@Html.HiddenFor(_ => degree.GraduateId, new { data_target_element = "#LanguageTemplate_GraduateId" })
+					<h4 class="media-heading" data-target-element="#LanguageTemplate_Language">@Html.DisplayFor(_ => degree.Language)</h4>
+					<ul class="pull-right unstyled inline">
+						<li><a href="#" class="btn-edit" data-container-selector=".template-container-language"><i class="icon-edit"></i></a></li>
+						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteLanguage")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
+					</ul>
+					<p data-target-element="#LanguageTemplate_ProficiencyId" data-select-value="@degree.ProficiencyId" class="select-value">@proficiency</p>
+				</div>
+			</div>
+			<hr />
+  }
+	</div>
+</div>

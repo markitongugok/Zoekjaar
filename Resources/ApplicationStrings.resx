@@ -450,4 +450,7 @@
   <data name="ConfirmJobApplicationMessage" xml:space="preserve">
     <value>You are about to submit your application to Job "{0}".  Do you want to proceed?</value>
   </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
 </root>

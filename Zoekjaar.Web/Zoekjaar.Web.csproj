@@ -884,6 +884,11 @@
       <DependentUpon>Utility.ts</DependentUpon>
     </Content>
     <Content Include="Scripts\Utility.ts" />
+    <Content Include="Views\Graduate\_EducationView.cshtml" />
+    <Content Include="Views\Graduate\_LanguageView.cshtml" />
+    <Content Include="Views\Graduate\_ExperienceView.cshtml" />
+    <Content Include="Views\Graduate\_LinkView.cshtml" />
+    <Content Include="Views\Graduate\_SkillView.cshtml" />
     <TypeScriptCompile Include="Scripts\Views\Graduate.Detail.ts" />
     <Content Include="Views\Graduate\Detail.cshtml" />
     <Content Include="Views\Graduate\_PersonalInformationView.cshtml" />

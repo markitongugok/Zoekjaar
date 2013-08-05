@@ -14,9 +14,10 @@ module Zoekjaar.Graduate {
 			$('.graduate-menu').on('click', $.proxy(this.onMenuClick, this));
 
 			$(document).on('click', '.btn-save', $.proxy(this.onSubmit, this));
-			$(document).on('click', '.btn-add', $.proxy(this.onAddDegreeClick, this));
-			$(document).on('click', '.btn-edit', $.proxy(this.onEditDegreeClick, this));
-			$(document).on('click', '.btn-delete', $.proxy(this.onDeleteDegreeClick, this));
+			$(document).on('click', '.btn-add', $.proxy(this.onAddClick, this));
+			$(document).on('click', '.btn-edit', $.proxy(this.onEditClick, this));
+			$(document).on('click', '.btn-delete', $.proxy(this.onDeleteClick, this));
+			$(document).on('click', '.btn-cancel', $.proxy(this.onCancel, this));
 		}
 		destroy() {
 			$('.graduate-menu').off('click');
@@ -25,6 +26,16 @@ module Zoekjaar.Graduate {
 			$(document).off('click', '.btn-add');
 			$(document).off('click', '.btn-edit');
 			$(document).off('click', '.btn-delete');
+		}
+		onCancel(e: JQueryEventObject) {
+			var target = $(e.target);
+			$(target.data('detail-selector')).show();
+			target.closest('.template-container').hide();
+			$('.media-body').show();
+
+			this.showLinks(target.closest('.container'));
+
+			e.preventDefault();
 		}
 		onSubmit(e: JQueryEventObject) {
 			var editor = $('.wysiwyg-editor');
@@ -72,17 +83,28 @@ module Zoekjaar.Graduate {
 			var validator: any = $.validator;
 			validator.unobtrusive.parse(form);
 		}
-		onAddDegreeClick(e: JQueryEventObject) {
-			var container = $('.template-container');
+		onAddClick(e: JQueryEventObject) {
+			var target = $(e.target);
+			target = target.is('a') ? target : target.parent();
+			target.closest('.view-container').addClass('view-container-target');
+
+			var container = $(target.data('container-selector'));
+			container.insertAfter(target.closest('.headline'));
 			container.find('input[type="text"],select').val(null);
 			container.toggle(true);
+
+			this.hideLinks(target.closest('.container'));
+
 			e.preventDefault();
 		}
-		onEditDegreeClick(e: JQueryEventObject) {
-			var source = $(e.target);
-			var templateContainer = $('.template-container');
-			var rowContainer = source.closest('div.row-container');
+		onEditClick(e: JQueryEventObject) {
+			var target = $(e.target);
+			target = target.is('a') ? target : target.parent();
+			target.closest('.view-container').addClass('view-container-target');
 
+			var templateContainer = $(target.data('container-selector'));
+			//var rowContainer = target.closest('div.row-container');
+			var rowContainer = this.getRowContainer(target);
 			rowContainer.find('[data-target-element]')
 				.each(function (index: any, element: any) {
 					var $element = $(element);
@@ -97,9 +119,27 @@ module Zoekjaar.Graduate {
 			rowContainer.append(templateContainer);
 			rowContainer.find('.media-body').hide();
 			templateContainer.show();
+
+			this.hideLinks(target.closest('.container'));
+
 			e.preventDefault();
 		}
-		onDeleteDegreeClick(e: JQueryEventObject) {
+		getRowContainer(button: JQuery): JQuery {
+			if (button.hasClass('btn-edit-in-headline')) {
+				var rowContainer = button.closest('.headline').siblings('.blog-page').find('div.row-container');
+				if (rowContainer.length > 0) {
+					return $(rowContainer[0]);
+				}
+			}
+			return button.closest('div.row-container');
+		}
+		hideLinks(parent: JQuery) {
+			parent.find('a,i').hide();
+		}
+		showLinks(parent: JQuery) {
+			parent.find('a,i').show();
+		}
+		onDeleteClick(e: JQueryEventObject) {
 			var source = $(e.target);
 			if (source.is('i')) {
 				source = source.closest('a');

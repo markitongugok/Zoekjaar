@@ -1,0 +1,68 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+
+@model GraduateProfileModel
+
+@{
+	var currentRoute = new RouteValueDictionary(this.ViewContext.RouteData.Values);
+}
+
+<div class="headline">
+	<h4>@ApplicationStrings.Education</h4>
+	<div class="unstyled inline pull-right">
+		<a href="#" class="btn-add" data-container-selector=".template-container-education"><i class="icon-plus"></i>@string.Format(ApplicationStrings.AddNew, ApplicationStrings.Education)</a>
+	</div>
+</div>
+
+<div class="row-fluid template-container template-container-education" hidden>
+	@Html.HiddenFor(_ => _.DegreeTemplate.Id)
+	@Html.HiddenFor(_ => _.DegreeTemplate.GraduateId)
+	<div class="controls">
+		@Html.LabelFor(_ => _.DegreeTemplate.University)
+		@Html.TextBoxFor(_ => _.DegreeTemplate.University, new { @class = "span6" })
+		@Html.ValidationMessageFor(_ => _.DegreeTemplate.University)
+	</div>
+	<div class="controls">
+		<div class="span6">
+			@Html.LabelFor(_ => _.DegreeTemplate.Degree)
+			@Html.TextBoxFor(_ => _.DegreeTemplate.Degree, new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.DegreeTemplate.Degree)
+		</div>
+		<div class="span6">
+			@Html.LabelFor(_ => _.DegreeTemplate.Specialisation)
+			@Html.TextBoxFor(_ => _.DegreeTemplate.Specialisation, new { @class = "span12" })
+			@Html.ValidationMessageFor(_ => _.DegreeTemplate.Degree)
+		</div>
+	</div>
+	<div class="controls forms-inline">
+		<div class="span1 offset9">
+			<button class="btn btn-warning btn-cancel" data-detail-selector=".education-detail">@ApplicationStrings.Cancel</button>
+		</div>
+		<div class="span2">
+			<input type="submit" class="btn-u btn-save" data-target-url="@Url.Action("EducationView")" value="@ApplicationStrings.SaveChanges" />
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid blog-page blog-item education-detail">
+	<div class="span12">
+		@foreach (var degree in Model.Graduate.GraduateDegrees)
+  {
+			<div class="media row-container">
+				<div class="media-body">
+					@Html.HiddenFor(_ => degree.Id, new { data_target_element = "#DegreeTemplate_Id" })
+					@Html.HiddenFor(_ => degree.GraduateId, new { data_target_element = "#DegreeTemplate_GraduateId" })
+					<h4 class="media-heading" data-target-element="#DegreeTemplate_University">@Html.DisplayFor(_ => degree.University)</h4>
+					<ul class="pull-right unstyled inline">
+						<li><a href="#" class="btn-edit" data-container-selector=".template-container-education"><i class="icon-edit"></i></a></li>
+						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteEducation")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
+					</ul>
+					<p data-target-element="#DegreeTemplate_Degree">@Html.DisplayFor(_ => degree.Degree)</p>
+					<p data-target-element="#DegreeTemplate_Specialisation">@Html.DisplayFor(_ => degree.Specialisation)</p>
+				</div>
+			</div>
+			<hr />
+  }
+	</div>
+</div>

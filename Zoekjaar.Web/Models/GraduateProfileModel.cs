@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
 using Entities;
 
 namespace Zoekjaar.Web.Models
@@ -14,12 +13,13 @@ namespace Zoekjaar.Web.Models
 
 		public IEnumerable<Entities.Identifiers.Proficiency> Proficiencies { get; set; }
 
-		public GraduateDegree Degree { get; set; }
+		public GraduateDegree DegreeTemplate { get; set; }
 
-		public GraduateLanguage Language { get; set; }
+		public GraduateLanguage LanguageTemplate { get; set; }
 
-		public GraduateExperience Experience { get; set; }
+		public GraduateExperience ExperienceTemplate { get; set; }
 
 		public bool? IsSuccessful { get; set; }
+
 	}
 }

@@ -1,6 +1,7 @@
 ﻿@using Zoekjaar.Web.Models
 @using Zoekjaar.Web.Extensions
 @using Zoekjaar.Resources
+@using Entities
 
 @model GraduateProfileModel
 @{
@@ -9,18 +10,49 @@
 
 <div class="body">
 	<div class="container">
-		<div class="row-fluid margin-bottom-10">
-			@using (Html.BeginForm())
-   { 
-				<div class="span8">
+		@using (Html.BeginForm())
+  { 
+			<div class="row-fluid margin-bottom-20">
+				<div id="personal-information-container" class="span8 boxed">
 					@Html.Partial("_PersonalInformationView", Model)
 				</div>
-   }
-		</div>
+			</div>
+	  
+			<div class="row-fluid margin-bottom-20">
+				<div id="education-information-container" class="span8 view-container boxed">
+					@Html.Partial("_EducationView", Model)
+				</div>
+			</div>
+	  
+			<div class="row-fluid margin-bottom-20">
+				<div id="languages-information-container" class="span8 view-container boxed">
+					@Html.Partial("_LanguageView", Model)
+				</div>
+			</div>
+	  
+			<div class="row-fluid margin-bottom-20">
+				<div id="skill-information-container" class="span8 view-container boxed">
+					@Html.Partial("_SkillView", Model)
+				</div>
+			</div>
+	  
+			<div class="row-fluid margin-bottom-20">
+				<div id="experience-information-container" class="span8 view-container boxed">
+					@Html.Partial("_ExperienceView", Model)
+				</div>
+			</div>
+	  
+			<div class="row-fluid margin-bottom-20">
+				<div id="link-information-container" class="span8 view-container boxed">
+					@Html.Partial("_LinkView", Model)
+				</div>
+			</div>
+  }
 	</div>
 </div>
 
 @section scripts{
 	@Scripts.Render("~/bundles/wysiwyg")
+	<script type="text/javascript" src="~/Scripts/jquery.blockUI.js"></script>
 }
 

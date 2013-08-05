@@ -979,6 +979,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skills.
+        /// </summary>
+        public static string Skills {
+            get {
+                return ResourceManager.GetString("Skills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Specialisation.
         /// </summary>
         public static string Specialisation {

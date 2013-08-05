@@ -6,14 +6,24 @@
 
 @model GraduateProfileModel
 
-<div id="personal-information-container" class="clients-page margin-bottom-20 view-container">
-	<a class="img-hover" href="#">
-		<img src="assets/img/clients/cisco_grey.png" alt="">
-	</a>
-	<h3>@Html.DisplayFor(_ => _.Graduate.LastName), @Html.DisplayFor(_ => _.Graduate.FirstName)</h3>
-	<p>@ApplicationStrings.CurrentStatus: @(((Identifiers.CurrentStatus)Model.Graduate.CurrentStatusId.Value).GetDisplayName())</p>
-	<p>@ApplicationStrings.VisaStatus: @(((Identifiers.VisaStatus)Model.Graduate.VisaStatusId.Value).GetDisplayName())</p>
-	<a class="graduate-menu" data-view-container-selector="#personal-information-container" data-target-url="@Url.Action("PersonalInformation", "Graduate")"><i class="icon-edit icon-2x"></i></a>
+<div class="headline">
+	<h4>@ApplicationStrings.PersonalInformation</h4>
+</div>
+
+<div class="row-fluid">
+	<div class="clients-page">
+		<ul class="pull-right unstyled inline">
+			<li><a class="graduate-menu" data-view-container-selector="#personal-information-container" data-target-url="@Url.Action("PersonalInformation", "Graduate")"><i class="icon-edit"></i></a></li>
+		</ul>
+		<a class="img-hover" href="#">
+			<img src="assets/img/clients/cisco_grey.png" alt="">
+		</a>
+		<h3>@Html.DisplayFor(_ => _.Graduate.LastName), @Html.DisplayFor(_ => _.Graduate.FirstName)</h3>
+		<p>@ApplicationStrings.CurrentStatus: <strong>@(((Identifiers.CurrentStatus)Model.Graduate.CurrentStatusId.Value).GetDisplayName())</strong></p>
+		<p>@ApplicationStrings.VisaStatus: <strong>@(((Identifiers.VisaStatus)Model.Graduate.VisaStatusId.Value).GetDisplayName())</strong></p>
+		<p>@ApplicationStrings.AvailableFromDate: <strong>@(Model.Graduate.AvailableFromDate.Value.ToString("d"))</strong></p>
+	</div>
+	<p>@Html.Raw(Model.Graduate.Profile)</p>
 </div>
 
 @*<div class="headline">
