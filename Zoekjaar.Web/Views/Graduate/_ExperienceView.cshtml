@@ -36,12 +36,8 @@
 		</div>
 	</div>
 	<div class="controls forms-inline">
-		<div class="span1 offset9">
-			<button class="btn btn-warning btn-cancel" data-detail-selector=".experience-detail">@ApplicationStrings.Cancel</button>
-		</div>
-		<div class="span2">
-			<input type="submit" class="btn-u btn-save" data-target-url="@Url.Action("ExperienceView")" value="@ApplicationStrings.SaveChanges" />
-		</div>
+		<button class="btn btn-warning btn-cancel" data-detail-selector=".experience-detail">@ApplicationStrings.Cancel</button>
+		<input type="submit" class="btn-u btn-save" data-target-url="@Url.Action("ExperienceView")" value="@ApplicationStrings.SaveChanges" />
 	</div>
 </div>
 
@@ -59,8 +55,8 @@
 						<li><a href="#" class="btn-edit" data-container-selector=".template-container-experience"><i class="icon-edit"></i></a></li>
 						<li><a href="#" class="btn-delete" data-target-url="@Url.Action("DeleteExperience")" data-target-id="@degree.Id"><i class="icon-trash"></i></a></li>
 					</ul>
-					<p data-target-element = "#ExperienceTemplate_CompanyProfile">@Html.DisplayFor(_ => degree.CompanyProfile)</p>
-					<p data-target-element = "#ExperienceTemplate_Experience">@Html.DisplayFor(_ => degree.Experience)</p>
+					<p data-target-element="#ExperienceTemplate_CompanyProfile">@Html.DisplayFor(_ => degree.CompanyProfile)</p>
+					<p data-target-element="#ExperienceTemplate_Experience">@Html.DisplayFor(_ => degree.Experience)</p>
 				</div>
 			</div>
 			<hr />

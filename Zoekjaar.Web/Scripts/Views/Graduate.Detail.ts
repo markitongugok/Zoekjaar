@@ -11,7 +11,14 @@ module Zoekjaar.Graduate {
 			var editor: any = $('.wysiwyg-editor');
 			editor.wysiwyg();
 
-			$('.graduate-menu').on('click', $.proxy(this.onMenuClick, this));
+			var uploader: any = $('#fileupload');
+
+			uploader.fileupload({
+				dataType: 'json',
+				done: function (e, data) {
+					$('#profile-picture').prop('src', data.result.file);
+				}
+			});
 
 			$(document).on('click', '.btn-save', $.proxy(this.onSubmit, this));
 			$(document).on('click', '.btn-add', $.proxy(this.onAddClick, this));
@@ -20,8 +27,6 @@ module Zoekjaar.Graduate {
 			$(document).on('click', '.btn-cancel', $.proxy(this.onCancel, this));
 		}
 		destroy() {
-			$('.graduate-menu').off('click');
-
 			$(document).off('click', '.btn-save');
 			$(document).off('click', '.btn-add');
 			$(document).off('click', '.btn-edit');
@@ -51,18 +56,6 @@ module Zoekjaar.Graduate {
 					success: $.proxy(this.viewLoaded, this)
 				});
 			}
-			e.preventDefault();
-		}
-		onMenuClick(e: JQueryEventObject) {
-			var source = $(e.target);
-			source = source.is('a') ? source : source.parent();
-			var container = $(source.data('view-container-selector'));
-			container.addClass('view-container-target');
-			$.ajax({
-				url: source.data('target-url'),
-				type: 'GET',
-				success: $.proxy(this.viewLoaded, this)
-			});
 			e.preventDefault();
 		}
 		viewLoaded(data: any) {

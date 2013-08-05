@@ -19,7 +19,8 @@ namespace Business
 					StatusId = _.StatusId,
 					CompanyId = _.Job.CompanyId,
 					CompanyName = _.Job.Company.Name,
-					JobTypeId = (Identifiers.JobType)_.Job.JobTypeId
+					JobTypeId = (Identifiers.JobType)_.Job.JobTypeId,
+					LogoUrl = _.Job.Company.LogoUrl
 				});
 		}
 	}

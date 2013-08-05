@@ -13,7 +13,7 @@
 		@using (Html.BeginForm())
   { 
 			<div class="row-fluid margin-bottom-20">
-				<div id="personal-information-container" class="span8 boxed">
+				<div id="personal-information-container" class="span8 view-container boxed">
 					@Html.Partial("_PersonalInformationView", Model)
 				</div>
 			</div>
@@ -51,7 +51,12 @@
 	</div>
 </div>
 
+@section styles{
+	@Styles.Render("~/Content/upload")
+}
+
 @section scripts{
+	@Scripts.Render("~/bundles/upload")
 	@Scripts.Render("~/bundles/wysiwyg")
 	<script type="text/javascript" src="~/Scripts/jquery.blockUI.js"></script>
 }

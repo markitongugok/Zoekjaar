@@ -42,7 +42,7 @@
 						<ul class="nav-list">
 							@if (this.User.IsInRole("Graduate"))
 	   { 
-								<li><a href="@Url.Action("Edit", "Graduate")">@ApplicationStrings.EditProfile</a></li>
+								<li><a href="@Url.Action("Detail", "Graduate")">@ApplicationStrings.EditProfile</a></li>
 	   }
 							@if (this.User.IsInRole("Company"))
 	   { 
@@ -95,7 +95,7 @@
 		   if (this.User.IsInRole("Graduate"))
 		   { 
 								<li>@Html.ActionLink(ApplicationStrings.SearchJobs, "Search", "Job")</li>
-								<li>@Html.ActionLink(ApplicationStrings.EditProfile, "Edit", "Graduate")</li>
+								<li>@Html.ActionLink(ApplicationStrings.EditProfile, "Detail", "Graduate")</li>
 								<li>@Html.ActionLink(ApplicationStrings.MyJobApplications, "Applications", "Candidate")</li>
 		   }
 		   if (this.User.IsInRole("Company"))

@@ -63,8 +63,8 @@ div.upload-image {
   position: relative;
 }
 div.upload-image img {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 div.upload-image span.upload-image-overlay {
   position: absolute;

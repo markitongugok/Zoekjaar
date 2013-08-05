@@ -19,7 +19,8 @@ module Zoekjaar.Graduate {
 			$(document).on('click', '.btn-delete', $.proxy(this.onDeleteDegreeClick, this));
 		}
 		destroy() {
-			$('.graduate-menu').off('click');
+			var uploader: any = $('#fileupload');
+			uploader.fileupload('destroy');
 
 			$(document).off('click', '.btn-save');
 			$(document).off('click', '.btn-add');
