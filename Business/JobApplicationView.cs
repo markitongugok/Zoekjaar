@@ -21,5 +21,6 @@ namespace Business
 		public string CompanyName { get; set; }
 		public Identifiers.JobType JobTypeId { get; set; }
 		public string LogoUrl { get; set; }
+		public string Location { get; set; }
 	}
 }

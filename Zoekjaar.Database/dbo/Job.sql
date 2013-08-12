@@ -16,8 +16,9 @@
 	[OtherCriteria] VARCHAR(MAX) NULL, 
 	[VisaStatusId] INT NOT NULL, 
 	[StartDate] DATE NULL, 
+	[Location] VARCHAR(50) NOT NULL DEFAULT 'Not specified', 
 	[IsFeatured] BIT NOT NULL DEFAULT 0, 
 	[DatePosted] DATETIME NOT NULL DEFAULT getdate(), 
-	CONSTRAINT [FK_Job_Company] FOREIGN KEY ([CompanyId]) REFERENCES [Company]([Id]),
+    CONSTRAINT [FK_Job_Company] FOREIGN KEY ([CompanyId]) REFERENCES [Company]([Id]),
 	CONSTRAINT [FK_Job_Lookup] FOREIGN KEY ([JobTypeId]) REFERENCES [Lookup]([Id])
 )

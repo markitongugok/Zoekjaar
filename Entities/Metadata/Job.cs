@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using Zoekjaar.Resources;
 
@@ -75,6 +72,10 @@ namespace Entities
 
 		[Required]
 		public System.DateTime DatePosted { get; set; }
+
+		[Display(Name = "Location", ResourceType = typeof(ApplicationStrings))]
+		[Required]
+		public string Location { get; set; }
 
 		public virtual Company Company { get; set; }
 		public virtual ICollection<JobApplication> JobApplications { get; set; }

@@ -68,7 +68,8 @@ namespace Business
 					MyStatus = _.Applicants.Where(a => a.GraduateId == criteria.EntityId).Select(a => ((Identifiers.RecruitmentStage)a.StatusId)).FirstOrDefault(),
 					IsFeatured = _.Job.IsFeatured,
 					LogoUrl = _.Job.Company.LogoUrl,
-					DatePosted = _.Job.DatePosted
+					DatePosted = _.Job.DatePosted,
+					Location = _.Job.Location
 				});
 		}
 
@@ -92,7 +93,8 @@ namespace Business
 					StartDate = _.StartDate,
 					IsFeatured = _.IsFeatured,
 					LogoUrl = _.Company.LogoUrl,
-					DatePosted = _.DatePosted
+					DatePosted = _.DatePosted,
+					Location = _.Location
 				}).Single();
 		}
 
@@ -118,7 +120,8 @@ namespace Business
 					StartDate = _.StartDate,
 					IsFeatured = _.IsFeatured,
 					LogoUrl = _.Company.LogoUrl,
-					DatePosted = _.DatePosted
+					DatePosted = _.DatePosted,
+					Location = _.Location
 				});
 		}
 
@@ -145,7 +148,8 @@ namespace Business
 					StartDate = _.StartDate,
 					IsFeatured = _.IsFeatured,
 					LogoUrl = _.Company.LogoUrl,
-					DatePosted = _.DatePosted
+					DatePosted = _.DatePosted,
+					Location = _.Location
 				});
 		}
 
@@ -172,7 +176,8 @@ namespace Business
 					StartDate = _.StartDate,
 					IsFeatured = _.IsFeatured,
 					LogoUrl = _.Company.LogoUrl,
-					DatePosted = _.DatePosted
+					DatePosted = _.DatePosted,
+					Location = _.Location
 				});
 		}
 	}

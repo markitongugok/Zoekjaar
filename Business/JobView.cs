@@ -61,5 +61,7 @@ namespace Business
 		public bool IsFeatured { get; set; }
 
 		public Identifiers.RecruitmentStage? MyStatus { get; set; }
+
+		public object Location { get; set; }
 	}
 }

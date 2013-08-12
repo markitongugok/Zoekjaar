@@ -37,6 +37,7 @@ namespace Entities
     	public Nullable<System.DateTime> StartDate { get; set; }
     	public bool IsFeatured { get; set; }
     	public System.DateTime DatePosted { get; set; }
+    	public string Location { get; set; }
     
     	public virtual Company Company { get; set; }
     	public virtual ICollection<JobApplication> JobApplications { get; set; }

@@ -20,7 +20,8 @@ namespace Business
 					CompanyId = _.Job.CompanyId,
 					CompanyName = _.Job.Company.Name,
 					JobTypeId = (Identifiers.JobType)_.Job.JobTypeId,
-					LogoUrl = _.Job.Company.LogoUrl
+					LogoUrl = _.Job.Company.LogoUrl,
+					Location = _.Job.Location
 				});
 		}
 	}

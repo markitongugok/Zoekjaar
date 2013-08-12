@@ -24,7 +24,7 @@
 						<th>@ApplicationStrings.Title</th>
 						<th>@ApplicationStrings.Description</th>
 						<th>@ApplicationStrings.JobFunction</th>
-						<th>@ApplicationStrings.DatePosted</th>
+						<th>@ApplicationStrings.Location</th>
 						<th>@ApplicationStrings.Candidates</th>
 						<th>@ApplicationStrings.Options</th>
 					</tr>
@@ -47,7 +47,7 @@
 								@Html.DisplayFor(_ => job.JobFunction)
 							</td>
 							<td>
-								@Html.DisplayFor(_ => job.StartDate)
+								@Html.DisplayFor(_ => job.Location)
 							</td>
 							<td>
 								@{

@@ -486,4 +486,7 @@
   <data name="UserDoesNotExist" xml:space="preserve">
     <value>User does not exist.</value>
   </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
 </root>
