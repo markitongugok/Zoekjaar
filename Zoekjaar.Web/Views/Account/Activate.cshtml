@@ -1,0 +1,33 @@
+﻿@using Zoekjaar.Web.Models
+@using Zoekjaar.Web.Extensions
+@using Zoekjaar.Resources
+@using Zoekjaar.Web.Controllers
+
+@{
+	ViewBag.Title = ApplicationStrings.AccountActivation;
+	var alertClass = Model.IsSuccessful ? "success" : "error";
+}
+
+@model AccountActivationModel
+
+<div class="container">
+	<div class="row-fluid">
+		<div class="alert alert-@alertClass">
+			@Model.Message
+		</div>
+		@if (Model.IsSuccessful)
+  {
+	  string action = string.Empty;
+	  switch (Model.UserTypeId)
+	  {
+		  case 1:
+			  action = "GraduateLogin";
+			  break;
+		  case 2:
+			  action = "EmployerLogin";
+			  break;
+	  }
+			<span>Click </span><a href="@Url.Action(action, "Account")"><strong>here</strong></a><span> to login.</span>
+  }
+	</div>
+</div>

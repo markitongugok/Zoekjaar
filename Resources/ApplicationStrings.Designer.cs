@@ -70,6 +70,24 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account has been activated.
+        /// </summary>
+        public static string AccountActivated {
+            get {
+                return ResourceManager.GetString("AccountActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Activation.
+        /// </summary>
+        public static string AccountActivation {
+            get {
+                return ResourceManager.GetString("AccountActivation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actions.
         /// </summary>
         public static string Actions {
@@ -187,6 +205,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A confirmation email was sent to you..
+        /// </summary>
+        public static string ConfirmationEmailSent {
+            get {
+                return ResourceManager.GetString("ConfirmationEmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Email.
         /// </summary>
         public static string ConfirmEmail {
@@ -219,6 +246,15 @@ namespace Zoekjaar.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Registration.
+        /// </summary>
+        public static string ConfirmRegistration {
+            get {
+                return ResourceManager.GetString("ConfirmRegistration", resourceCulture);
             }
         }
         
@@ -376,6 +412,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The activation token has expired!.
+        /// </summary>
+        public static string ExpiredActivationToken {
+            get {
+                return ResourceManager.GetString("ExpiredActivationToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed!.
         /// </summary>
         public static string Failed {
@@ -516,6 +561,15 @@ namespace Zoekjaar.Resources {
         public static string IncorrectPassword {
             get {
                 return ResourceManager.GetString("IncorrectPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Activation Token!.
+        /// </summary>
+        public static string InvalidActivationToken {
+            get {
+                return ResourceManager.GetString("InvalidActivationToken", resourceCulture);
             }
         }
         
@@ -907,6 +961,24 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset Password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An email with a link to reset your password was sent..
+        /// </summary>
+        public static string ResetPasswordEmailSent {
+            get {
+                return ResourceManager.GetString("ResetPasswordEmailSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Changes.
         /// </summary>
         public static string SaveChanges {
@@ -1006,6 +1078,15 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success!.
         /// </summary>
         public static string Success {
@@ -1033,11 +1114,29 @@ namespace Zoekjaar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error was encountered..
+        /// </summary>
+        public static string UnexpectedException {
+            get {
+                return ResourceManager.GetString("UnexpectedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to University/College.
         /// </summary>
         public static string University {
             get {
                 return ResourceManager.GetString("University", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User does not exist..
+        /// </summary>
+        public static string UserDoesNotExist {
+            get {
+                return ResourceManager.GetString("UserDoesNotExist", resourceCulture);
             }
         }
         

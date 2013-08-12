@@ -18,9 +18,9 @@ namespace Business
 			//{
 			//	throw new ValidationException("User already exists.");
 			//}
-			entity.User.IsActive = true;
+			entity.User.IsActive = false;
 			entity.User.UserType = 1;
-			entity.IsActive = true;
+			entity.IsActive = false;
 			base.Add(entity);
 		}
 

@@ -14,9 +14,9 @@ namespace Business
 
 		public override void Add(Company entity)
 		{
-			entity.User.IsActive = true;
+			entity.User.IsActive = false;
 			entity.User.UserType = 2;
-			entity.IsActive = true;
+			entity.IsActive = false;
 			base.Add(entity);
 		}
 	}

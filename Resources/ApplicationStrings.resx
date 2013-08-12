@@ -453,4 +453,37 @@
   <data name="Skills" xml:space="preserve">
     <value>Skills</value>
   </data>
+  <data name="AccountActivated" xml:space="preserve">
+    <value>Your account has been activated</value>
+  </data>
+  <data name="AccountActivation" xml:space="preserve">
+    <value>Account Activation</value>
+  </data>
+  <data name="ConfirmationEmailSent" xml:space="preserve">
+    <value>A confirmation email was sent to you.</value>
+  </data>
+  <data name="ConfirmRegistration" xml:space="preserve">
+    <value>Confirm Registration</value>
+  </data>
+  <data name="ExpiredActivationToken" xml:space="preserve">
+    <value>The activation token has expired!</value>
+  </data>
+  <data name="InvalidActivationToken" xml:space="preserve">
+    <value>Invalid Activation Token!</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ResetPasswordEmailSent" xml:space="preserve">
+    <value>An email with a link to reset your password was sent.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="UnexpectedException" xml:space="preserve">
+    <value>An unexpected error was encountered.</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>User does not exist.</value>
+  </data>
 </root>
