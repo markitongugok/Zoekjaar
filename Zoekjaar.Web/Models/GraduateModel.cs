@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Business.Entities.Validation;
 using Entities;
 using Zoekjaar.Resources;
 
@@ -18,6 +19,7 @@ namespace Zoekjaar.Web.Models
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
 		[Required]
+		[UniqueUser]
 		public string Email { get; set; }
 
 		[DataType(DataType.EmailAddress)]

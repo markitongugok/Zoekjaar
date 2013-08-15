@@ -265,6 +265,7 @@
     <Compile Include="Models\GraduateSearchModel.cs" />
     <Compile Include="Models\JobsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\UniqueUserAttribute.cs" />
     <Compile Include="WebContainerComposer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,11 +18,11 @@
 				@Html.HiddenFor(_ => _.Company.UserId)
 				@Html.HiddenFor(_ => _.Company.IsActive)
 				<h3>Register a new account</h3>
+				@Html.ValidationSummary(true)
 				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Email)
 						@Html.EditorFor(_ => _.Email, new { @class = "span12" })
-						@Html.ValidationMessageFor(_ => _.Email)
 					</div>
 					<div class="span6">
 						@Html.LabelFor(_ => _.ConfirmEmail)

@@ -17,6 +17,9 @@
 				@Html.AntiForgeryToken()
 				@Html.HiddenFor(_ => _.Graduate.Id)
 				<div class="controls">
+					@Html.ValidationSummary(true)
+				</div>
+				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Email)
 						@Html.EditorFor(_ => _.Email, new { @class = "span12" })

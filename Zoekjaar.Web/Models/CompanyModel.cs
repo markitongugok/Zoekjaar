@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Business.Entities.Validation;
 using Entities;
 using Zoekjaar.Resources;
 
@@ -14,6 +15,7 @@ namespace Zoekjaar.Web.Models
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
 		[DataType(DataType.EmailAddress)]
 		[Required]
+		[UniqueUser]
 		public string Email { get; set; }
 
 		[Display(Name = "ConfirmEmail", ResourceType = typeof(ApplicationStrings))]
