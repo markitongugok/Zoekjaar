@@ -13,14 +13,15 @@ namespace Zoekjaar.Web.Models
 		public Job Job { get; set; }
 
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
-		[DataType(DataType.EmailAddress)]
 		[Required]
 		[UniqueUser]
+		[EmailAddress]
 		public string Email { get; set; }
 
 		[Display(Name = "ConfirmEmail", ResourceType = typeof(ApplicationStrings))]
 		[Compare("Email")]
 		[Required]
+		[EmailAddress]
 		public string ConfirmEmail { get; set; }
 
 		[Display(Name = "Password", ResourceType = typeof(ApplicationStrings))]

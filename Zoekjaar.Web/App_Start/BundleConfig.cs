@@ -20,7 +20,6 @@ namespace Zoekjaar.Web
 						"~/Scripts/jquery-ui-{version}.js"));
 
 			bundles.Add(new Bundle("~/bundles/jqueryval", jsTransformer).Include(
-						"~/Scripts/jquery.unobtrusive*",
 						"~/Scripts/jquery.validate*"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're

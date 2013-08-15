@@ -16,13 +16,13 @@ namespace Zoekjaar.Web.Models
 
 		public IEnumerable<Entities.Identifiers.Proficiency> Proficiencies { get; set; }
 
-		[DataType(DataType.EmailAddress)]
+		[EmailAddress]
 		[Display(Name = "Email", ResourceType = typeof(ApplicationStrings))]
 		[Required]
 		[UniqueUser]
 		public string Email { get; set; }
 
-		[DataType(DataType.EmailAddress)]
+		[EmailAddress]
 		[Display(Name = "ConfirmEmail", ResourceType = typeof(ApplicationStrings))]
 		[Compare("Email")]
 		[Required]

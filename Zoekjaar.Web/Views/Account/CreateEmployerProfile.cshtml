@@ -22,11 +22,12 @@
 				<div class="controls">
 					<div class="span6">
 						@Html.LabelFor(_ => _.Email)
-						@Html.EditorFor(_ => _.Email, new { @class = "span12" })
+						@Html.TextBoxFor(_ => _.Email, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Email)
 					</div>
 					<div class="span6">
 						@Html.LabelFor(_ => _.ConfirmEmail)
-						@Html.EditorFor(_ => _.ConfirmEmail, new { @class = "span12" })
+						@Html.TextBoxFor(_ => _.ConfirmEmail, new { @class = "span12" })
 						@Html.ValidationMessageFor(_ => _.ConfirmEmail)
 					</div>
 				</div>

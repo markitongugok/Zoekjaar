@@ -22,16 +22,29 @@ module Zoekjaar {
 		static load(): void {
 			Zoekjaar.Utility.executeInitQueue();
 
-			var validator: any = $('form').data('validator');
-			validator.settings.errorClass = 'error';
-			validator.settings.validClass = '';
+			//var validator: any = $('form').data('validator');
+			//validator.settings.errorClass = 'error';
+			//validator.settings.validClass = '';
 
-			validator.settings.highlight = function (element, errorClass, validClass) {
-				$(element).closest('.controls').addClass('error');
-			};
-			validator.settings.unhighlight = function (element, errorClass, validClass) {
-				$(element).closest('.controls').removeClass('error');
-			}
+			//validator.settings.highlight = function (element, errorClass, validClass) {
+			//	$(element).closest('.controls').addClass('error');
+			//};
+			//validator.settings.unhighlight = function (element, errorClass, validClass) {
+			//	$(element).closest('.controls').removeClass('error');
+			//}
+
+			$.validator.setDefaults({
+				errorClass: 'error',
+				validClass: '',
+				highlight: function (element, errorClass, validClass) {
+					$(element).closest('.controls').addClass('error');
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					$(element).closest('.controls').removeClass('error');
+				}
+			});
+
+
 			$(".date-picker").datepicker({
 				format: 'mm/dd/yyyy'
 			});

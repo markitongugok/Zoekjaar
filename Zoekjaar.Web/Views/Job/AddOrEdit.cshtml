@@ -45,48 +45,48 @@
 	  { 
 							@Html.TextBoxFor(_ => _.Job.JobNumber, new { @class = "span12", @readonly = "readonly" })
 	  }
-						@Html.ControlValidationMessageFor(_ => _.Job.JobNumber)
+						@Html.ValidationMessageFor(_ => _.Job.JobNumber)
 					</div>
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.Title)
 						@Html.TextBoxFor(_ => _.Job.Title, new { @class = "span12" })
-						@Html.ControlValidationMessageFor(_ => _.Job.Title)
+						@Html.ValidationMessageFor(_ => _.Job.Title)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.JobTypeId)
 						@Html.DropDownListFor(_ => _.Job.JobTypeId, Identifiers.JobType.Freelance.ToSelectList(), new { @class = "span12" })
-						@Html.ControlValidationMessageFor(_ => _.Job.JobTypeId)
+						@Html.ValidationMessageFor(_ => _.Job.JobTypeId)
 					</div>
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.JobFunction)
 						@Html.TextBoxFor(_ => _.Job.JobFunction, new { @class = "span12" })
-						@Html.ControlValidationMessageFor(_ => _.Job.JobFunction)
+						@Html.ValidationMessageFor(_ => _.Job.JobFunction)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.HiringManager)
 						@Html.TextBoxFor(_ => _.Job.HiringManager, new { @class = "span12" })
-						@Html.ControlValidationMessageFor(_ => _.Job.HiringManager)
+						@Html.ValidationMessageFor(_ => _.Job.HiringManager)
 					</div>
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.HrManager)
 						@Html.TextBoxFor(_ => _.Job.HrManager, new { @class = "span12" })
-						@Html.ControlValidationMessageFor(_ => _.Job.HrManager)
+						@Html.ValidationMessageFor(_ => _.Job.HrManager)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.OrgLevel)
-						@Html.TextBoxFor(_ => _.Job.OrgLevel, new { @class = "span6" })
-						@Html.ControlValidationMessageFor(_ => _.Job.OrgLevel)
+						@Html.TextBoxFor(_ => _.Job.OrgLevel, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Job.OrgLevel)
 					</div>
 					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.Location)
-						@Html.TextBoxFor(_ => _.Job.Location, new { @class = "span6" })
-						@Html.ControlValidationMessageFor(_ => _.Job.Location)
+						@Html.TextBoxFor(_ => _.Job.Location, new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Job.Location)
 					</div>
 				</div>
 				<div class="controls">
@@ -99,52 +99,52 @@
 	 Content = Model.Job.JobDescription
  })
 						@Html.HiddenFor(_ => _.Job.JobDescription)
-						@Html.ControlValidationMessageFor(_ => _.Job.JobDescription)
+						@Html.ValidationMessageFor(_ => _.Job.JobDescription)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span12">
 						@Html.ControlLabelFor(_ => _.Job.Criteria)
 						@Html.TextAreaFor(_ => _.Job.Criteria, new { @class = "span6", rows = "3" })
-						@Html.ControlValidationMessageFor(_ => _.Job.Criteria)
+						@Html.ValidationMessageFor(_ => _.Job.Criteria)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span12">
 						@Html.ControlLabelFor(_ => _.Job.Degree)
 						@Html.TextBoxFor(_ => _.Job.Degree, new { @class = "span6" })
-						@Html.ControlValidationMessageFor(_ => _.Job.Degree)
+						@Html.ValidationMessageFor(_ => _.Job.Degree)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span12">
 						@Html.ControlLabelFor(_ => _.Job.Specialisation)
 						@Html.TextBoxFor(_ => _.Job.Specialisation, new { @class = "span6" })
-						@Html.ControlValidationMessageFor(_ => _.Job.Specialisation)
+						@Html.ValidationMessageFor(_ => _.Job.Specialisation)
 					</div>
 				</div>
 				<div class="controls">
 					<div class="span12">
 						@Html.ControlLabelFor(_ => _.Job.OtherCriteria)
 						@Html.TextAreaFor(_ => _.Job.OtherCriteria, new { @class = "span6", rows = "3" })
-						@Html.ControlValidationMessageFor(_ => _.Job.OtherCriteria)
+						@Html.ValidationMessageFor(_ => _.Job.OtherCriteria)
 					</div>
 				</div>
 				<div class="controls">
-					<div class="span12">
+					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.VisaStatusId)
-						@Html.DropDownListFor(_ => _.Job.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span6" })
-						@Html.ControlValidationMessageFor(_ => _.Job.VisaStatusId)
+						@Html.DropDownListFor(_ => _.Job.VisaStatusId, Identifiers.VisaStatus.NA.ToSelectList(), new { @class = "span12" })
+						@Html.ValidationMessageFor(_ => _.Job.VisaStatusId)
 					</div>
 				</div>
 				<div class="controls">
-					<div class="span12">
+					<div class="span6">
 						@Html.ControlLabelFor(_ => _.Job.StartDate)
 						<div class="input-append date date-picker" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
 							@Html.TextBoxFor(_ => _.Job.StartDate, "{0:MM/dd/yyyy}", new { @class = "span12" })
 							<span class="add-on"><i class="icon-calendar"></i></span>
 						</div>
-						@Html.ControlValidationMessageFor(_ => _.Job.StartDate)
+						@Html.ValidationMessageFor(_ => _.Job.StartDate, null, new { @class = "help-block" })
 					</div>
 				</div>
 				<div class="controls">
