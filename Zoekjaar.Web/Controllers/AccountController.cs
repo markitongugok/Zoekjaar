@@ -104,9 +104,9 @@ namespace Zoekjaar.Web.Controllers
 			this.GraduateRepository.SaveChanges();
 
 #if(TEST)
-			this.SendEmail(model.Graduate.User.Id, 1, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
+			this.SendEmail(model.Graduate.User.Id, model.Graduate.FirstName, 1, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
 #else
-			this.SendEmail(model.Graduate.User.Id, 1, model.Graduate.User.Username, ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
+			this.SendEmail(model.Graduate.User.Id, model.Graduate.FirstName, 1, model.Graduate.User.Username, ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
 #endif
 
 			return this.RedirectToAction("Confirm");
@@ -143,9 +143,9 @@ namespace Zoekjaar.Web.Controllers
 			this.CompanyRepository.SaveChanges();
 
 #if(TEST)
-			this.SendEmail(model.Company.User.Id, 2, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
+			this.SendEmail(model.Company.User.Id, model.Company.User.Username, 2, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
 #else
-			this.SendEmail(model.Company.User.Id, 2, model.Company.User.Username, ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
+			this.SendEmail(model.Company.User.Id, model.Company.User.Username, 2, model.Company.User.Username, ConfigurationManager.AppSettings["accountActivationXsl"], ApplicationStrings.AccountActivation, "Activate");
 #endif
 
 
@@ -267,9 +267,9 @@ namespace Zoekjaar.Web.Controllers
 				if (user != null)
 				{
 #if(TEST)
-					this.SendEmail(user.Id, user.UserType, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
+					this.SendEmail(user.Id, user.Username, user.UserType, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
 #else
-					this.SendEmail(user.Id, user.UserType, model.Email, ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
+					this.SendEmail(user.Id, user.UserName, user.UserType, model.Email, ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
 #endif
 					model.IsSuccessful = true;
 					model.Message = ApplicationStrings.ResetPasswordEmailSent;
@@ -333,7 +333,7 @@ namespace Zoekjaar.Web.Controllers
 			return this.View(model);
 		}
 
-		private void SendEmail(int userId, int typeId, string recipient, string xsl, string title, string action)
+		private void SendEmail(int userId, string name, int typeId, string recipient, string xsl, string title, string action)
 		{
 			var routeData = new RouteValueDictionary();
 			routeData["token"] = (string.Format("{0}:{1}:{2}", userId, typeId, DateTime.UtcNow.AddHours(int.Parse(ConfigurationManager.AppSettings["tokenExpiration"])).Ticks)).Encrypt();
@@ -343,11 +343,12 @@ namespace Zoekjaar.Web.Controllers
 			var activationHtml = new TokenModel
 			{
 				Url = urlHelper.ContentFullPath(urlHelper.Action(action, routeData)),
-				Text = "here"
+				Text = "here",
+				Name = name
 			}
 			.Transform(xsl);
 
-			activationHtml.SendTo(new List<string> { "m_ortigas@hotmail.com" }, title);
+			activationHtml.SendTo(new List<string> { recipient }, title);
 		}
 
 		private bool IsAuthenticated(string username, string password, int userTypeId)

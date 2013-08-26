@@ -4,14 +4,19 @@
 	<xsl:template match="/">
 		<html>
 			<body>
-				<span>Click </span>
-				<xsl:element name="a">
-					<xsl:attribute name="href">
-						<xsl:value-of select="TokenModel/Url"/>
-					</xsl:attribute>
-					<xsl:value-of select="TokenModel/Text"/>
-				</xsl:element>
-				<span> to reset password.</span>
+				<p>
+					Hi <xsl:value-of select="TokenModel/Name"/>,
+				</p>
+				<p>
+					<span>Click </span>
+					<xsl:element name="a">
+						<xsl:attribute name="href">
+							<xsl:value-of select="TokenModel/Url"/>
+						</xsl:attribute>
+						<xsl:value-of select="TokenModel/Text"/>
+					</xsl:element>
+					<span> to reset password.</span>
+				</p>
 			</body>
 		</html>
 	</xsl:template>

@@ -4,14 +4,20 @@
 	<xsl:template match="/">
 		<html>
 			<body>
-				<span>Click </span>
-				<xsl:element name="a">
-					<xsl:attribute name="href">
-						<xsl:value-of select="TokenModel/Url"/>
-					</xsl:attribute>
-					<xsl:value-of select="TokenModel/Text"/>
-				</xsl:element>
-				<span> to proceed to account activation.</span>
+				<p>
+					Hi <xsl:value-of select="TokenModel/Name"/>,
+				</p>
+				<p>You are receiving this email because you've registered with Search Year</p>
+				<p>
+					<span>Click </span>
+					<xsl:element name="a">
+						<xsl:attribute name="href">
+							<xsl:value-of select="TokenModel/Url"/>
+						</xsl:attribute>
+						<xsl:value-of select="TokenModel/Text"/>
+					</xsl:element>
+					<span> to complete your registration.</span>
+				</p>
 			</body>
 		</html>
 	</xsl:template>
