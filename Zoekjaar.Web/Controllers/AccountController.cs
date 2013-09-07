@@ -269,7 +269,7 @@ namespace Zoekjaar.Web.Controllers
 #if(TEST)
 					this.SendEmail(user.Id, user.Username, user.UserType, "m_ortigas@hotmail.com", ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
 #else
-					this.SendEmail(user.Id, user.UserName, user.UserType, model.Email, ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
+					this.SendEmail(user.Id, user.Username, user.UserType, model.Email, ConfigurationManager.AppSettings["resetPasswordXsl"], ApplicationStrings.ResetPassword, "ResetPassword");
 #endif
 					model.IsSuccessful = true;
 					model.Message = ApplicationStrings.ResetPasswordEmailSent;
